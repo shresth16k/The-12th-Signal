@@ -1,17 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const StadiumZoneMap: React.FC = () => {
+  const [clusters, setClusters] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchClusters = async () => {
+      try {
+        const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+          ? 'http://localhost:8000' 
+          : '';
+        const res = await fetch(`${host}/api/clusters`);
+        if (res.ok) {
+          const data = await res.json();
+          setClusters(data);
+        }
+      } catch (err) {
+        console.error("Error fetching clusters:", err);
+      }
+    };
+
+    fetchClusters();
+    const interval = setInterval(fetchClusters, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Hardcoded layout zones
-  const zones = [
-    { id: 'Z101', name: 'Zone A (101)', path: 'M 100 20 A 80 80 0 0 1 156.56 43.43 L 132.42 67.57 A 46 46 0 0 0 100 54 Z', labelX: 125, labelY: 42, status: 'nominal' },
-    { id: 'Z102', name: 'Zone B (102)', path: 'M 156.56 43.43 A 80 80 0 0 1 180 100 L 146 100 A 46 46 0 0 0 132.42 67.57 Z', labelX: 158, labelY: 75, status: 'warning' },
-    { id: 'Z103', name: 'Zone C (103)', path: 'M 180 100 A 80 80 0 0 1 156.56 156.56 L 132.42 132.42 A 46 46 0 0 0 146 100 Z', labelX: 158, labelY: 125, status: 'danger' },
-    { id: 'Z104', name: 'Zone D (104)', path: 'M 156.56 156.56 A 80 80 0 0 1 100 180 L 100 146 A 46 46 0 0 0 132.42 132.42 Z', labelX: 125, labelY: 158, status: 'nominal' },
-    { id: 'Z105', name: 'Zone E (105)', path: 'M 100 180 A 80 80 0 0 1 43.43 156.56 L 67.57 132.42 A 46 46 0 0 0 100 146 Z', labelX: 75, labelY: 158, status: 'nominal' },
-    { id: 'Z106', name: 'Zone F (106)', path: 'M 43.43 156.56 A 80 80 0 0 1 20 100 L 54 100 A 46 46 0 0 0 67.57 132.42 Z', labelX: 42, labelY: 125, status: 'nominal' },
-    { id: 'Z107', name: 'Zone G (107)', path: 'M 20 100 A 80 80 0 0 1 43.43 43.43 L 67.57 67.57 A 46 46 0 0 0 54 100 Z', labelX: 42, labelY: 75, status: 'nominal' },
-    { id: 'Z108', name: 'Zone H (108)', path: 'M 43.43 43.43 A 80 80 0 0 1 100 20 L 100 54 A 46 46 0 0 0 67.57 67.57 Z', labelX: 75, labelY: 42, status: 'nominal' }
+  const baseZones = [
+    { id: 'Z101', name: 'Zone A (101)', zoneMatch: 'Zone A', path: 'M 100 20 A 80 80 0 0 1 156.56 43.43 L 132.42 67.57 A 46 46 0 0 0 100 54 Z', labelX: 125, labelY: 42 },
+    { id: 'Z102', name: 'Zone B (102)', zoneMatch: 'Zone B', path: 'M 156.56 43.43 A 80 80 0 0 1 180 100 L 146 100 A 46 46 0 0 0 132.42 67.57 Z', labelX: 158, labelY: 75 },
+    { id: 'Z103', name: 'Zone C (103)', zoneMatch: 'Zone C', path: 'M 180 100 A 80 80 0 0 1 156.56 156.56 L 132.42 132.42 A 46 46 0 0 0 146 100 Z', labelX: 158, labelY: 125 },
+    { id: 'Z104', name: 'Zone D (104)', zoneMatch: 'Zone D', path: 'M 156.56 156.56 A 80 80 0 0 1 100 180 L 100 146 A 46 46 0 0 0 132.42 132.42 Z', labelX: 125, labelY: 158 },
+    { id: 'Z105', name: 'Zone E (105)', zoneMatch: 'Zone E', path: 'M 100 180 A 80 80 0 0 1 43.43 156.56 L 67.57 132.42 A 46 46 0 0 0 100 146 Z', labelX: 75, labelY: 158 },
+    { id: 'Z106', name: 'Zone F (106)', zoneMatch: 'Zone F', path: 'M 43.43 156.56 A 80 80 0 0 1 20 100 L 54 100 A 46 46 0 0 0 67.57 132.42 Z', labelX: 42, labelY: 125 },
+    { id: 'Z107', name: 'Zone G (107)', zoneMatch: 'Zone G', path: 'M 20 100 A 80 80 0 0 1 43.43 43.43 L 67.57 67.57 A 46 46 0 0 0 54 100 Z', labelX: 42, labelY: 75 },
+    { id: 'Z108', name: 'Zone H (108)', zoneMatch: 'Zone H', path: 'M 43.43 43.43 A 80 80 0 0 1 100 20 L 100 54 A 46 46 0 0 0 67.57 67.57 Z', labelX: 75, labelY: 42 }
   ];
+
+  // Map live clusters to zones dynamically
+  const zones = baseZones.map(bz => {
+    const matchingCluster = clusters.find(c => c.zone.includes(bz.zoneMatch));
+    let status = 'nominal';
+    let issue = '';
+
+    if (matchingCluster) {
+      const topicLower = matchingCluster.topic.toLowerCase();
+      // Determine severity
+      const isCritical = 
+        topicLower.includes('flood') || 
+        topicLower.includes('leak') || 
+        topicLower.includes('bomb') || 
+        topicLower.includes('shooter') || 
+        topicLower.includes('exhaustion') || 
+        (matchingCluster.signal_ids?.length >= 30);
+
+      status = isCritical ? 'danger' : 'warning';
+      issue = matchingCluster.topic;
+    }
+
+    return {
+      ...bz,
+      status,
+      issue
+    };
+  });
+
+  const activeZones = zones.filter(z => z.status !== 'nominal');
 
   return (
     <div className="w-full h-full flex flex-col justify-between text-left select-none">
@@ -90,30 +143,41 @@ export const StadiumZoneMap: React.FC = () => {
           <line x1="81" y1="100" x2="119" y2="100" stroke="rgba(20, 184, 166, 0.4)" strokeWidth="1" />
 
           {/* Active Beacons */}
-          {/* Zone B Warning Beacon */}
-          <g className="pointer-events-none">
-            <circle cx="158" cy="75" r="4" className="fill-warning-amber" />
-            <circle cx="158" cy="75" r="10" fill="none" stroke="#f59e0b" strokeWidth="1" className="animate-ping opacity-60" />
-          </g>
-
-          {/* Zone C Danger Beacon */}
-          <g className="pointer-events-none">
-            <circle cx="158" cy="125" r="4" className="fill-danger-red" />
-            <circle cx="158" cy="125" r="10" fill="none" stroke="#ef4444" strokeWidth="1" className="animate-ping opacity-60" />
-          </g>
+          {activeZones.map(z => (
+            <g key={z.id} className="pointer-events-none">
+              <circle 
+                cx={z.labelX} 
+                cy={z.labelY} 
+                r="4" 
+                className={z.status === 'danger' ? 'fill-danger-red' : 'fill-warning-amber'} 
+              />
+              <circle 
+                cx={z.labelX} 
+                cy={z.labelY} 
+                r="10" 
+                fill="none" 
+                stroke={z.status === 'danger' ? '#ef4444' : '#f59e0b'} 
+                strokeWidth="1" 
+                className="animate-ping opacity-60" 
+              />
+            </g>
+          ))}
         </svg>
 
         {/* Floating Sector Details Tooltip-style side panel */}
-        <div className="absolute right-0 bottom-0 bg-brand-black/80 border border-slate-850 rounded-lg p-2 flex flex-col gap-1 text-[9px] font-medium backdrop-blur-md">
-          <div className="flex items-center gap-1.5 text-danger-red">
-            <span className="h-1.5 w-1.5 rounded-full bg-danger-red" />
-            <span>Z103: Restroom Leak</span>
+        {activeZones.length > 0 && (
+          <div className="absolute right-0 bottom-0 bg-brand-black/85 border border-slate-850 rounded-lg p-2 flex flex-col gap-1 text-[9px] font-medium backdrop-blur-md max-w-[120px] shadow-lg">
+            {activeZones.map(z => (
+              <div 
+                key={z.id} 
+                className={`flex items-center gap-1.5 ${z.status === 'danger' ? 'text-danger-red' : 'text-warning-amber'}`}
+              >
+                <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${z.status === 'danger' ? 'bg-danger-red' : 'bg-warning-amber'}`} />
+                <span className="truncate">{z.id}: {z.issue}</span>
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-1.5 text-warning-amber">
-            <span className="h-1.5 w-1.5 rounded-full bg-warning-amber" />
-            <span>Z102: Gate 4 Queue</span>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* Legend */}

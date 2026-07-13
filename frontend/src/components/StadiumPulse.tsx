@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const StadiumPulse: React.FC = () => {
   // Sample sentiment data
@@ -6,57 +6,69 @@ export const StadiumPulse: React.FC = () => {
   const neutralSentiment = 26;
   const negativeSentiment = 16;
 
-  // Sample top clusters in the last 5 minutes
-  const mockClusters = [
-    {
-      id: 'c1',
-      topic: 'Restroom C Flooding',
-      zone: 'Zone C',
-      count: 42,
-      severity: 'high',
-      icon: (
-        <span className="w-8 h-8 rounded-lg bg-danger-red/10 border border-danger-red/30 flex items-center justify-center text-danger-red text-xs">
-          💧
-        </span>
-      )
-    },
-    {
-      id: 'c2',
-      topic: 'Gate 4 Bottleneck',
-      zone: 'Zone B',
-      count: 25,
-      severity: 'medium',
-      icon: (
-        <span className="w-8 h-8 rounded-lg bg-warning-amber/10 border border-warning-amber/30 flex items-center justify-center text-warning-amber text-xs">
-          🚶
-        </span>
-      )
-    },
-    {
-      id: 'c3',
-      topic: 'Hot Dog Stock Shortage',
-      zone: 'Zone A',
-      count: 14,
-      severity: 'low',
-      icon: (
-        <span className="w-8 h-8 rounded-lg bg-accent-purple/10 border border-accent-purple/30 flex items-center justify-center text-accent-purple text-xs">
-          🌭
-        </span>
-      )
-    },
-    {
-      id: 'c4',
-      topic: 'Heat Exhaustion Section 102',
-      zone: 'Zone D',
-      count: 8,
-      severity: 'high',
-      icon: (
-        <span className="w-8 h-8 rounded-lg bg-positive-teal/10 border border-positive-teal/30 flex items-center justify-center text-positive-teal text-xs">
-          ❤️
-        </span>
-      )
+  const [clusters, setClusters] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchClusters = async () => {
+      try {
+        const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+          ? 'http://localhost:8000' 
+          : '';
+        const res = await fetch(`${host}/api/clusters`);
+        if (res.ok) {
+          const data = await res.json();
+          setClusters(data);
+        }
+      } catch (err) {
+        console.error("Error fetching clusters:", err);
+      }
+    };
+
+    fetchClusters();
+    const interval = setInterval(fetchClusters, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Map the live clusters
+  const mappedClusters = clusters.slice(0, 4).map((c: any) => {
+    const topicLower = c.topic.toLowerCase();
+    let severity = 'low';
+    let iconEmoji = '📣';
+
+    // Heuristics for icons and severity
+    if (topicLower.includes('flood') || topicLower.includes('leak') || topicLower.includes('water') || topicLower.includes('restroom')) {
+      iconEmoji = '💧';
+      severity = c.signal_ids?.length >= 30 ? 'high' : 'medium';
+    } else if (topicLower.includes('gate') || topicLower.includes('crowd') || topicLower.includes('bottleneck') || topicLower.includes('line') || topicLower.includes('queue')) {
+      iconEmoji = '🚶';
+      severity = c.signal_ids?.length >= 35 ? 'high' : 'medium';
+    } else if (topicLower.includes('food') || topicLower.includes('stock') || topicLower.includes('concession') || topicLower.includes('hot dog') || topicLower.includes('vendor')) {
+      iconEmoji = '🌭';
+      severity = 'low';
+    } else if (topicLower.includes('medical') || topicLower.includes('exhaustion') || topicLower.includes('heat') || topicLower.includes('injury')) {
+      iconEmoji = '❤️';
+      severity = 'high';
     }
-  ];
+
+    return {
+      id: c.id,
+      topic: c.topic,
+      zone: c.zone,
+      count: c.signal_ids?.length || 0,
+      severity,
+      icon: (
+        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs border ${
+          severity === 'high' 
+            ? 'bg-danger-red/10 border-danger-red/30 text-danger-red' 
+            : severity === 'medium'
+            ? 'bg-warning-amber/10 border-warning-amber/30 text-warning-amber'
+            : 'bg-accent-purple/10 border-accent-purple/30 text-accent-purple'
+        }`}>
+          {iconEmoji}
+        </span>
+      )
+    };
+  });
 
   return (
     <div className="w-full h-full flex flex-col justify-between text-left select-none">
@@ -128,36 +140,42 @@ export const StadiumPulse: React.FC = () => {
           Top Signal Clusters — Last 5 Minutes
         </span>
         <div className="space-y-2 overflow-y-auto max-h-48 pr-1">
-          {mockClusters.map((c) => {
-            const severityColor = 
-              c.severity === 'high' 
-                ? 'bg-danger-red/10 text-danger-red border-danger-red/30' 
-                : c.severity === 'medium'
-                ? 'bg-warning-amber/10 text-warning-amber border-warning-amber/30'
-                : 'bg-info-blue/10 text-info-blue border-info-blue/30';
-            return (
-              <div 
-                key={c.id} 
-                className="flex items-center justify-between p-2 rounded-lg bg-brand-black/40 border border-slate-850 hover:border-slate-800 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  {c.icon}
-                  <div className="flex flex-col">
-                    <span className="text-xs font-semibold text-slate-200">{c.topic}</span>
-                    <span className="text-[10px] text-slate-500 font-medium">{c.zone}</span>
+          {mappedClusters.length === 0 ? (
+            <div className="text-xs text-slate-500 text-center py-8 border border-dashed border-slate-800 rounded-lg bg-brand-black/20">
+              No active signal clusters detected
+            </div>
+          ) : (
+            mappedClusters.map((c) => {
+              const severityColor = 
+                c.severity === 'high' 
+                  ? 'bg-danger-red/10 text-danger-red border-danger-red/30' 
+                  : c.severity === 'medium'
+                  ? 'bg-warning-amber/10 text-warning-amber border-warning-amber/30'
+                  : 'bg-info-blue/10 text-info-blue border-info-blue/30';
+              return (
+                <div 
+                  key={c.id} 
+                  className="flex items-center justify-between p-2 rounded-lg bg-brand-black/40 border border-slate-850 hover:border-slate-800 transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    {c.icon}
+                    <div className="flex flex-col">
+                      <span className="text-xs font-semibold text-slate-200">{c.topic}</span>
+                      <span className="text-[10px] text-slate-500 font-medium">{c.zone}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold border uppercase tracking-wide ${severityColor}`}>
+                      {c.severity}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      {c.count} sigs
+                    </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold border uppercase tracking-wide ${severityColor}`}>
-                    {c.severity}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-slate-400">
-                    {c.count} sigs
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       </div>
 
