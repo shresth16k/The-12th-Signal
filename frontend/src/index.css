@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-black: #0b0e14;
+  --color-surface: #12161f;
+  --color-accent-purple: #aa3bff;
+  --color-positive-teal: #14b8a6;
+  --color-warning-amber: #f59e0b;
+  --color-danger-red: #ef4444;
+  --color-info-blue: #3b82f6;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
