@@ -3,7 +3,8 @@ import uuid
 from typing import List, Literal, Optional
 from fastapi import FastAPI, status
 from pydantic import BaseModel, Field
-from models import FanSignal
+from models import FanSignal, SignalCluster
+from clustering import cluster_signals
 
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
 
@@ -36,3 +37,7 @@ def create_signal(signal_input: FanSignalCreate):
     )
     signals_db.append(new_signal)
     return new_signal
+
+@app.get("/api/clusters", response_model=List[SignalCluster])
+def get_clusters():
+    return cluster_signals(signals_db)
