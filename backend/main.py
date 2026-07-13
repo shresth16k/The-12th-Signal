@@ -1,10 +1,11 @@
 from datetime import datetime, timezone
 import uuid
 from typing import List, Literal, Optional
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel, Field
-from models import FanSignal, SignalCluster
+from models import FanSignal, SignalCluster, Consensus
 from clustering import cluster_signals
+from orchestrator import negotiate
 
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
 
@@ -38,6 +39,30 @@ def create_signal(signal_input: FanSignalCreate):
     signals_db.append(new_signal)
     return new_signal
 
+# In-memory storage for clusters
+clusters_db: List[SignalCluster] = []
+
 @app.get("/api/clusters", response_model=List[SignalCluster])
 def get_clusters():
-    return cluster_signals(signals_db)
+    global clusters_db
+    clusters_db = cluster_signals(signals_db)
+    return clusters_db
+
+class NegotiateRequest(BaseModel):
+    cluster_id: str
+
+@app.post("/api/negotiate", response_model=Consensus)
+def post_negotiate(request: NegotiateRequest):
+    global clusters_db
+    # Find the cluster in clusters_db
+    cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
+    if not cluster:
+        # Fallback: try to run clustering on the fly to find it
+        clusters_db = cluster_signals(signals_db)
+        cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
+        
+    if not cluster:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Cluster with ID {request.cluster_id} not found")
+        
+    consensus = negotiate(cluster, signals_db)
+    return consensus
