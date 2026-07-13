@@ -30,3 +30,11 @@ class Consensus(BaseModel):
     final_action: str = Field(..., description="Determined consensus action to execute")
     contributing_opinions: List[AgentOpinion] = Field(..., description="List of agent opinions reviewed to reach consensus")
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), description="Time consensus was reached")
+
+class FanProfile(BaseModel):
+    id: str = Field(..., description="Unique identifier for the fan profile")
+    language: str = Field(..., description="Preferred language of the fan")
+    mobility_needs: Optional[str] = Field(None, description="Accessibility or mobility needs (e.g. wheelchair access)")
+    seat_zone: str = Field(..., description="Stadium zone / seat section location (e.g., Section 104)")
+    food_preferences: List[str] = Field(default_factory=list, description="Food restrictions or preferences (e.g. vegetarian, halal)")
+    arrival_time: Optional[datetime] = Field(None, description="Expected or actual arrival time at the stadium")
