@@ -1,32 +1,10 @@
-# React + TypeScript + Vite
+# The 12th Signal — Stadium Operations System (FIFA World Cup 2026)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This repository contains the project skeleton for **The 12th Signal**, a GenAI-powered stadium-operations system for the FIFA World Cup 2026.
 
-Currently, two official plugins are available:
+## Folder Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- `/frontend`: React + Vite + Tailwind application containing the user interfaces.
+- `/backend`: Python FastAPI application handling business logic, integrations, and GenAI agent coordination.
+- `/shared`: Shared TypeScript type definitions and JSON schemas used by both frontend and backend.
+- `/mock-data`: Folder reserved for seed and demo data (empty for now).
