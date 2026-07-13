@@ -182,3 +182,22 @@
     border-right-color: var(--border);
   }
 }
+
+.secret-link {
+  transition: all 0.2s ease-in-out;
+}
+.secret-link:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-2px);
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+.secret-link:active {
+  transform: translateY(0);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
