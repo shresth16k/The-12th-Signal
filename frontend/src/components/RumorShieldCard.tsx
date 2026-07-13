@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const RumorShieldCard: React.FC = () => {
+  const [rumors, setRumors] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchRumors = async () => {
+      try {
+        const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+          ? 'http://localhost:8000' 
+          : '';
+        const res = await fetch(`${host}/api/rumors`);
+        if (res.ok) {
+          const data = await res.json();
+          setRumors(data);
+        }
+      } catch (err) {
+        console.error("Error fetching rumors:", err);
+      }
+    };
+
+    fetchRumors();
+    const interval = setInterval(fetchRumors, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Compute dynamic counts based on live data length
+  const detectedCount = 11 + rumors.length;
+  const debunkedCount = 8 + rumors.length;
+  const monitoringCount = 3;
+
+  // Retrieve the latest rumor
+  const latestRumor = rumors.length > 0 ? rumors[rumors.length - 1] : null;
+
   return (
     <div className="bg-surface border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-slate-700 transition-all duration-300 min-h-[180px] text-left select-none">
       {/* Background Decorative Blur */}
@@ -34,9 +65,9 @@ export const RumorShieldCard: React.FC = () => {
       {/* Counts Section */}
       <div className="grid grid-cols-3 gap-2 my-3">
         {[
-          { label: 'Detected', value: '12', color: 'text-slate-200' },
-          { label: 'Debunked', value: '9', color: 'text-positive-teal' },
-          { label: 'Monitoring', value: '3', color: 'text-warning-amber' }
+          { label: 'Detected', value: String(detectedCount), color: 'text-slate-200' },
+          { label: 'Debunked', value: String(debunkedCount), color: 'text-positive-teal' },
+          { label: 'Monitoring', value: String(monitoringCount), color: 'text-warning-amber' }
         ].map((c, idx) => (
           <div key={idx} className="bg-brand-black/45 border border-slate-850 rounded-lg p-2 flex flex-col items-center">
             <span className="text-[8px] uppercase font-bold text-slate-500 tracking-wider">
@@ -59,10 +90,11 @@ export const RumorShieldCard: React.FC = () => {
             Debunked
           </span>
         </div>
-        <p className="text-[10px] text-slate-400 leading-snug truncate">
-          Evacuation rumor in Zone C corrected: PA announced nominal gates.
+        <p className="text-[10px] text-slate-400 leading-snug truncate" title={latestRumor ? latestRumor.suggested_correction : "No rumors detected"}>
+          {latestRumor ? latestRumor.suggested_correction : "No active rumors detected."}
         </p>
       </div>
     </div>
   );
 };
+

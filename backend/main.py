@@ -7,6 +7,8 @@ from models import FanSignal, SignalCluster, Consensus, FanProfile
 from clustering import cluster_signals
 from orchestrator import negotiate
 from assistant import get_day_plan
+from agents.rumor_agent import detect_rumor, RumorAlert
+
 
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
 
@@ -75,3 +77,29 @@ class DayPlanResponse(BaseModel):
 def post_day_plan(profile: FanProfile):
     plan_text = get_day_plan(profile)
     return {"plan": plan_text}
+
+# In-memory history for rumors detected
+rumors_history: List[RumorAlert] = [
+    RumorAlert(
+        cluster_id="mock_rumor_1",
+        suspected_claim="Evacuation panic warning flagged in Zone C.",
+        suggested_correction="Factual Correction: Stadium security has verified that there is no active hazard in Zone C. Please follow official instructions and remain calm."
+    )
+]
+
+@app.get("/api/rumors", response_model=List[RumorAlert])
+def get_rumors():
+    global clusters_db
+    # Dynamically scan current active clusters for rumors
+    if not clusters_db:
+        clusters_db = cluster_signals(signals_db)
+    
+    for cluster in clusters_db:
+        alert = detect_rumor(cluster, signals_db)
+        if alert:
+            # Check if this cluster is already recorded to avoid duplicates
+            if not any(h.cluster_id == alert.cluster_id for h in rumors_history):
+                rumors_history.append(alert)
+                
+    return rumors_history
+
