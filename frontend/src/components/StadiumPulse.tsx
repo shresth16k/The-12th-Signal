@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-export const StadiumPulse: React.FC = () => {
+interface StadiumPulseProps {
+  onSelectCluster?: (id: string) => void;
+  selectedClusterId?: string;
+}
+
+export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, selectedClusterId }) => {
+
+
   // Sample sentiment data
   const positiveSentiment = 58;
   const neutralSentiment = 26;
@@ -152,10 +159,16 @@ export const StadiumPulse: React.FC = () => {
                   : c.severity === 'medium'
                   ? 'bg-warning-amber/10 text-warning-amber border-warning-amber/30'
                   : 'bg-info-blue/10 text-info-blue border-info-blue/30';
+              const isSelected = selectedClusterId === c.id;
               return (
                 <div 
                   key={c.id} 
-                  className="flex items-center justify-between p-2 rounded-lg bg-brand-black/40 border border-slate-850 hover:border-slate-800 transition-all"
+                  onClick={() => onSelectCluster && onSelectCluster(c.id)}
+                  className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer ${
+                    isSelected 
+                      ? 'bg-accent-purple/10 border border-accent-purple shadow-[0_0_12px_rgba(170,59,255,0.2)]' 
+                      : 'bg-brand-black/45 border border-slate-850 hover:border-slate-800'
+                  }`}
                 >
                   <div className="flex items-center gap-3">
                     {c.icon}

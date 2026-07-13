@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { StatusStrip } from './StatusStrip';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   onItemChange?: (itemName: string) => void;
@@ -9,8 +11,39 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
+const pathToItemMap: Record<string, string> = {
+  '/': 'Command Center',
+  '/war-room': 'AI War Room',
+  '/signals': 'Signals',
+  '/fan-twins': 'Fan Twins',
+  '/rumor-shield': 'Rumor Shield',
+  '/accessibility': 'Accessibility',
+  '/broadcast-ai': 'Broadcast AI',
+  '/analytics': 'Analytics',
+  '/playbook': 'Playbook',
+  '/settings': 'Settings'
+};
+
+const itemToPathMap: Record<string, string> = {
+  'Command Center': '/',
+  'AI War Room': '/war-room',
+  'Signals': '/signals',
+  'Fan Twins': '/fan-twins',
+  'Rumor Shield': '/rumor-shield',
+  'Accessibility': '/accessibility',
+  'Broadcast AI': '/broadcast-ai',
+  'Analytics': '/analytics',
+  'Playbook': '/playbook',
+  'Settings': '/settings'
+};
+
 export const Sidebar: React.FC<SidebarProps> = ({ onItemChange }) => {
-  const [activeItem, setActiveItem] = useState<string>('Command Center');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentPath = location.pathname;
+  const activeItem = pathToItemMap[currentPath] || 'Command Center';
+
 
   const navItems: NavItem[] = [
     {
@@ -97,7 +130,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onItemChange }) => {
   ];
 
   const handleItemClick = (name: string) => {
-    setActiveItem(name);
+    const path = itemToPathMap[name];
+    if (path) {
+      navigate(path);
+    }
     if (onItemChange) {
       onItemChange(name);
     }
@@ -129,31 +165,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onItemChange }) => {
       </nav>
 
       {/* Pinned bottom status block */}
-      <div className="border-t border-slate-800 p-4 space-y-2.5 bg-brand-black/40">
-        {/* Critical Alerts */}
-        <div className="flex items-center justify-between bg-danger-red/10 border border-danger-red/20 rounded-lg px-3 py-2 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger-red opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-danger-red"></span>
-            </span>
-            <span className="font-semibold text-danger-red tracking-wide uppercase">Critical Alerts</span>
-          </div>
-          <span className="font-mono bg-danger-red/20 text-danger-red font-bold px-1.5 py-0.5 rounded">
-            2
-          </span>
-        </div>
-
-        {/* System Status */}
-        <div className="flex items-center justify-between bg-positive-teal/10 border border-positive-teal/20 rounded-lg px-3 py-2 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-positive-teal"></span>
-            <span className="font-semibold text-positive-teal tracking-wide uppercase">System Status</span>
-          </div>
-          <span className="font-bold text-positive-teal uppercase tracking-wider text-[10px]">
-            Nominal
-          </span>
-        </div>
+      <div className="border-t border-slate-800 p-4 bg-brand-black/40">
+        <StatusStrip />
       </div>
     </aside>
   );

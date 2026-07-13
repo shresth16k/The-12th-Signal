@@ -103,3 +103,24 @@ def get_rumors():
                 
     return rumors_history
 
+class ActionResponse(BaseModel):
+    status: str
+    message: str
+
+@app.post("/api/actions/announcement", response_model=ActionResponse)
+def post_action_announcement():
+    return {"status": "success", "message": "Stadium-wide PA Announcement broadcasted successfully"}
+
+@app.post("/api/actions/deploy-staff", response_model=ActionResponse)
+def post_action_deploy_staff():
+    return {"status": "success", "message": "Response marshals and stadium staff deployed"}
+
+@app.post("/api/actions/emergency-protocol", response_model=ActionResponse)
+def post_action_emergency_protocol():
+    return {"status": "success", "message": "Emergency response protocol initiated globally"}
+
+@app.post("/api/actions/view-cameras", response_model=ActionResponse)
+def post_action_view_cameras():
+    return {"status": "success", "message": "Accessing all camera feeds... Opening virtual stream"}
+
+

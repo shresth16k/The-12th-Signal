@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const QuickActionsCard: React.FC = () => {
+  const [statusMsg, setStatusMsg] = useState<string | null>(null);
+
   const actions = [
     {
       id: 'announcement',
@@ -28,9 +30,38 @@ export const QuickActionsCard: React.FC = () => {
     }
   ];
 
-  const handleActionClick = (id: string, label: string) => {
-    console.log(`[Quick Action] Triggered action: "${label}" (ID: ${id})`);
+  const handleActionClick = async (id: string, label: string) => {
+    console.log(`[Quick Action] Triggering action: "${label}" (ID: ${id})`);
+    
+    const endpointMap: Record<string, string> = {
+      announcement: '/api/actions/announcement',
+      deploy: '/api/actions/deploy-staff',
+      cameras: '/api/actions/view-cameras',
+      emergency: '/api/actions/emergency-protocol'
+    };
+
+    try {
+      const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:8000' 
+        : '';
+      const res = await fetch(`${host}${endpointMap[id]}`, {
+        method: 'POST',
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setStatusMsg(data.message);
+        setTimeout(() => setStatusMsg(null), 4000);
+      } else {
+        setStatusMsg(`Failed to trigger ${label}`);
+        setTimeout(() => setStatusMsg(null), 4000);
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMsg("Network connection error");
+      setTimeout(() => setStatusMsg(null), 4000);
+    }
   };
+
 
   return (
     <div className="bg-surface border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-slate-700 transition-all duration-300 min-h-[180px] text-left select-none">
@@ -73,10 +104,19 @@ export const QuickActionsCard: React.FC = () => {
       </div>
 
       {/* Footnote */}
-      <div className="border-t border-slate-850 pt-2 flex items-center justify-between text-[8px] font-bold text-slate-500 uppercase tracking-wider">
-        <span>Active Session: Admin</span>
-        <span>Secure Link</span>
+      <div className="border-t border-slate-850 pt-2.5 flex items-center justify-between text-[8px] font-bold text-slate-500 uppercase tracking-wider">
+        {statusMsg ? (
+          <span className="text-positive-teal animate-pulse normal-case font-semibold truncate max-w-full">
+            {statusMsg}
+          </span>
+        ) : (
+          <>
+            <span>Active Session: Admin</span>
+            <span>Secure Link</span>
+          </>
+        )}
       </div>
     </div>
   );
 };
+
