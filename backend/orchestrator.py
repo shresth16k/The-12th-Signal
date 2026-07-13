@@ -13,8 +13,19 @@ from agents.concessions_agent import get_concessions_opinion
 from agents.medical_agent import get_medical_opinion
 from agents.transit_agent import get_transit_opinion
 from agents.broadcast_agent import get_broadcast_opinion
+from agents.rumor_agent import detect_rumor
 
 def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> Consensus:
+    # 0. Check for rumors first and short-circuit if detected
+    rumor_alert = detect_rumor(cluster, signals)
+    if rumor_alert:
+        return Consensus(
+            cluster_id=cluster.id,
+            final_action="push verified correction",
+            contributing_opinions=[],
+            timestamp=datetime.now(timezone.utc)
+        )
+
     # 1. Gather all 5 opinions
     opinions = [
         get_security_opinion(cluster, signals),
