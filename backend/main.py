@@ -3,9 +3,10 @@ import uuid
 from typing import List, Literal, Optional
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel, Field
-from models import FanSignal, SignalCluster, Consensus
+from models import FanSignal, SignalCluster, Consensus, FanProfile
 from clustering import cluster_signals
 from orchestrator import negotiate
+from assistant import get_day_plan
 
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
 
@@ -66,3 +67,11 @@ def post_negotiate(request: NegotiateRequest):
         
     consensus = negotiate(cluster, signals_db)
     return consensus
+
+class DayPlanResponse(BaseModel):
+    plan: str
+
+@app.post("/api/day-plan", response_model=DayPlanResponse)
+def post_day_plan(profile: FanProfile):
+    plan_text = get_day_plan(profile)
+    return {"plan": plan_text}
