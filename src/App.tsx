@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       <section id="center">
-        <div className="hero" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
+        <div className="hero" onClick={handleLogoClick} style={{ cursor: 'pointer' }} data-clicks={matrixClicks}>
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
           <img src={viteLogo} className="vite" alt="Vite logo" />
