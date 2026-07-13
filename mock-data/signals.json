@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "sig_73b4878b",
+    "timestamp": "2026-07-13T18:00:19.146721+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "How do I get to Gate 3 from Zone E?",
+    "sentiment_score": 0.05
+  },
+  {
+    "id": "sig_336b622c",
+    "timestamp": "2026-07-13T18:02:19.670419+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone F",
+    "raw_text": "How do I get to Gate 3 from Zone F?",
+    "sentiment_score": 0.18
+  },
+  {
+    "id": "sig_3e472c87",
+    "timestamp": "2026-07-13T18:02:51.626469+00:00",
+    "source_type": "social",
+    "location_zone": "Zone J",
+    "raw_text": "No toilet paper in the Zone J washroom.",
+    "sentiment_score": -0.67
+  },
+  {
+    "id": "sig_f9ef2f6b",
+    "timestamp": "2026-07-13T18:03:45.875834+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "They ran out of cold drinks in Zone G.",
+    "sentiment_score": -0.26
+  },
+  {
+    "id": "sig_ddea02fb",
+    "timestamp": "2026-07-13T18:03:55.695415+00:00",
+    "source_type": "social",
+    "location_zone": "Zone D",
+    "raw_text": "Which way to the merchandise store from Zone D?",
+    "sentiment_score": -0.01
+  },
+  {
+    "id": "sig_c04efb4b",
+    "timestamp": "2026-07-13T18:04:30.768621+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone F",
+    "raw_text": "Restroom lock is broken in Zone F stall 3.",
+    "sentiment_score": -0.5
+  },
+  {
+    "id": "sig_19cdabfa",
+    "timestamp": "2026-07-13T18:05:22.045413+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Need a first aid kit near the stairs in Zone C.",
+    "sentiment_score": -0.66
+  },
+  {
+    "id": "sig_13bfab91",
+    "timestamp": "2026-07-13T18:06:17.858580+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "Pretzel is stale at the stand in Zone F.",
+    "sentiment_score": -0.25
+  },
+  {
+    "id": "sig_81464418",
+    "timestamp": "2026-07-13T18:06:44.072541+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "They ran out of cold drinks in Zone G.",
+    "sentiment_score": -0.6
+  },
+  {
+    "id": "sig_e013d3dd",
+    "timestamp": "2026-07-13T18:06:50.380980+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "Which way to the merchandise store from Zone G?",
+    "sentiment_score": 0.13
+  },
+  {
+    "id": "sig_9f2fb224",
+    "timestamp": "2026-07-13T18:07:33.316296+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "Restroom lock is broken in Zone G stall 3.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_4812e532",
+    "timestamp": "2026-07-13T18:08:58.443168+00:00",
+    "source_type": "social",
+    "location_zone": "Zone B",
+    "raw_text": "A spectator in Zone B has a severe nosebleed.",
+    "sentiment_score": -0.89
+  },
+  {
+    "id": "sig_4e5522ef",
+    "timestamp": "2026-07-13T18:10:23.314820+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "No toilet paper in the Zone C washroom.",
+    "sentiment_score": -0.35
+  },
+  {
+    "id": "sig_e419703a",
+    "timestamp": "2026-07-13T18:10:53.422658+00:00",
+    "source_type": "social",
+    "location_zone": "Zone H",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone H.",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_88c6f837",
+    "timestamp": "2026-07-13T18:12:36.984404+00:00",
+    "source_type": "social",
+    "location_zone": "Zone I",
+    "raw_text": "Waited 20 minutes for a hot dog in Zone I.",
+    "sentiment_score": -0.63
+  },
+  {
+    "id": "sig_4ce3ad04",
+    "timestamp": "2026-07-13T18:13:45.332050+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone I",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone I.",
+    "sentiment_score": -0.68
+  },
+  {
+    "id": "sig_710c8997",
+    "timestamp": "2026-07-13T18:13:45.343124+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "The hand dryer in Zone A is not working.",
+    "sentiment_score": -0.32
+  },
+  {
+    "id": "sig_ecff592f",
+    "timestamp": "2026-07-13T18:14:19.668352+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Which way to the merchandise store from Zone D?",
+    "sentiment_score": -0.16
+  },
+  {
+    "id": "sig_48719e7e",
+    "timestamp": "2026-07-13T18:14:58.079997+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone B",
+    "raw_text": "Restroom lock is broken in Zone B stall 3.",
+    "sentiment_score": -0.51
+  },
+  {
+    "id": "sig_9c12c3c1",
+    "timestamp": "2026-07-13T18:15:49.788081+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "Washroom in Zone G needs cleaning.",
+    "sentiment_score": -0.49
+  },
+  {
+    "id": "sig_4b5fc7c4",
+    "timestamp": "2026-07-13T18:16:08.547582+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "They ran out of cold drinks in Zone G.",
+    "sentiment_score": -0.33
+  },
+  {
+    "id": "sig_a41bb4cd",
+    "timestamp": "2026-07-13T18:16:35.563820+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone H",
+    "raw_text": "Where is the nearest exit from Zone H?",
+    "sentiment_score": -0.1
+  },
+  {
+    "id": "sig_2919f31d",
+    "timestamp": "2026-07-13T18:17:15.936502+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone E",
+    "raw_text": "Which way to the merchandise store from Zone E?",
+    "sentiment_score": 0.18
+  },
+  {
+    "id": "sig_18262964",
+    "timestamp": "2026-07-13T18:17:57.693282+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "Restroom lock is broken in Zone H stall 3.",
+    "sentiment_score": -0.59
+  },
+  {
+    "id": "sig_6c6a4714",
+    "timestamp": "2026-07-13T18:19:16.878760+00:00",
+    "source_type": "social",
+    "location_zone": "Zone E",
+    "raw_text": "Waited 20 minutes for a hot dog in Zone E.",
+    "sentiment_score": -0.37
+  },
+  {
+    "id": "sig_3e83ebf3",
+    "timestamp": "2026-07-13T18:20:28.409083+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "The hand dryer in Zone D is not working.",
+    "sentiment_score": -0.62
+  },
+  {
+    "id": "sig_9bc86ec8",
+    "timestamp": "2026-07-13T18:21:40.706599+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone D",
+    "raw_text": "Is there a medical room close to Zone D?",
+    "sentiment_score": -0.52
+  },
+  {
+    "id": "sig_911fbe00",
+    "timestamp": "2026-07-13T18:21:57.515974+00:00",
+    "source_type": "social",
+    "location_zone": "Zone H",
+    "raw_text": "Which way to the merchandise store from Zone H?",
+    "sentiment_score": 0.08
+  },
+  {
+    "id": "sig_ad5186c5",
+    "timestamp": "2026-07-13T18:22:02.149738+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "Card reader is failing at the food counter in Zone A.",
+    "sentiment_score": -0.43
+  },
+  {
+    "id": "sig_7bae7547",
+    "timestamp": "2026-07-13T18:22:02.416011+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone A",
+    "raw_text": "The hand dryer in Zone A is not working.",
+    "sentiment_score": -0.36
+  },
+  {
+    "id": "sig_782036ea",
+    "timestamp": "2026-07-13T18:22:36.054761+00:00",
+    "source_type": "social",
+    "location_zone": "Zone I",
+    "raw_text": "Someone slipped and fell near Zone I.",
+    "sentiment_score": -0.86
+  },
+  {
+    "id": "sig_d67e543b",
+    "timestamp": "2026-07-13T18:23:24.844095+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Where is section 112 from Zone C?",
+    "sentiment_score": -0.12
+  },
+  {
+    "id": "sig_85c38b98",
+    "timestamp": "2026-07-13T18:23:51.305796+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "The queue at the beer counter in Zone H is blocking the aisle.",
+    "sentiment_score": -0.55
+  },
+  {
+    "id": "sig_9059ff5f",
+    "timestamp": "2026-07-13T18:24:05.800730+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "The hand dryer in Zone F is not working.",
+    "sentiment_score": -0.25
+  },
+  {
+    "id": "sig_150a0b2e",
+    "timestamp": "2026-07-13T18:24:22.948706+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "Need a first aid kit near the stairs in Zone F.",
+    "sentiment_score": -0.81
+  },
+  {
+    "id": "sig_a59cbc71",
+    "timestamp": "2026-07-13T18:24:33.850684+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "Card reader is failing at the food counter in Zone H.",
+    "sentiment_score": -0.78
+  },
+  {
+    "id": "sig_b090a999",
+    "timestamp": "2026-07-13T18:25:00.505245+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone G",
+    "raw_text": "Waited 20 minutes for a hot dog in Zone G.",
+    "sentiment_score": -0.23
+  },
+  {
+    "id": "sig_b3b5c754",
+    "timestamp": "2026-07-13T18:25:02.585724+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "A spectator in Zone F has a severe nosebleed.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_751504f3",
+    "timestamp": "2026-07-13T18:25:06.212546+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone D",
+    "raw_text": "A spectator in Zone D has a severe nosebleed.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_14dd818f",
+    "timestamp": "2026-07-13T18:25:32.446587+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Which way to the merchandise store from Zone C?",
+    "sentiment_score": 0.05
+  },
+  {
+    "id": "sig_d242844c",
+    "timestamp": "2026-07-13T18:25:38.931913+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Restroom lock is broken in Zone D stall 3.",
+    "sentiment_score": -0.3
+  },
+  {
+    "id": "sig_76e54c96",
+    "timestamp": "2026-07-13T18:25:55.766404+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone A",
+    "raw_text": "Need a first aid kit near the stairs in Zone A.",
+    "sentiment_score": -0.62
+  },
+  {
+    "id": "sig_975ba9d1",
+    "timestamp": "2026-07-13T18:26:24.900695+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone F",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone F.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_67e0923f",
+    "timestamp": "2026-07-13T18:26:28.872139+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "Is there a lift or elevator near Zone A?",
+    "sentiment_score": 0.08
+  },
+  {
+    "id": "sig_a3e7685a",
+    "timestamp": "2026-07-13T18:26:42.222258+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Where is the nearest exit from Zone C?",
+    "sentiment_score": 0.03
+  },
+  {
+    "id": "sig_ff4cf866",
+    "timestamp": "2026-07-13T18:26:45.706916+00:00",
+    "source_type": "social",
+    "location_zone": "Zone H",
+    "raw_text": "Where are the baby changing facilities near Zone H?",
+    "sentiment_score": 0.2
+  },
+  {
+    "id": "sig_dd355542",
+    "timestamp": "2026-07-13T18:30:16.541747+00:00",
+    "source_type": "social",
+    "location_zone": "Zone J",
+    "raw_text": "Is there a lift or elevator near Zone J?",
+    "sentiment_score": 0.14
+  },
+  {
+    "id": "sig_fa7ccde4",
+    "timestamp": "2026-07-13T18:31:18.989704+00:00",
+    "source_type": "social",
+    "location_zone": "Zone B",
+    "raw_text": "Where is section 112 from Zone B?",
+    "sentiment_score": -0.07
+  },
+  {
+    "id": "sig_74ceee07",
+    "timestamp": "2026-07-13T18:31:56.054817+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "They ran out of cold drinks in Zone H.",
+    "sentiment_score": -0.6
+  },
+  {
+    "id": "sig_a89a87c6",
+    "timestamp": "2026-07-13T18:32:34.780796+00:00",
+    "source_type": "social",
+    "location_zone": "Zone J",
+    "raw_text": "How do I get to Gate 3 from Zone J?",
+    "sentiment_score": 0.0
+  },
+  {
+    "id": "sig_5f2192af",
+    "timestamp": "2026-07-13T18:33:18.977222+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone F",
+    "raw_text": "How do I get to Gate 3 from Zone F?",
+    "sentiment_score": 0.07
+  },
+  {
+    "id": "sig_2bcf6383",
+    "timestamp": "2026-07-13T18:34:06.454842+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone A",
+    "raw_text": "Is there a lift or elevator near Zone A?",
+    "sentiment_score": -0.09
+  },
+  {
+    "id": "sig_b2a50e8b",
+    "timestamp": "2026-07-13T18:34:11.607423+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone B",
+    "raw_text": "Need a first aid kit near the stairs in Zone B.",
+    "sentiment_score": -0.56
+  },
+  {
+    "id": "sig_eeedcecb",
+    "timestamp": "2026-07-13T18:34:31.364472+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "The queue at the beer counter in Zone H is blocking the aisle.",
+    "sentiment_score": -0.5
+  },
+  {
+    "id": "sig_7e44296d",
+    "timestamp": "2026-07-13T18:34:37.743483+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone J",
+    "raw_text": "Where are the baby changing facilities near Zone J?",
+    "sentiment_score": 0.2
+  },
+  {
+    "id": "sig_7940afe7",
+    "timestamp": "2026-07-13T18:34:40.055340+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "Is there a medical room close to Zone G?",
+    "sentiment_score": -0.82
+  },
+  {
+    "id": "sig_04e284cb",
+    "timestamp": "2026-07-13T18:35:36.412266+00:00",
+    "source_type": "social",
+    "location_zone": "Zone D",
+    "raw_text": "Paramedics needed in Section near Zone D for heat exhaustion.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_ecb79a05",
+    "timestamp": "2026-07-13T18:36:03.820188+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone B",
+    "raw_text": "Where is the nearest exit from Zone B?",
+    "sentiment_score": 0.03
+  },
+  {
+    "id": "sig_564341a1",
+    "timestamp": "2026-07-13T18:36:32.805911+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone J",
+    "raw_text": "Concession stand line in Zone J is barely moving.",
+    "sentiment_score": -0.62
+  },
+  {
+    "id": "sig_23121435",
+    "timestamp": "2026-07-13T18:36:45.994892+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Washroom in Zone C needs cleaning.",
+    "sentiment_score": -0.44
+  },
+  {
+    "id": "sig_526992a4",
+    "timestamp": "2026-07-13T18:36:59.952291+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "Which way to the merchandise store from Zone F?",
+    "sentiment_score": -0.18
+  },
+  {
+    "id": "sig_47befaa0",
+    "timestamp": "2026-07-13T18:37:02.883485+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom lock is broken in Zone C stall 3.",
+    "sentiment_score": -0.63
+  },
+  {
+    "id": "sig_b2dc9fb1",
+    "timestamp": "2026-07-13T18:37:23.647852+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone I",
+    "raw_text": "A spectator in Zone I has a severe nosebleed.",
+    "sentiment_score": -0.51
+  },
+  {
+    "id": "sig_c087d3fa",
+    "timestamp": "2026-07-13T18:37:25.180864+00:00",
+    "source_type": "social",
+    "location_zone": "Zone I",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone I.",
+    "sentiment_score": -0.57
+  },
+  {
+    "id": "sig_c8686ee3",
+    "timestamp": "2026-07-13T18:37:43.814543+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone J",
+    "raw_text": "Water is leaking from the sink in Zone J restroom.",
+    "sentiment_score": -0.46
+  },
+  {
+    "id": "sig_f18a5189",
+    "timestamp": "2026-07-13T18:39:11.630583+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "Paramedics needed in Section near Zone H for heat exhaustion.",
+    "sentiment_score": -0.69
+  },
+  {
+    "id": "sig_55debd15",
+    "timestamp": "2026-07-13T18:39:23.897863+00:00",
+    "source_type": "social",
+    "location_zone": "Zone I",
+    "raw_text": "Is there a medical room close to Zone I?",
+    "sentiment_score": -0.88
+  },
+  {
+    "id": "sig_917d7de4",
+    "timestamp": "2026-07-13T18:39:35.312004+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Which way to the merchandise store from Zone D?",
+    "sentiment_score": -0.09
+  },
+  {
+    "id": "sig_6a0d6fb0",
+    "timestamp": "2026-07-13T18:40:56.059906+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone I",
+    "raw_text": "Where is section 112 from Zone I?",
+    "sentiment_score": -0.1
+  },
+  {
+    "id": "sig_60ff7637",
+    "timestamp": "2026-07-13T18:41:09.012692+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Where is the nearest exit from Zone C?",
+    "sentiment_score": -0.2
+  },
+  {
+    "id": "sig_9f05bdea",
+    "timestamp": "2026-07-13T18:41:50.318367+00:00",
+    "source_type": "social",
+    "location_zone": "Zone J",
+    "raw_text": "Paramedics needed in Section near Zone J for heat exhaustion.",
+    "sentiment_score": -0.66
+  },
+  {
+    "id": "sig_653ba06b",
+    "timestamp": "2026-07-13T18:41:50.936227+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone G",
+    "raw_text": "Card reader is failing at the food counter in Zone G.",
+    "sentiment_score": -0.39
+  },
+  {
+    "id": "sig_07bf5222",
+    "timestamp": "2026-07-13T18:42:10.969039+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "Need a first aid kit near the stairs in Zone H.",
+    "sentiment_score": -0.62
+  },
+  {
+    "id": "sig_bcf6a20a",
+    "timestamp": "2026-07-13T18:42:35.606639+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone J",
+    "raw_text": "Is there a medical room close to Zone J?",
+    "sentiment_score": -0.76
+  },
+  {
+    "id": "sig_4673197c",
+    "timestamp": "2026-07-13T18:43:58.470823+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone J",
+    "raw_text": "No toilet paper in the Zone J washroom.",
+    "sentiment_score": -0.24
+  },
+  {
+    "id": "sig_f8a09cb7",
+    "timestamp": "2026-07-13T18:44:34.774708+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "Where is the nearest exit from Zone G?",
+    "sentiment_score": -0.15
+  },
+  {
+    "id": "sig_7a56bb7a",
+    "timestamp": "2026-07-13T18:45:31.777348+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone B",
+    "raw_text": "The hand dryer in Zone B is not working.",
+    "sentiment_score": -0.24
+  },
+  {
+    "id": "sig_ad801523",
+    "timestamp": "2026-07-13T18:45:38.461522+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone B",
+    "raw_text": "Paramedics needed in Section near Zone B for heat exhaustion.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_31d67e09",
+    "timestamp": "2026-07-13T18:45:41.481043+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone I",
+    "raw_text": "Someone slipped and fell near Zone I.",
+    "sentiment_score": -0.55
+  },
+  {
+    "id": "sig_62f6413f",
+    "timestamp": "2026-07-13T18:46:29.787159+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone I",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone I.",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_05b8288c",
+    "timestamp": "2026-07-13T18:46:47.569882+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "Water is leaking from the sink in Zone G restroom.",
+    "sentiment_score": -0.39
+  },
+  {
+    "id": "sig_302d4fcc",
+    "timestamp": "2026-07-13T18:48:04.355336+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone J",
+    "raw_text": "The hand dryer in Zone J is not working.",
+    "sentiment_score": -0.7
+  },
+  {
+    "id": "sig_200e42b1",
+    "timestamp": "2026-07-13T18:48:15.631694+00:00",
+    "source_type": "social",
+    "location_zone": "Zone A",
+    "raw_text": "A spectator in Zone A has a severe nosebleed.",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_40935a07",
+    "timestamp": "2026-07-13T18:48:28.335120+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Where is section 112 from Zone C?",
+    "sentiment_score": -0.07
+  },
+  {
+    "id": "sig_3a044b95",
+    "timestamp": "2026-07-13T18:49:00.636845+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "Pretzel is stale at the stand in Zone G.",
+    "sentiment_score": -0.71
+  },
+  {
+    "id": "sig_54d391e0",
+    "timestamp": "2026-07-13T18:49:06.187562+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone B",
+    "raw_text": "Soap dispensers are completely empty in Zone B.",
+    "sentiment_score": -0.45
+  },
+  {
+    "id": "sig_bb23d8a0",
+    "timestamp": "2026-07-13T18:49:25.786051+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Soap dispensers are completely empty in Zone D.",
+    "sentiment_score": -0.54
+  },
+  {
+    "id": "sig_e31e9258",
+    "timestamp": "2026-07-13T18:49:39.074274+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "A spectator in Zone C has a severe nosebleed.",
+    "sentiment_score": -0.68
+  },
+  {
+    "id": "sig_ffabb7ed",
+    "timestamp": "2026-07-13T18:49:42.157609+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "Concession stand line in Zone E is barely moving.",
+    "sentiment_score": -0.67
+  },
+  {
+    "id": "sig_spike_e5af44b4",
+    "timestamp": "2026-07-13T18:50:04.175597+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Water is overflowing from the toilets in Zone C washroom.",
+    "sentiment_score": -0.84
+  },
+  {
+    "id": "sig_spike_49a85c60",
+    "timestamp": "2026-07-13T18:50:06.581879+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "The floor is completely covered in water in Zone C restroom.",
+    "sentiment_score": -0.88
+  },
+  {
+    "id": "sig_spike_ae84d659",
+    "timestamp": "2026-07-13T18:50:10.009359+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.77
+  },
+  {
+    "id": "sig_spike_05034d4b",
+    "timestamp": "2026-07-13T18:50:18.165027+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.9
+  },
+  {
+    "id": "sig_spike_44954243",
+    "timestamp": "2026-07-13T18:50:20.583046+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Avoid the Zone C toilets, there's a burst pipe and water is everywhere.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_spike_337b3c56",
+    "timestamp": "2026-07-13T18:50:29.806387+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.81
+  },
+  {
+    "id": "sig_7849c5ad",
+    "timestamp": "2026-07-13T18:50:45.435742+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "Waited 20 minutes for a hot dog in Zone H.",
+    "sentiment_score": -0.52
+  },
+  {
+    "id": "sig_spike_82dbf90f",
+    "timestamp": "2026-07-13T18:51:00.238438+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.82
+  },
+  {
+    "id": "sig_spike_74c7e20b",
+    "timestamp": "2026-07-13T18:51:05.180905+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.71
+  },
+  {
+    "id": "sig_spike_59eeb57b",
+    "timestamp": "2026-07-13T18:51:05.701362+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Avoid the Zone C toilets, there's a burst pipe and water is everywhere.",
+    "sentiment_score": -0.79
+  },
+  {
+    "id": "sig_spike_f3c78ccc",
+    "timestamp": "2026-07-13T18:51:13.070669+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom in Zone C is flooded, water is leaking into the concourse.",
+    "sentiment_score": -0.75
+  },
+  {
+    "id": "sig_spike_5764d44b",
+    "timestamp": "2026-07-13T18:51:28.010333+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.84
+  },
+  {
+    "id": "sig_spike_2836ac6a",
+    "timestamp": "2026-07-13T18:51:31.309375+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.92
+  },
+  {
+    "id": "sig_b6541c3c",
+    "timestamp": "2026-07-13T18:51:57.701584+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone J",
+    "raw_text": "Paramedics needed in Section near Zone J for heat exhaustion.",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_3288ea4b",
+    "timestamp": "2026-07-13T18:52:04.897556+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "They ran out of cold drinks in Zone E.",
+    "sentiment_score": -0.45
+  },
+  {
+    "id": "sig_spike_02ba4ea8",
+    "timestamp": "2026-07-13T18:52:17.871150+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Major flooding in the main restroom in Zone C!",
+    "sentiment_score": -0.73
+  },
+  {
+    "id": "sig_spike_2babdadc",
+    "timestamp": "2026-07-13T18:52:21.443060+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_spike_54e6fb88",
+    "timestamp": "2026-07-13T18:52:29.300176+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom in Zone C is flooded, water is leaking into the concourse.",
+    "sentiment_score": -0.89
+  },
+  {
+    "id": "sig_spike_f198ac82",
+    "timestamp": "2026-07-13T18:52:39.349895+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom in Zone C is flooded, water is leaking into the concourse.",
+    "sentiment_score": -0.91
+  },
+  {
+    "id": "sig_spike_2b25172f",
+    "timestamp": "2026-07-13T18:52:51.576808+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.7
+  },
+  {
+    "id": "sig_spike_fd187f77",
+    "timestamp": "2026-07-13T18:52:55.368027+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.92
+  },
+  {
+    "id": "sig_64f3c0e2",
+    "timestamp": "2026-07-13T18:52:57.576618+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone J",
+    "raw_text": "No toilet paper in the Zone J washroom.",
+    "sentiment_score": -0.76
+  },
+  {
+    "id": "sig_spike_9ac53b33",
+    "timestamp": "2026-07-13T18:53:02.847536+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "The floor is completely covered in water in Zone C restroom.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_spike_bce305b1",
+    "timestamp": "2026-07-13T18:53:05.237838+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Avoid the Zone C toilets, there's a burst pipe and water is everywhere.",
+    "sentiment_score": -0.79
+  },
+  {
+    "id": "sig_spike_b9940a13",
+    "timestamp": "2026-07-13T18:53:08.039754+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.73
+  },
+  {
+    "id": "sig_spike_59d59a67",
+    "timestamp": "2026-07-13T18:53:08.474431+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Major flooding in the main restroom in Zone C!",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_spike_ff0d0d54",
+    "timestamp": "2026-07-13T18:53:12.511340+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Major flooding in the main restroom in Zone C!",
+    "sentiment_score": -0.94
+  },
+  {
+    "id": "sig_spike_e10b44f1",
+    "timestamp": "2026-07-13T18:53:14.295714+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_spike_76916779",
+    "timestamp": "2026-07-13T18:53:14.771834+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Water is overflowing from the toilets in Zone C washroom.",
+    "sentiment_score": -0.92
+  },
+  {
+    "id": "sig_spike_4c9200f9",
+    "timestamp": "2026-07-13T18:53:21.145866+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "The floor is completely covered in water in Zone C restroom.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_spike_5f88da9d",
+    "timestamp": "2026-07-13T18:53:27.094054+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_2fadb74d",
+    "timestamp": "2026-07-13T18:53:41.484777+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "Need a first aid kit near the stairs in Zone A.",
+    "sentiment_score": -0.61
+  },
+  {
+    "id": "sig_spike_403ec5fa",
+    "timestamp": "2026-07-13T18:53:46.245448+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Avoid the Zone C toilets, there's a burst pipe and water is everywhere.",
+    "sentiment_score": -0.73
+  },
+  {
+    "id": "sig_spike_40a09090",
+    "timestamp": "2026-07-13T18:53:48.110908+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Water is overflowing from the toilets in Zone C washroom.",
+    "sentiment_score": -0.84
+  },
+  {
+    "id": "sig_spike_4a6094fd",
+    "timestamp": "2026-07-13T18:53:52.722294+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Avoid the Zone C toilets, there's a burst pipe and water is everywhere.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_spike_f05d7357",
+    "timestamp": "2026-07-13T18:54:01.269762+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.71
+  },
+  {
+    "id": "sig_spike_2319563f",
+    "timestamp": "2026-07-13T18:54:09.141786+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.72
+  },
+  {
+    "id": "sig_spike_fa3fb227",
+    "timestamp": "2026-07-13T18:54:25.624135+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Water is overflowing from the toilets in Zone C washroom.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_3344cb87",
+    "timestamp": "2026-07-13T18:54:26.081066+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone E",
+    "raw_text": "Pretzel is stale at the stand in Zone E.",
+    "sentiment_score": -0.59
+  },
+  {
+    "id": "sig_spike_7663a869",
+    "timestamp": "2026-07-13T18:54:26.177793+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom in Zone C is flooded, water is leaking into the concourse.",
+    "sentiment_score": -0.85
+  },
+  {
+    "id": "sig_spike_66e55aa9",
+    "timestamp": "2026-07-13T18:54:30.362827+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Restroom in Zone C is flooded, water is leaking into the concourse.",
+    "sentiment_score": -0.93
+  },
+  {
+    "id": "sig_spike_475188f7",
+    "timestamp": "2026-07-13T18:54:31.027219+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Major flooding in the main restroom in Zone C!",
+    "sentiment_score": -0.87
+  },
+  {
+    "id": "sig_ac21d210",
+    "timestamp": "2026-07-13T18:54:31.820540+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone F",
+    "raw_text": "Paramedics needed in Section near Zone F for heat exhaustion.",
+    "sentiment_score": -0.61
+  },
+  {
+    "id": "sig_spike_76f31a0f",
+    "timestamp": "2026-07-13T18:54:32.888344+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.76
+  },
+  {
+    "id": "sig_spike_37cc2230",
+    "timestamp": "2026-07-13T18:54:33.185086+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_18811d60",
+    "timestamp": "2026-07-13T18:54:34.115317+00:00",
+    "source_type": "social",
+    "location_zone": "Zone B",
+    "raw_text": "The queue at the beer counter in Zone B is blocking the aisle.",
+    "sentiment_score": -0.66
+  },
+  {
+    "id": "sig_spike_29446068",
+    "timestamp": "2026-07-13T18:54:41.715920+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.94
+  },
+  {
+    "id": "sig_spike_7f525506",
+    "timestamp": "2026-07-13T18:54:44.703236+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.93
+  },
+  {
+    "id": "sig_spike_6ec953e1",
+    "timestamp": "2026-07-13T18:54:50.180924+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Toilets backing up in Zone C, we need maintenance now.",
+    "sentiment_score": -0.93
+  },
+  {
+    "id": "sig_spike_61136b24",
+    "timestamp": "2026-07-13T18:54:50.215223+00:00",
+    "source_type": "social",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.76
+  },
+  {
+    "id": "sig_e71ef079",
+    "timestamp": "2026-07-13T18:54:52.006926+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone J",
+    "raw_text": "Paramedics needed in Section near Zone J for heat exhaustion.",
+    "sentiment_score": -0.86
+  },
+  {
+    "id": "sig_spike_869197db",
+    "timestamp": "2026-07-13T18:54:56.295509+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Huge puddle outside the washrooms in Zone C, looks like a leak.",
+    "sentiment_score": -0.79
+  },
+  {
+    "id": "sig_spike_db0dd34e",
+    "timestamp": "2026-07-13T18:54:59.227777+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone C",
+    "raw_text": "Water is overflowing from the toilets in Zone C washroom.",
+    "sentiment_score": -0.84
+  },
+  {
+    "id": "sig_spike_f15cc46c",
+    "timestamp": "2026-07-13T18:54:59.812070+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Water leak near the toilets in Section C / Zone C.",
+    "sentiment_score": -0.92
+  },
+  {
+    "id": "sig_1c8d89b8",
+    "timestamp": "2026-07-13T18:56:02.222912+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Restroom lock is broken in Zone D stall 3.",
+    "sentiment_score": -0.42
+  },
+  {
+    "id": "sig_f5921c8d",
+    "timestamp": "2026-07-13T18:57:44.001388+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone E",
+    "raw_text": "Restroom lock is broken in Zone E stall 3.",
+    "sentiment_score": -0.39
+  },
+  {
+    "id": "sig_d1cdc68e",
+    "timestamp": "2026-07-13T18:58:17.632319+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "The hand dryer in Zone H is not working.",
+    "sentiment_score": -0.5
+  },
+  {
+    "id": "sig_a2f2b8d3",
+    "timestamp": "2026-07-13T18:59:11.366087+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "Water is leaking from the sink in Zone G restroom.",
+    "sentiment_score": -0.52
+  },
+  {
+    "id": "sig_b106313b",
+    "timestamp": "2026-07-13T18:59:24.179187+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone D",
+    "raw_text": "Card reader is failing at the food counter in Zone D.",
+    "sentiment_score": -0.6
+  },
+  {
+    "id": "sig_2b288205",
+    "timestamp": "2026-07-13T18:59:26.311941+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone D",
+    "raw_text": "Waited 20 minutes for a hot dog in Zone D.",
+    "sentiment_score": -0.66
+  },
+  {
+    "id": "sig_707d66d1",
+    "timestamp": "2026-07-13T18:59:32.215240+00:00",
+    "source_type": "social",
+    "location_zone": "Zone F",
+    "raw_text": "No toilet paper in the Zone F washroom.",
+    "sentiment_score": -0.5
+  },
+  {
+    "id": "sig_5f326db7",
+    "timestamp": "2026-07-13T19:00:06.461300+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone J",
+    "raw_text": "Is there a medical room close to Zone J?",
+    "sentiment_score": -0.78
+  },
+  {
+    "id": "sig_5db9aa3d",
+    "timestamp": "2026-07-13T19:00:16.520264+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone E",
+    "raw_text": "Need a first aid kit near the stairs in Zone E.",
+    "sentiment_score": -0.8
+  },
+  {
+    "id": "sig_b490731c",
+    "timestamp": "2026-07-13T19:00:33.096621+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone B",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone B.",
+    "sentiment_score": -0.58
+  },
+  {
+    "id": "sig_f779689c",
+    "timestamp": "2026-07-13T19:01:13.530415+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone I",
+    "raw_text": "Someone slipped and fell near Zone I.",
+    "sentiment_score": -0.63
+  },
+  {
+    "id": "sig_7f9b8006",
+    "timestamp": "2026-07-13T19:01:23.160117+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone F",
+    "raw_text": "Washroom in Zone F needs cleaning.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_0bba8348",
+    "timestamp": "2026-07-13T19:01:36.916955+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone E",
+    "raw_text": "Where is the nearest exit from Zone E?",
+    "sentiment_score": -0.11
+  },
+  {
+    "id": "sig_3b74ceb3",
+    "timestamp": "2026-07-13T19:02:09.290433+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone H",
+    "raw_text": "Which way to the merchandise store from Zone H?",
+    "sentiment_score": 0.08
+  },
+  {
+    "id": "sig_b396372e",
+    "timestamp": "2026-07-13T19:02:41.594119+00:00",
+    "source_type": "social",
+    "location_zone": "Zone E",
+    "raw_text": "Which way to the merchandise store from Zone E?",
+    "sentiment_score": 0.2
+  },
+  {
+    "id": "sig_6cb6a31b",
+    "timestamp": "2026-07-13T19:03:34.663365+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "Concession stand line in Zone G is barely moving.",
+    "sentiment_score": -0.55
+  },
+  {
+    "id": "sig_eab5598c",
+    "timestamp": "2026-07-13T19:04:09.924453+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone I",
+    "raw_text": "Card reader is failing at the food counter in Zone I.",
+    "sentiment_score": -0.2
+  },
+  {
+    "id": "sig_daeadc7f",
+    "timestamp": "2026-07-13T19:04:26.505910+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone I",
+    "raw_text": "Washroom in Zone I needs cleaning.",
+    "sentiment_score": -0.47
+  },
+  {
+    "id": "sig_97c9f17b",
+    "timestamp": "2026-07-13T19:05:12.759006+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone H",
+    "raw_text": "The queue at the beer counter in Zone H is blocking the aisle.",
+    "sentiment_score": -0.44
+  },
+  {
+    "id": "sig_4a194089",
+    "timestamp": "2026-07-13T19:05:20.675306+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone A",
+    "raw_text": "Is there a medical room close to Zone A?",
+    "sentiment_score": -0.67
+  },
+  {
+    "id": "sig_ba54648c",
+    "timestamp": "2026-07-13T19:05:32.353378+00:00",
+    "source_type": "social",
+    "location_zone": "Zone A",
+    "raw_text": "No toilet paper in the Zone A washroom.",
+    "sentiment_score": -0.65
+  },
+  {
+    "id": "sig_ee5da3fa",
+    "timestamp": "2026-07-13T19:06:51.557744+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone F",
+    "raw_text": "Pretzel is stale at the stand in Zone F.",
+    "sentiment_score": -0.69
+  },
+  {
+    "id": "sig_adb7ec9f",
+    "timestamp": "2026-07-13T19:07:02.940503+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Is there a medical room close to Zone C?",
+    "sentiment_score": -0.79
+  },
+  {
+    "id": "sig_a75a0411",
+    "timestamp": "2026-07-13T19:07:24.731010+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "No toilet paper in the Zone H washroom.",
+    "sentiment_score": -0.2
+  },
+  {
+    "id": "sig_138b415f",
+    "timestamp": "2026-07-13T19:07:48.765675+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone F",
+    "raw_text": "Restroom lock is broken in Zone F stall 3.",
+    "sentiment_score": -0.48
+  },
+  {
+    "id": "sig_6573c5cb",
+    "timestamp": "2026-07-13T19:08:40.788623+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "The hand dryer in Zone E is not working.",
+    "sentiment_score": -0.52
+  },
+  {
+    "id": "sig_1e1051ea",
+    "timestamp": "2026-07-13T19:09:32.445716+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone B",
+    "raw_text": "Card reader is failing at the food counter in Zone B.",
+    "sentiment_score": -0.6
+  },
+  {
+    "id": "sig_47fe6b3c",
+    "timestamp": "2026-07-13T19:10:18.658468+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone D",
+    "raw_text": "Paramedics needed in Section near Zone D for heat exhaustion.",
+    "sentiment_score": -0.88
+  },
+  {
+    "id": "sig_4310b7e6",
+    "timestamp": "2026-07-13T19:12:40.483788+00:00",
+    "source_type": "social",
+    "location_zone": "Zone D",
+    "raw_text": "How do I get to Gate 3 from Zone D?",
+    "sentiment_score": -0.16
+  },
+  {
+    "id": "sig_5ef147c9",
+    "timestamp": "2026-07-13T19:12:43.320122+00:00",
+    "source_type": "social",
+    "location_zone": "Zone B",
+    "raw_text": "The queue at the beer counter in Zone B is blocking the aisle.",
+    "sentiment_score": -0.74
+  },
+  {
+    "id": "sig_ad268b46",
+    "timestamp": "2026-07-13T19:12:50.924466+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone H",
+    "raw_text": "Concession stand line in Zone H is barely moving.",
+    "sentiment_score": -0.34
+  },
+  {
+    "id": "sig_0fad30cf",
+    "timestamp": "2026-07-13T19:13:00.167212+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone C",
+    "raw_text": "Soap dispensers are completely empty in Zone C.",
+    "sentiment_score": -0.75
+  },
+  {
+    "id": "sig_49de7c53",
+    "timestamp": "2026-07-13T19:14:00.586958+00:00",
+    "source_type": "social",
+    "location_zone": "Zone A",
+    "raw_text": "Someone slipped and fell near Zone A.",
+    "sentiment_score": -0.73
+  },
+  {
+    "id": "sig_24f183e9",
+    "timestamp": "2026-07-13T19:15:31.835770+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone D",
+    "raw_text": "Water is leaking from the sink in Zone D restroom.",
+    "sentiment_score": -0.71
+  },
+  {
+    "id": "sig_ab2281ca",
+    "timestamp": "2026-07-13T19:15:35.259594+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone E",
+    "raw_text": "Where is section 112 from Zone E?",
+    "sentiment_score": 0.11
+  },
+  {
+    "id": "sig_be281d9a",
+    "timestamp": "2026-07-13T19:15:38.730581+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone G",
+    "raw_text": "Requesting assistance, fan feeling dizzy in section near Zone G.",
+    "sentiment_score": -0.51
+  },
+  {
+    "id": "sig_2493dd1c",
+    "timestamp": "2026-07-13T19:16:31.583491+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone B",
+    "raw_text": "The queue at the beer counter in Zone B is blocking the aisle.",
+    "sentiment_score": -0.32
+  },
+  {
+    "id": "sig_24b44d74",
+    "timestamp": "2026-07-13T19:16:37.249745+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "Concession stand line in Zone A is barely moving.",
+    "sentiment_score": -0.44
+  },
+  {
+    "id": "sig_aac0a229",
+    "timestamp": "2026-07-13T19:16:42.643217+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone B",
+    "raw_text": "Where are the baby changing facilities near Zone B?",
+    "sentiment_score": -0.05
+  },
+  {
+    "id": "sig_c6c63974",
+    "timestamp": "2026-07-13T19:16:58.715693+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "Concession stand line in Zone E is barely moving.",
+    "sentiment_score": -0.57
+  },
+  {
+    "id": "sig_3df419cb",
+    "timestamp": "2026-07-13T19:17:06.352974+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone J",
+    "raw_text": "Where are the baby changing facilities near Zone J?",
+    "sentiment_score": -0.05
+  },
+  {
+    "id": "sig_01fe69e2",
+    "timestamp": "2026-07-13T19:18:15.849089+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone H",
+    "raw_text": "Which way to the merchandise store from Zone H?",
+    "sentiment_score": -0.1
+  },
+  {
+    "id": "sig_2b2abd7b",
+    "timestamp": "2026-07-13T19:18:32.686569+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "The queue at the beer counter in Zone H is blocking the aisle.",
+    "sentiment_score": -0.63
+  },
+  {
+    "id": "sig_a4381d3c",
+    "timestamp": "2026-07-13T19:18:56.007423+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone A",
+    "raw_text": "Need a first aid kit near the stairs in Zone A.",
+    "sentiment_score": -0.83
+  },
+  {
+    "id": "sig_d3f386c3",
+    "timestamp": "2026-07-13T19:19:45.139309+00:00",
+    "source_type": "social",
+    "location_zone": "Zone H",
+    "raw_text": "Water is leaking from the sink in Zone H restroom.",
+    "sentiment_score": -0.68
+  },
+  {
+    "id": "sig_3520535b",
+    "timestamp": "2026-07-13T19:20:22.344897+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone F",
+    "raw_text": "Someone slipped and fell near Zone F.",
+    "sentiment_score": -0.84
+  },
+  {
+    "id": "sig_e52910b8",
+    "timestamp": "2026-07-13T19:20:44.923757+00:00",
+    "source_type": "social",
+    "location_zone": "Zone I",
+    "raw_text": "Which way to the merchandise store from Zone I?",
+    "sentiment_score": 0.14
+  },
+  {
+    "id": "sig_017bab7c",
+    "timestamp": "2026-07-13T19:21:29.268070+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone D",
+    "raw_text": "Soap dispensers are completely empty in Zone D.",
+    "sentiment_score": -0.76
+  },
+  {
+    "id": "sig_95c8cdbf",
+    "timestamp": "2026-07-13T19:22:34.338078+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone I",
+    "raw_text": "No toilet paper in the Zone I washroom.",
+    "sentiment_score": -0.53
+  },
+  {
+    "id": "sig_1ddede4b",
+    "timestamp": "2026-07-13T19:23:09.119640+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone B",
+    "raw_text": "Which way to the merchandise store from Zone B?",
+    "sentiment_score": 0.04
+  },
+  {
+    "id": "sig_ad6a0946",
+    "timestamp": "2026-07-13T19:23:19.124642+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone J",
+    "raw_text": "How do I get to Gate 3 from Zone J?",
+    "sentiment_score": 0.15
+  },
+  {
+    "id": "sig_aa47d3e5",
+    "timestamp": "2026-07-13T19:24:44.619087+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone G",
+    "raw_text": "The queue at the beer counter in Zone G is blocking the aisle.",
+    "sentiment_score": -0.65
+  },
+  {
+    "id": "sig_69ee9d24",
+    "timestamp": "2026-07-13T19:25:30.213886+00:00",
+    "source_type": "AR",
+    "location_zone": "Zone I",
+    "raw_text": "Is there a lift or elevator near Zone I?",
+    "sentiment_score": 0.05
+  },
+  {
+    "id": "sig_775ce0c8",
+    "timestamp": "2026-07-13T19:27:34.992805+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone B",
+    "raw_text": "Where are the baby changing facilities near Zone B?",
+    "sentiment_score": 0.12
+  },
+  {
+    "id": "sig_3429fc29",
+    "timestamp": "2026-07-13T19:27:41.192628+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone E",
+    "raw_text": "The queue at the beer counter in Zone E is blocking the aisle.",
+    "sentiment_score": -0.62
+  },
+  {
+    "id": "sig_a4e0c500",
+    "timestamp": "2026-07-13T19:28:01.116266+00:00",
+    "source_type": "voice",
+    "location_zone": "Zone H",
+    "raw_text": "Water is leaking from the sink in Zone H restroom.",
+    "sentiment_score": -0.34
+  },
+  {
+    "id": "sig_9616478c",
+    "timestamp": "2026-07-13T19:29:43.505565+00:00",
+    "source_type": "app_tap",
+    "location_zone": "Zone E",
+    "raw_text": "Is there a lift or elevator near Zone E?",
+    "sentiment_score": 0.05
+  }
+]
