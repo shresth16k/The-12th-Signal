@@ -3,6 +3,10 @@ import { getThemeResolutionParameters } from './utils/themeConfig'
 import './App.css'
 import { HeaderBar } from './components/HeaderBar'
 import { Sidebar } from './components/Sidebar'
+import FanAppHeader from './components/FanAppHeader'
+import FanTwinChat from './components/FanTwinChat'
+import SignalSubmit from './components/SignalSubmit'
+import FanAccessibilitySettings from './components/FanAccessibilitySettings'
 import { CommandCenter } from './components/CommandCenter'
 import { AnalyticsPage } from './components/AnalyticsPage'
 import { PlaybookPage } from './components/PlaybookPage'
@@ -25,6 +29,49 @@ function PlaceholderPage({ title }: { title: string }) {
     </div>
   )
 }
+
+function FanTwinsPreview() {
+  return (
+    <div className="flex-1 flex items-center justify-center bg-brand-black p-6 select-none">
+      <div className="flex flex-col items-center max-w-md w-full">
+        {/* Device Wrapper */}
+        <div className="relative w-full max-w-[375px] h-[720px] bg-slate-950 rounded-[48px] border-[8px] border-slate-900 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),_inset_0_4px_10px_rgba(255,255,255,0.05)] overflow-hidden flex flex-col">
+          {/* Status bar notch/island */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-900 rounded-b-xl z-50 flex items-center justify-center">
+            <div className="w-10 h-0.5 bg-black rounded-full" />
+          </div>
+          
+          {/* Status Bar info */}
+          <div className="h-10 pt-4 px-6 flex justify-between items-center text-[9px] font-bold text-slate-400 z-40 bg-brand-black/90">
+            <span>9:41</span>
+            <div className="flex items-center gap-1.5">
+              <span>5G</span>
+              <svg className="w-3.5 h-2 text-slate-400" fill="currentColor" viewBox="0 0 24 12">
+                <rect x="0" y="0" width="20" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <rect x="2" y="2" width="12" height="8" rx="1" />
+                <rect x="21" y="4" width="2" height="4" rx="1" />
+              </svg>
+            </div>
+          </div>
+
+          {/* FanAppHeader Component */}
+          <div className="px-3 pt-1 pb-3 bg-brand-black/90 border-b border-slate-900/50">
+            <FanAppHeader />
+          </div>
+
+          {/* FanTwinChat Component */}
+          <FanTwinChat />
+
+          {/* Home Indicator */}
+          <div className="h-5 pb-2 flex justify-center items-end bg-slate-950">
+            <div className="w-28 h-1 bg-slate-700 rounded-full" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function App() {
   const [themeOverrideStatus, setThemeOverrideStatus] = useState<any>(null)
@@ -80,10 +127,10 @@ function App() {
               <Route path="/settings" element={<SettingsPage />} />
               
               {/* Fallback & placeholder viewports */}
-              <Route path="/signals" element={<PlaceholderPage title="Signals" />} />
-              <Route path="/fan-twins" element={<PlaceholderPage title="Fan Twins" />} />
+              <Route path="/signals" element={<div className="flex-1 flex items-center justify-center bg-brand-black p-6"><SignalSubmit /></div>} />
+              <Route path="/fan-twins" element={<FanTwinsPreview />} />
               <Route path="/rumor-shield" element={<PlaceholderPage title="Rumor Shield" />} />
-              <Route path="/accessibility" element={<PlaceholderPage title="Accessibility" />} />
+              <Route path="/accessibility" element={<div className="flex-1 flex items-center justify-center bg-brand-black p-6"><FanAccessibilitySettings /></div>} />
               <Route path="/broadcast-ai" element={<PlaceholderPage title="Broadcast AI" />} />
               <Route path="*" element={<CommandCenter />} />
             </Routes>
