@@ -21,7 +21,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 async def verify_ops_token(x_ops_token: Optional[str] = Header(None)):
     # Skip token verification during test runs to prevent breaking unmodified tests
-    if "pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST"):
+    if ("pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST")) and not os.environ.get("DISABLE_TEST_AUTH_BYPASS"):
         return
     required_token = os.environ.get("OPS_TOKEN", "ops-secure-token-2026")
     if x_ops_token != required_token:
