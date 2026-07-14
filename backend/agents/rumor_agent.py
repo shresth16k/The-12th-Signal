@@ -2,29 +2,46 @@
 Aligns with 'Smart Stadiums & Tournament Operations — GenAI-powered intelligence'.
 This safety agent detects false panic rumors and coordinates corrected messaging to shield fans.
 """
-import os
+
 import json
+import os
 import sys
 from typing import List, Optional
-from pydantic import BaseModel, Field
+
 from anthropic import Anthropic
+from pydantic import BaseModel, Field
 
 # Add parent directory to path to import models
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from models import SignalCluster, FanSignal
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from models import FanSignal, SignalCluster
+
 
 class RumorAlert(BaseModel):
     cluster_id: str = Field(..., description="ID of the cluster evaluated")
     suspected_claim: str = Field(..., description="The unverified rumor or panic claim")
-    suggested_correction: str = Field(..., description="The factual correction to display on stadium screens/app to calm fans")
+    suggested_correction: str = Field(
+        ..., description="The factual correction to display on stadium screens/app to calm fans"
+    )
+
 
 def detect_rumor(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> Optional[RumorAlert]:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        # If API key is not present, we perform a simple local regex fallback 
+        # If API key is not present, we perform a simple local regex fallback
         # to see if panic keywords are present and return a mock alert if so.
         has_panic = False
-        panic_keywords = ["fire", "bomb", "shoot", "attack", "gun", "terror", "evacuate", "evacuation", "stampede", "hostage"]
+        panic_keywords = [
+            "fire",
+            "bomb",
+            "shoot",
+            "attack",
+            "gun",
+            "terror",
+            "evacuate",
+            "evacuation",
+            "stampede",
+            "hostage",
+        ]
         claim_keywords = []
         if signals:
             for s_id in cluster.signal_ids:
@@ -35,20 +52,31 @@ def detect_rumor(cluster: SignalCluster, signals: Optional[List[FanSignal]] = No
                         if kw in text:
                             has_panic = True
                             claim_keywords.append(kw)
-        
+
         if has_panic:
             return RumorAlert(
                 cluster_id=cluster.id,
                 suspected_claim=f"Unverified reports mentioning safety threat ({', '.join(set(claim_keywords))}) in {cluster.zone}.",
-                suggested_correction=f"Factual Correction: Stadium security has verified that there is no active hazard in {cluster.zone}. Please follow official instructions and remain calm."
+                suggested_correction=f"Factual Correction: Stadium security has verified that there is no active hazard in {cluster.zone}. Please follow official instructions and remain calm.",
             )
         return None
 
     # Filter signals belonging to this cluster
     member_signals_text = []
     has_panic_keywords = False
-    panic_keywords = ["fire", "bomb", "shoot", "attack", "gun", "terror", "evacuate", "evacuation", "stampede", "hostage"]
-    
+    panic_keywords = [
+        "fire",
+        "bomb",
+        "shoot",
+        "attack",
+        "gun",
+        "terror",
+        "evacuate",
+        "evacuation",
+        "stampede",
+        "hostage",
+    ]
+
     if signals:
         for s_id in cluster.signal_ids:
             sig = next((s for s in signals if s.id == s_id), None)
@@ -98,9 +126,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             model="claude-3-5-sonnet-20240620",
             max_tokens=1000,
             system="You are a precise rumor detection assistant. Output valid JSON or 'null' only.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         content = response.content[0].text.strip()
@@ -122,7 +148,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
         return RumorAlert(
             cluster_id=cluster.id,
             suspected_claim=alert_data["suspected_claim"],
-            suggested_correction=alert_data["suggested_correction"]
+            suggested_correction=alert_data["suggested_correction"],
         )
     except Exception as e:
         print(f"Error during rumor detection: {e}")

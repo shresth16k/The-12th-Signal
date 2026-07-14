@@ -2,15 +2,18 @@
 Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
 This agent manages concession stands, food/drink inventory levels, wait times, and vendor POS resources.
 """
-import os
+
 import json
+import os
 import sys
 from typing import List, Optional
+
 from anthropic import Anthropic
 
 # Add parent directory to path to import models
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from models import SignalCluster, FanSignal, AgentOpinion
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from models import AgentOpinion, FanSignal, SignalCluster
+
 
 def get_concessions_opinion(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> AgentOpinion:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -21,7 +24,7 @@ def get_concessions_opinion(cluster: SignalCluster, signals: Optional[List[FanSi
             cluster_id=cluster.id,
             recommendation="Deploy backup staff and monitor inventory levels in the zone.",
             reasoning="Unable to perform live LLM analysis due to missing API key.",
-            constraints=["Adhere to standard stadium inventory allocation caps"]
+            constraints=["Adhere to standard stadium inventory allocation caps"],
         )
 
     client = Anthropic(api_key=api_key)
@@ -75,9 +78,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             model="claude-3-5-sonnet-20240620",
             max_tokens=2000,
             system="You are a precise stadium concessions operations reasoning assistant that outputs only valid JSON.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         content = response.content[0].text.strip()
@@ -96,7 +97,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation=opinion_data["recommendation"],
             reasoning=opinion_data["reasoning"],
-            constraints=opinion_data.get("constraints", [])
+            constraints=opinion_data.get("constraints", []),
         )
     except Exception as e:
         print(f"Error calling Concessions Agent API: {e}")
@@ -105,5 +106,5 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation="Inspect the concession stands in the zone.",
             reasoning=f"Agent analysis failed due to exception: {str(e)}",
-            constraints=["Ensure vendors are informed of active queue status"]
+            constraints=["Ensure vendors are informed of active queue status"],
         )

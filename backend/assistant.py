@@ -1,18 +1,30 @@
 import os
 import sys
+
 from anthropic import Anthropic
 
 # Add parent directory to path to support imports if run from root/elsewhere
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from models import FanProfile
 
+
 def get_day_plan(profile: FanProfile) -> str:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print("Warning: ANTHROPIC_API_KEY not found. Returning a stub day plan.")
-        mobility_info = f"Accessibility considerations: {profile.mobility_needs}" if profile.mobility_needs else "No special mobility access requirements reported."
-        food_info = f"Dietary notes: {', '.join(profile.food_preferences)}" if profile.food_preferences else "No dietary restrictions reported."
-        arrival_str = profile.arrival_time.strftime('%Y-%m-%d %H:%M:%S') if profile.arrival_time else 'Flexible/Not specified'
+        mobility_info = (
+            f"Accessibility considerations: {profile.mobility_needs}"
+            if profile.mobility_needs
+            else "No special mobility access requirements reported."
+        )
+        food_info = (
+            f"Dietary notes: {', '.join(profile.food_preferences)}"
+            if profile.food_preferences
+            else "No dietary restrictions reported."
+        )
+        arrival_str = (
+            profile.arrival_time.strftime("%Y-%m-%d %H:%M:%S") if profile.arrival_time else "Flexible/Not specified"
+        )
         return f"""
 Welcome to the FIFA World Cup 2026 Match Day! (Fallback Stub Plan)
 ------------------------------------------------------------------
@@ -32,10 +44,18 @@ Follow stadium signage directly to {profile.seat_zone}. Elevators are located at
 """
 
     client = Anthropic(api_key=api_key)
-    
-    mobility_context = f"- Mobility/accessibility needs: {profile.mobility_needs}" if profile.mobility_needs else "- No specific mobility needs requested (standard walking routes)."
-    food_context = f"- Food preferences: {', '.join(profile.food_preferences)}" if profile.food_preferences else "- No specific food restrictions."
-    arrival_str = profile.arrival_time.isoformat() if profile.arrival_time else 'Flexible/Not specified'
+
+    mobility_context = (
+        f"- Mobility/accessibility needs: {profile.mobility_needs}"
+        if profile.mobility_needs
+        else "- No specific mobility needs requested (standard walking routes)."
+    )
+    food_context = (
+        f"- Food preferences: {', '.join(profile.food_preferences)}"
+        if profile.food_preferences
+        else "- No specific food restrictions."
+    )
+    arrival_str = profile.arrival_time.isoformat() if profile.arrival_time else "Flexible/Not specified"
     arrival_context = f"- Expected Arrival Time: {arrival_str}"
 
     prompt = f"""
@@ -63,9 +83,7 @@ Keep the tone energetic, welcoming, and clear. Return the plan as plain text onl
             model="claude-3-5-sonnet-20240620",
             max_tokens=1500,
             system="You are a helpful stadium assistant writing personalized, warm match-day plans for football fans.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
         return response.content[0].text.strip()
     except Exception as e:

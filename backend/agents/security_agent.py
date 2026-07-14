@@ -2,15 +2,18 @@
 Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
 This agent evaluates security threats, crowd routing hazards, and physical safety risks.
 """
-import os
+
 import json
+import os
 import sys
 from typing import List, Optional
+
 from anthropic import Anthropic
 
 # Add parent directory to path to import models
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from models import SignalCluster, FanSignal, AgentOpinion
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from models import AgentOpinion, FanSignal, SignalCluster
+
 
 def get_security_opinion(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> AgentOpinion:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -21,7 +24,7 @@ def get_security_opinion(cluster: SignalCluster, signals: Optional[List[FanSigna
             cluster_id=cluster.id,
             recommendation="Dispatch local zone marshals to inspect the area immediately.",
             reasoning="Unable to perform live LLM analysis due to missing API key.",
-            constraints=["Verify that radio communications are active and clear in the zone"]
+            constraints=["Verify that radio communications are active and clear in the zone"],
         )
 
     client = Anthropic(api_key=api_key)
@@ -75,9 +78,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             model="claude-3-5-sonnet-20240620",
             max_tokens=2000,
             system="You are a precise stadium security operations reasoning assistant that outputs only valid JSON.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         content = response.content[0].text.strip()
@@ -96,7 +97,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation=opinion_data["recommendation"],
             reasoning=opinion_data["reasoning"],
-            constraints=opinion_data.get("constraints", [])
+            constraints=opinion_data.get("constraints", []),
         )
     except Exception as e:
         print(f"Error calling Security Agent API: {e}")
@@ -105,5 +106,5 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation="Inspect the zone and monitor crowd density.",
             reasoning=f"Agent analysis failed due to exception: {str(e)}",
-            constraints=["Maintain contact with lead stadium commander"]
+            constraints=["Maintain contact with lead stadium commander"],
         )

@@ -2,22 +2,25 @@
 Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
 This orchestrator coordinates the multi-agent consensus debate among five specialized domain agents.
 """
-import os
+
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from typing import List, Optional
+
 from anthropic import Anthropic
 
 # Add current directory to path to support imports if run from root/elsewhere
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from models import SignalCluster, FanSignal, AgentOpinion, Consensus
-from agents.security_agent import get_security_opinion
+from agents.broadcast_agent import get_broadcast_opinion
 from agents.concessions_agent import get_concessions_opinion
 from agents.medical_agent import get_medical_opinion
-from agents.transit_agent import get_transit_opinion
-from agents.broadcast_agent import get_broadcast_opinion
 from agents.rumor_agent import detect_rumor
+from agents.security_agent import get_security_opinion
+from agents.transit_agent import get_transit_opinion
+from models import Consensus, FanSignal, SignalCluster
+
 
 def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> Consensus:
     # 0. Check for rumors first and short-circuit if detected
@@ -27,7 +30,7 @@ def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None)
             cluster_id=cluster.id,
             final_action="push verified correction",
             contributing_opinions=[],
-            timestamp=datetime.now(timezone.utc)
+            timestamp=datetime.now(timezone.utc),
         )
 
     # 1. Gather all 5 opinions
@@ -43,12 +46,14 @@ def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None)
     if not api_key:
         print("Warning: ANTHROPIC_API_KEY not found. Returning a stub consensus.")
         # Join recommendations as a fallback
-        final_action = "Fallback Consensus (API key missing): " + " | ".join([f"[{o.agent_name}]: {o.recommendation}" for o in opinions])
+        final_action = "Fallback Consensus (API key missing): " + " | ".join(
+            [f"[{o.agent_name}]: {o.recommendation}" for o in opinions]
+        )
         return Consensus(
             cluster_id=cluster.id,
             final_action=final_action,
             contributing_opinions=opinions,
-            timestamp=datetime.now(timezone.utc)
+            timestamp=datetime.now(timezone.utc),
         )
 
     client = Anthropic(api_key=api_key)
@@ -56,12 +61,14 @@ def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None)
     # Prepare opinions for the prompt
     opinions_data = []
     for o in opinions:
-        opinions_data.append({
-            "agent_name": o.agent_name,
-            "recommendation": o.recommendation,
-            "reasoning": o.reasoning,
-            "constraints": o.constraints
-        })
+        opinions_data.append(
+            {
+                "agent_name": o.agent_name,
+                "recommendation": o.recommendation,
+                "reasoning": o.reasoning,
+                "constraints": o.constraints,
+            }
+        )
 
     prompt = f"""
 You are the Chief Operations Coordinator for the FIFA World Cup 2026 Stadium Operations center.
@@ -94,9 +101,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             model="claude-3-5-sonnet-20240620",
             max_tokens=2000,
             system="You are a precise Chief Operations Coordinator for a major stadium, synthesizing department opinions into a single action plan in JSON format.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         content = response.content[0].text.strip()
@@ -114,15 +119,17 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             final_action=consensus_data["final_action"],
             contributing_opinions=opinions,
-            timestamp=datetime.now(timezone.utc)
+            timestamp=datetime.now(timezone.utc),
         )
     except Exception as e:
         print(f"Error during orchestrator negotiation: {e}")
         # Return fallback consensus
-        final_action = "Fallback Consensus (Exception occurred): " + " | ".join([f"[{o.agent_name}]: {o.recommendation}" for o in opinions])
+        final_action = "Fallback Consensus (Exception occurred): " + " | ".join(
+            [f"[{o.agent_name}]: {o.recommendation}" for o in opinions]
+        )
         return Consensus(
             cluster_id=cluster.id,
             final_action=final_action,
             contributing_opinions=opinions,
-            timestamp=datetime.now(timezone.utc)
+            timestamp=datetime.now(timezone.utc),
         )

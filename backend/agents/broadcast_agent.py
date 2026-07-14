@@ -2,15 +2,18 @@
 Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
 This agent manages media broadcast camera coverage, program backdrops, and on-screen info overlays.
 """
-import os
+
 import json
+import os
 import sys
 from typing import List, Optional
+
 from anthropic import Anthropic
 
 # Add parent directory to path to import models
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from models import SignalCluster, FanSignal, AgentOpinion
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from models import AgentOpinion, FanSignal, SignalCluster
+
 
 def get_broadcast_opinion(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> AgentOpinion:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -21,7 +24,7 @@ def get_broadcast_opinion(cluster: SignalCluster, signals: Optional[List[FanSign
             cluster_id=cluster.id,
             recommendation="Monitor camera feeds in the zone and advise director of any visible disruptions.",
             reasoning="Unable to perform live LLM analysis due to missing API key.",
-            constraints=["Avoid broadcasting negative stadium conditions on the main feed"]
+            constraints=["Avoid broadcasting negative stadium conditions on the main feed"],
         )
 
     client = Anthropic(api_key=api_key)
@@ -74,9 +77,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             model="claude-3-5-sonnet-20240620",
             max_tokens=2000,
             system="You are a precise stadium broadcast operations reasoning assistant that outputs only valid JSON.",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         content = response.content[0].text.strip()
@@ -95,7 +96,7 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation=opinion_data["recommendation"],
             reasoning=opinion_data["reasoning"],
-            constraints=opinion_data.get("constraints", [])
+            constraints=opinion_data.get("constraints", []),
         )
     except Exception as e:
         print(f"Error calling Broadcast Agent API: {e}")
@@ -104,5 +105,5 @@ Do not include any chat formatting, markdown blocks (like ```json), or introduct
             cluster_id=cluster.id,
             recommendation="Inspect camera placement and monitor local feed.",
             reasoning=f"Agent analysis failed due to exception: {str(e)}",
-            constraints=["Notify broadcast control room of potential local visual obstructions"]
+            constraints=["Notify broadcast control room of potential local visual obstructions"],
         )
