@@ -20,9 +20,10 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
       setLoading(true);
       setError(null);
       try {
-        const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-          ? 'http://localhost:8000' 
-          : '';
+        const host =
+          window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:8000'
+            : '';
         const res = await fetch(`${host}/api/negotiate`, {
           method: 'POST',
           headers: {
@@ -39,7 +40,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
           setError(errData.detail || 'Failed to negotiate cluster consensus');
         }
       } catch (err) {
-        console.error("Error negotiating cluster:", err);
+        console.error('Error negotiating cluster:', err);
         setError('Network error negotiating cluster consensus');
       } finally {
         setLoading(false);
@@ -55,36 +56,36 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
     if (nameLower.includes('security')) {
       return {
         icon: '🛡️',
-        color: 'border-danger-red/30 text-danger-red bg-danger-red/10'
+        color: 'border-danger-red/30 text-danger-red bg-danger-red/10',
       };
     }
     if (nameLower.includes('transit')) {
       return {
         icon: '🚇',
-        color: 'border-info-blue/30 text-info-blue bg-info-blue/10'
+        color: 'border-info-blue/30 text-info-blue bg-info-blue/10',
       };
     }
     if (nameLower.includes('concessions') || nameLower.includes('concession')) {
       return {
         icon: '🍔',
-        color: 'border-warning-amber/30 text-warning-amber bg-warning-amber/10'
+        color: 'border-warning-amber/30 text-warning-amber bg-warning-amber/10',
       };
     }
     if (nameLower.includes('broadcast')) {
       return {
         icon: '🎥',
-        color: 'border-accent-purple/30 text-accent-purple bg-accent-purple/10'
+        color: 'border-accent-purple/30 text-accent-purple bg-accent-purple/10',
       };
     }
     if (nameLower.includes('medical')) {
       return {
         icon: '🏥',
-        color: 'border-positive-teal/30 text-positive-teal bg-positive-teal/10'
+        color: 'border-positive-teal/30 text-positive-teal bg-positive-teal/10',
       };
     }
     return {
       icon: '🤖',
-      color: 'border-slate-800 text-slate-400 bg-slate-900'
+      color: 'border-slate-800 text-slate-400 bg-slate-900',
     };
   };
 
@@ -105,18 +106,26 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-              AI War Room
-            </h3>
+            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
-        
+
         <div className="flex-1 flex flex-col items-center justify-center text-slate-500 bg-brand-black/20 border border-dashed border-slate-800 rounded-lg p-6 text-center">
-          <svg className="w-10 h-10 mb-3 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          <svg
+            className="w-10 h-10 mb-3 text-slate-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
           </svg>
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
             Awaiting Target Selection
@@ -136,15 +145,13 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-              AI War Room
-            </h3>
+            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
-        
+
         <div className="flex-1 flex flex-col items-center justify-center text-slate-500 bg-brand-black/20 border border-dashed border-slate-850 rounded-lg p-6 text-center">
           <div className="w-8 h-8 rounded-full border-2 border-accent-purple border-t-transparent animate-spin mb-3" />
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -165,23 +172,19 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-danger-red animate-pulse" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-              AI War Room
-            </h3>
+            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
-        
+
         <div className="flex-1 flex flex-col items-center justify-center text-danger-red bg-danger-red/5 border border-dashed border-danger-red/20 rounded-lg p-6 text-center">
           <span className="text-2xl mb-2">⚠️</span>
           <span className="text-xs font-semibold uppercase tracking-wider text-danger-red">
             Consensus Negotiation Failed
           </span>
-          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">
-            {error}
-          </span>
+          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">{error}</span>
         </div>
       </div>
     );
@@ -195,9 +198,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
       <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-            AI War Room
-          </h3>
+          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
         </div>
         <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
           Orchestrator Panel
@@ -217,7 +218,9 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
               <div key={idx} className="flex flex-col gap-1">
                 <div className="flex items-center justify-between px-1">
                   <div className="flex items-center gap-2">
-                    <span className={`w-5 h-5 rounded flex items-center justify-center text-[10px] border ${details.color}`}>
+                    <span
+                      className={`w-5 h-5 rounded flex items-center justify-center text-[10px] border ${details.color}`}
+                    >
                       {details.icon}
                     </span>
                     <span className="text-[11px] font-bold text-slate-300">{o.agent_name}</span>

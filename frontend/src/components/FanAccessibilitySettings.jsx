@@ -12,17 +12,26 @@ export default function FanAccessibilitySettings() {
   return (
     <div className="p-4 w-full max-w-md mx-auto bg-slate-900 border border-slate-800 rounded-xl text-slate-100 shadow-md">
       <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
-        <svg className="w-5 h-5 text-accent-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg
+          className="w-5 h-5 text-accent-purple"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+          />
         </svg>
-        <h3 className="text-base font-bold text-white uppercase tracking-wider">
-          Accessibility Settings
-        </h3>
+        <h3 className="text-base font-bold text-white uppercase tracking-wider">Accessibility Settings</h3>
       </div>
 
       <p className="text-[11px] text-slate-400 mb-5 leading-relaxed">
-        Customize your matchday viewing preferences. These settings will apply locally to your device’s media players and text displays inside Lumen Field.
+        Customize your matchday viewing preferences. These settings will apply locally to your device’s media players
+        and text displays inside Lumen Field.
       </p>
 
       <div className="space-y-4">
@@ -95,7 +104,7 @@ export default function FanAccessibilitySettings() {
           </button>
         </div>
       </div>
-      
+
       <div className="mt-4 pt-3 border-t border-slate-850 flex items-center justify-between text-[8px] font-mono text-slate-500 uppercase tracking-wider">
         <span>Device settings only</span>
         <span>Version 1.0.0</span>

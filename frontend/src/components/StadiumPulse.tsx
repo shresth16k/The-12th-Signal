@@ -6,8 +6,6 @@ interface StadiumPulseProps {
 }
 
 export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, selectedClusterId }) => {
-
-
   // Sample sentiment data
   const positiveSentiment = 58;
   const neutralSentiment = 26;
@@ -18,16 +16,17 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
   useEffect(() => {
     const fetchClusters = async () => {
       try {
-        const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-          ? 'http://localhost:8000' 
-          : '';
+        const host =
+          window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:8000'
+            : '';
         const res = await fetch(`${host}/api/clusters`);
         if (res.ok) {
           const data = await res.json();
           setClusters(data);
         }
       } catch (err) {
-        console.error("Error fetching clusters:", err);
+        console.error('Error fetching clusters:', err);
       }
     };
 
@@ -43,16 +42,38 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
     let iconEmoji = '📣';
 
     // Heuristics for icons and severity
-    if (topicLower.includes('flood') || topicLower.includes('leak') || topicLower.includes('water') || topicLower.includes('restroom')) {
+    if (
+      topicLower.includes('flood') ||
+      topicLower.includes('leak') ||
+      topicLower.includes('water') ||
+      topicLower.includes('restroom')
+    ) {
       iconEmoji = '💧';
       severity = c.signal_ids?.length >= 30 ? 'high' : 'medium';
-    } else if (topicLower.includes('gate') || topicLower.includes('crowd') || topicLower.includes('bottleneck') || topicLower.includes('line') || topicLower.includes('queue')) {
+    } else if (
+      topicLower.includes('gate') ||
+      topicLower.includes('crowd') ||
+      topicLower.includes('bottleneck') ||
+      topicLower.includes('line') ||
+      topicLower.includes('queue')
+    ) {
       iconEmoji = '🚶';
       severity = c.signal_ids?.length >= 35 ? 'high' : 'medium';
-    } else if (topicLower.includes('food') || topicLower.includes('stock') || topicLower.includes('concession') || topicLower.includes('hot dog') || topicLower.includes('vendor')) {
+    } else if (
+      topicLower.includes('food') ||
+      topicLower.includes('stock') ||
+      topicLower.includes('concession') ||
+      topicLower.includes('hot dog') ||
+      topicLower.includes('vendor')
+    ) {
       iconEmoji = '🌭';
       severity = 'low';
-    } else if (topicLower.includes('medical') || topicLower.includes('exhaustion') || topicLower.includes('heat') || topicLower.includes('injury')) {
+    } else if (
+      topicLower.includes('medical') ||
+      topicLower.includes('exhaustion') ||
+      topicLower.includes('heat') ||
+      topicLower.includes('injury')
+    ) {
       iconEmoji = '❤️';
       severity = 'high';
     }
@@ -64,16 +85,18 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       count: c.signal_ids?.length || 0,
       severity,
       icon: (
-        <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs border ${
-          severity === 'high' 
-            ? 'bg-danger-red/10 border-danger-red/30 text-danger-red' 
-            : severity === 'medium'
-            ? 'bg-warning-amber/10 border-warning-amber/30 text-warning-amber'
-            : 'bg-accent-purple/10 border-accent-purple/30 text-accent-purple'
-        }`}>
+        <span
+          className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs border ${
+            severity === 'high'
+              ? 'bg-danger-red/10 border-danger-red/30 text-danger-red'
+              : severity === 'medium'
+                ? 'bg-warning-amber/10 border-warning-amber/30 text-warning-amber'
+                : 'bg-accent-purple/10 border-accent-purple/30 text-accent-purple'
+          }`}
+        >
           {iconEmoji}
         </span>
-      )
+      ),
     };
   });
 
@@ -83,9 +106,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-accent-purple animate-pulse" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-            Stadium Pulse
-          </h3>
+          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Stadium Pulse</h3>
         </div>
         <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
           Fan Sentiment & Signals
@@ -125,10 +146,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                   <stop offset="100%" stopColor="#aa3bff" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
-              <path
-                d="M0,15 Q10,12 20,16 T40,10 T60,5 T80,18 T100,12 L100,20 L0,20 Z"
-                fill="url(#sparklineGrad)"
-              />
+              <path d="M0,15 Q10,12 20,16 T40,10 T60,5 T80,18 T100,12 L100,20 L0,20 Z" fill="url(#sparklineGrad)" />
               <path
                 d="M0,15 Q10,12 20,16 T40,10 T60,5 T80,18 T100,12"
                 fill="none"
@@ -153,20 +171,20 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
             </div>
           ) : (
             mappedClusters.map((c) => {
-              const severityColor = 
-                c.severity === 'high' 
-                  ? 'bg-danger-red/10 text-danger-red border-danger-red/30' 
+              const severityColor =
+                c.severity === 'high'
+                  ? 'bg-danger-red/10 text-danger-red border-danger-red/30'
                   : c.severity === 'medium'
-                  ? 'bg-warning-amber/10 text-warning-amber border-warning-amber/30'
-                  : 'bg-info-blue/10 text-info-blue border-info-blue/30';
+                    ? 'bg-warning-amber/10 text-warning-amber border-warning-amber/30'
+                    : 'bg-info-blue/10 text-info-blue border-info-blue/30';
               const isSelected = selectedClusterId === c.id;
               return (
-                <div 
-                  key={c.id} 
+                <div
+                  key={c.id}
                   onClick={() => onSelectCluster && onSelectCluster(c.id)}
                   className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer ${
-                    isSelected 
-                      ? 'bg-accent-purple/10 border border-accent-purple shadow-[0_0_12px_rgba(170,59,255,0.2)]' 
+                    isSelected
+                      ? 'bg-accent-purple/10 border border-accent-purple shadow-[0_0_12px_rgba(170,59,255,0.2)]'
                       : 'bg-brand-black/45 border border-slate-850 hover:border-slate-800'
                   }`}
                 >
@@ -178,12 +196,12 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold border uppercase tracking-wide ${severityColor}`}>
+                    <span
+                      className={`text-[9px] px-1.5 py-0.5 rounded font-bold border uppercase tracking-wide ${severityColor}`}
+                    >
                       {c.severity}
                     </span>
-                    <span className="text-xs font-mono font-bold text-slate-400">
-                      {c.count} sigs
-                    </span>
+                    <span className="text-xs font-mono font-bold text-slate-400">{c.count} sigs</span>
                   </div>
                 </div>
               );
@@ -198,15 +216,11 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
           { label: 'Active Signals', value: '142', color: 'text-slate-100' },
           { label: 'Avg Response', value: '1.8m', color: 'text-positive-teal' },
           { label: 'Resolved today', value: '1,240', color: 'text-slate-100' },
-          { label: 'Fan Sat Index', value: '94%', color: 'text-accent-purple' }
+          { label: 'Fan Sat Index', value: '94%', color: 'text-accent-purple' },
         ].map((s, idx) => (
           <div key={idx} className="flex flex-col bg-brand-black/20 p-2 rounded-lg border border-slate-850">
-            <span className="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">
-              {s.label}
-            </span>
-            <span className={`text-sm font-bold font-mono mt-0.5 ${s.color}`}>
-              {s.value}
-            </span>
+            <span className="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">{s.label}</span>
+            <span className={`text-sm font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</span>
           </div>
         ))}
       </div>

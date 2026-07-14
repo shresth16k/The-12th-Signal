@@ -10,10 +10,10 @@ describe('SignalSubmit Component', () => {
 
   test('renders the report form elements', () => {
     render(<SignalSubmit />);
-    
+
     expect(screen.getByText(/Report Stadium Issue \/ Ask Question/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Description/i)).toBeInTheDocument();
-    
+
     const submitButton = screen.getByRole('button', { name: /Submit Signal/i });
     expect(submitButton).toBeInTheDocument();
     // Button should be disabled initially when input is empty
@@ -22,10 +22,10 @@ describe('SignalSubmit Component', () => {
 
   test('enables submit button when text is typed', () => {
     render(<SignalSubmit />);
-    
+
     const textarea = screen.getByLabelText(/Description/i);
     const submitButton = screen.getByRole('button', { name: /Submit Signal/i });
-    
+
     fireEvent.change(textarea, { target: { value: 'Water leak in section 212 washroom' } });
     expect(submitButton).not.toBeDisabled();
   });
@@ -35,16 +35,16 @@ describe('SignalSubmit Component', () => {
     const mockFetch = vi.fn().mockImplementation(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ id: "sig_mock123" }),
+        json: () => Promise.resolve({ id: 'sig_mock123' }),
       })
     );
     vi.stubGlobal('fetch', mockFetch);
 
     render(<SignalSubmit />);
-    
+
     const textarea = screen.getByLabelText(/Description/i);
     fireEvent.change(textarea, { target: { value: 'Water leak in section 212 washroom' } });
-    
+
     const submitButton = screen.getByRole('button', { name: /Submit Signal/i });
     fireEvent.click(submitButton);
 
@@ -59,10 +59,10 @@ describe('SignalSubmit Component', () => {
     const callArgs = mockFetch.mock.calls[0];
     const url = callArgs[0];
     const options = callArgs[1];
-    
+
     expect(url).toContain('/api/signals');
     expect(options.method).toBe('POST');
-    
+
     const parsedBody = JSON.parse(options.body);
     expect(parsedBody.source_type).toBe('app_tap');
     expect(parsedBody.location_zone).toBe('Section 212');

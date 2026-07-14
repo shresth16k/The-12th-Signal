@@ -9,39 +9,39 @@ export default function FanTwinChat() {
     {
       id: 1,
       sender: 'assistant',
-      text: "Hi Arjun! 👋 Everything is set for your perfect match day experience at Lumen Field.",
-      time: '19:40'
+      text: 'Hi Arjun! 👋 Everything is set for your perfect match day experience at Lumen Field.',
+      time: '19:40',
     },
     {
       id: 2,
       sender: 'assistant',
-      text: "I can help you check restroom lines, concession wait times, stadium navigation, or accessibility assistance.",
-      time: '19:40'
+      text: 'I can help you check restroom lines, concession wait times, stadium navigation, or accessibility assistance.',
+      time: '19:40',
     },
     {
       id: 3,
       sender: 'user',
-      text: "Where is the best place to get food right now?",
-      time: '19:41'
+      text: 'Where is the best place to get food right now?',
+      time: '19:41',
     },
     {
       id: 4,
       sender: 'assistant',
-      text: "Grab dinner at Stand C. It has a shorter line. Estimated wait: 8 mins.",
-      time: '19:42'
+      text: 'Grab dinner at Stand C. It has a shorter line. Estimated wait: 8 mins.',
+      time: '19:42',
     },
     {
       id: 5,
       sender: 'user',
-      text: "Is Gate 3 crowded?",
-      time: '19:43'
+      text: 'Is Gate 3 crowded?',
+      time: '19:43',
     },
     {
       id: 6,
       sender: 'assistant',
       text: "Gate 3 is currently clear. I've updated your recommended route to avoid congestion at Gate 4.",
-      time: '19:43'
-    }
+      time: '19:43',
+    },
   ]);
 
   const [inputValue, setInputValue] = useState('');
@@ -62,12 +62,12 @@ export default function FanTwinChat() {
     const profile = localStorage.getItem(profileKey);
     if (!profile) {
       const defaultProfile = {
-        id: "fan_12",
-        language: "English",
-        mobility_needs: "wheelchair access",
-        seat_zone: "Section 212",
-        food_preferences: ["halal", "vegetarian"],
-        arrival_time: new Date(Date.now() + 3600000).toISOString()
+        id: 'fan_12',
+        language: 'English',
+        mobility_needs: 'wheelchair access',
+        seat_zone: 'Section 212',
+        food_preferences: ['halal', 'vegetarian'],
+        arrival_time: new Date(Date.now() + 3600000).toISOString(),
       };
       localStorage.setItem(profileKey, JSON.stringify(defaultProfile));
       return defaultProfile;
@@ -86,28 +86,29 @@ export default function FanTwinChat() {
       id: messages.length + 1,
       sender: 'user',
       text: userMessageText,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    setMessages(prev => [...prev, userMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInputValue('');
 
     // Append temporary loading state bubble
     const loadingId = messages.length + 2;
-    setMessages(prev => [
+    setMessages((prev) => [
       ...prev,
       {
         id: loadingId,
         sender: 'assistant',
-        text: "Analyzing live crowd signals and generating day plan...",
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
+        text: 'Analyzing live crowd signals and generating day plan...',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      },
     ]);
 
     try {
-      const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'http://localhost:8000' 
-        : '';
+      const host =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:8000'
+          : '';
 
       const profile = getStoredProfile();
 
@@ -116,29 +117,26 @@ export default function FanTwinChat() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile)
+        body: JSON.stringify(profile),
       });
 
       if (response.ok) {
         const data = await response.json();
         // Replace thinking bubble with response plan
-        setMessages(prev => 
-          prev.map(msg => 
-            msg.id === loadingId 
-              ? { ...msg, text: data.plan } 
-              : msg
-          )
-        );
+        setMessages((prev) => prev.map((msg) => (msg.id === loadingId ? { ...msg, text: data.plan } : msg)));
       } else {
-        throw new Error("API call failed");
+        throw new Error('API call failed');
       }
     } catch (err) {
-      console.error("Error calling day-plan API:", err);
+      console.error('Error calling day-plan API:', err);
       // Replace with error warning
-      setMessages(prev => 
-        prev.map(msg => 
-          msg.id === loadingId 
-            ? { ...msg, text: "I'm sorry, I'm unable to connect to stadium services. Please consult stadium staff or follow zone signs." } 
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === loadingId
+            ? {
+                ...msg,
+                text: "I'm sorry, I'm unable to connect to stadium services. Please consult stadium staff or follow zone signs.",
+              }
             : msg
         )
       );
@@ -150,24 +148,23 @@ export default function FanTwinChat() {
   };
 
   const suggestions = [
-    "🍔 Shortest food line?",
-    "🚶‍♂️ Route to Gate 3",
-    "🚽 Restroom Section 212",
-    "🩺 Medical Assistance"
+    '🍔 Shortest food line?',
+    '🚶‍♂️ Route to Gate 3',
+    '🚽 Restroom Section 212',
+    '🩺 Medical Assistance',
   ];
 
   return (
     <div className="flex-1 flex flex-col h-full bg-brand-black/95 relative overflow-hidden">
-      
       {/* 1. Chat Assistant Header / Profile */}
       <div className="px-4 py-3 bg-slate-900/60 border-b border-slate-800/80 flex items-center justify-between backdrop-blur-md">
         <div className="flex items-center gap-3">
           {/* Glowing Avatar */}
           <div className="relative">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-purple to-positive-teal rounded-full blur opacity-65"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256&h=256" 
-              alt="AI Twin" 
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256&h=256"
+              alt="AI Twin"
               className="relative w-8 h-8 rounded-full border border-slate-700 object-cover"
             />
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-positive-teal border-2 border-slate-900 rounded-full animate-pulse" />
@@ -192,7 +189,9 @@ export default function FanTwinChat() {
             ✨
           </div>
           <div>
-            <h5 className="text-[10px] font-bold text-slate-200 uppercase tracking-wide">Stadium Nervous System Active</h5>
+            <h5 className="text-[10px] font-bold text-slate-200 uppercase tracking-wide">
+              Stadium Nervous System Active
+            </h5>
             <p className="text-[9.5px] text-slate-400 mt-0.5 leading-relaxed">
               We sync with stadium crowd cameras and gate sensors to guide you.
             </p>
@@ -205,25 +204,23 @@ export default function FanTwinChat() {
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
-            <div 
+            <div
               key={msg.id}
               className={`flex flex-col max-w-[85%] ${isUser ? 'ml-auto items-end' : 'mr-auto items-start'}`}
             >
               {/* Message Bubble */}
-              <div 
+              <div
                 className={`px-3 py-2 rounded-2xl text-[11px] leading-relaxed text-left transition-all duration-200 ${
-                  isUser 
-                    ? 'bg-gradient-to-r from-accent-purple to-indigo-600 text-slate-100 rounded-tr-sm shadow-md' 
+                  isUser
+                    ? 'bg-gradient-to-r from-accent-purple to-indigo-600 text-slate-100 rounded-tr-sm shadow-md'
                     : 'bg-slate-900/80 border border-slate-800/80 text-slate-200 rounded-tl-sm'
                 }`}
               >
                 {msg.text}
               </div>
-              
+
               {/* Timestamp */}
-              <span className="text-[8px] text-slate-500 font-mono mt-1 px-1">
-                {msg.time}
-              </span>
+              <span className="text-[8px] text-slate-500 font-mono mt-1 px-1">{msg.time}</span>
             </div>
           );
         })}
@@ -244,7 +241,7 @@ export default function FanTwinChat() {
       </div>
 
       {/* 5. Chat Input Bar */}
-      <form 
+      <form
         onSubmit={handleSend}
         className="p-3 bg-slate-900/40 border-t border-slate-800/60 flex items-center gap-2 shrink-0 backdrop-blur-md"
       >
@@ -257,12 +254,13 @@ export default function FanTwinChat() {
             className="w-full bg-slate-950/80 border border-slate-800/80 hover:border-slate-700/80 focus:border-accent-purple/50 focus:ring-1 focus:ring-accent-purple/30 rounded-xl pl-3 pr-8 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none transition-all duration-200"
           />
           {/* Action icon (mic) inside input */}
-          <button 
-            type="button" 
-            className="absolute right-2.5 text-slate-500 hover:text-slate-300 transition-colors"
-          >
+          <button type="button" className="absolute right-2.5 text-slate-500 hover:text-slate-300 transition-colors">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+              />
             </svg>
           </button>
         </div>
@@ -278,12 +276,17 @@ export default function FanTwinChat() {
           }`}
           aria-label="Send message"
         >
-          <svg className="w-3.5 h-3.5 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg
+            className="w-3.5 h-3.5 transform rotate-90"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
           </svg>
         </button>
       </form>
-
     </div>
   );
 }

@@ -9,9 +9,7 @@ export const StatusStrip: React.FC = () => {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger-red opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-danger-red"></span>
         </span>
-        <span className="font-bold text-slate-300 uppercase tracking-wider">
-          Alerts:
-        </span>
+        <span className="font-bold text-slate-300 uppercase tracking-wider">Alerts:</span>
         <span className="bg-danger-red/20 text-danger-red border border-danger-red/30 px-1.5 py-0.2 rounded font-extrabold font-mono text-[9px]">
           2
         </span>
@@ -23,9 +21,7 @@ export const StatusStrip: React.FC = () => {
       {/* Right: System Status */}
       <div className="flex items-center gap-1.5">
         <span className="w-1.5 h-1.5 rounded-full bg-positive-teal shadow-[0_0_6px_#14b8a6]" />
-        <span className="font-medium text-slate-300">
-          SYS OPERATIONAL
-        </span>
+        <span className="font-medium text-slate-300">SYS OPERATIONAL</span>
       </div>
     </div>
   );

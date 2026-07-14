@@ -8,47 +8,51 @@ export const QuickActionsCard: React.FC = () => {
       id: 'announcement',
       label: 'Send Announcement',
       icon: '📢',
-      colorClass: 'border-slate-800 hover:border-info-blue/50 hover:bg-info-blue/5 text-slate-300 hover:text-slate-200'
+      colorClass: 'border-slate-800 hover:border-info-blue/50 hover:bg-info-blue/5 text-slate-300 hover:text-slate-200',
     },
     {
       id: 'deploy',
       label: 'Deploy Staff',
       icon: '🚶',
-      colorClass: 'border-slate-800 hover:border-positive-teal/50 hover:bg-positive-teal/5 text-slate-300 hover:text-slate-200'
+      colorClass:
+        'border-slate-800 hover:border-positive-teal/50 hover:bg-positive-teal/5 text-slate-300 hover:text-slate-200',
     },
     {
       id: 'cameras',
       label: 'View All Cameras',
       icon: '📹',
-      colorClass: 'border-slate-800 hover:border-accent-purple/50 hover:bg-accent-purple/5 text-slate-300 hover:text-slate-200'
+      colorClass:
+        'border-slate-800 hover:border-accent-purple/50 hover:bg-accent-purple/5 text-slate-300 hover:text-slate-200',
     },
     {
       id: 'emergency',
       label: 'Emergency Protocol',
       icon: '🚨',
-      colorClass: 'border-danger-red/30 bg-danger-red/5 hover:bg-danger-red/15 hover:border-danger-red/60 text-danger-red'
-    }
+      colorClass:
+        'border-danger-red/30 bg-danger-red/5 hover:bg-danger-red/15 hover:border-danger-red/60 text-danger-red',
+    },
   ];
 
   const handleActionClick = async (id: string, label: string) => {
     console.log(`[Quick Action] Triggering action: "${label}" (ID: ${id})`);
-    
+
     const endpointMap: Record<string, string> = {
       announcement: '/api/actions/announcement',
       deploy: '/api/actions/deploy-staff',
       cameras: '/api/actions/view-cameras',
-      emergency: '/api/actions/emergency-protocol'
+      emergency: '/api/actions/emergency-protocol',
     };
 
     try {
-      const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'http://localhost:8000' 
-        : '';
+      const host =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:8000'
+          : '';
       const res = await fetch(`${host}${endpointMap[id]}`, {
         method: 'POST',
         headers: {
-          'X-Ops-Token': 'ops-secure-token-2026'
-        }
+          'X-Ops-Token': 'ops-secure-token-2026',
+        },
       });
       if (res.ok) {
         const data = await res.json();
@@ -60,11 +64,10 @@ export const QuickActionsCard: React.FC = () => {
       }
     } catch (err) {
       console.error(err);
-      setStatusMsg("Network connection error");
+      setStatusMsg('Network connection error');
       setTimeout(() => setStatusMsg(null), 4000);
     }
   };
-
 
   return (
     <div className="bg-surface border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-slate-700 transition-all duration-300 min-h-[180px] text-left select-none">
@@ -80,12 +83,8 @@ export const QuickActionsCard: React.FC = () => {
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-              Quick Actions
-            </span>
-            <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wide">
-              Operator Panel
-            </span>
+            <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">Quick Actions</span>
+            <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wide">Operator Panel</span>
           </div>
         </div>
       </div>
@@ -99,9 +98,7 @@ export const QuickActionsCard: React.FC = () => {
             className={`flex flex-col items-center justify-center p-2 rounded-lg border text-center transition-all duration-200 cursor-pointer ${act.colorClass}`}
           >
             <span className="text-sm mb-1">{act.icon}</span>
-            <span className="text-[9px] font-bold uppercase tracking-wider leading-none">
-              {act.label}
-            </span>
+            <span className="text-[9px] font-bold uppercase tracking-wider leading-none">{act.label}</span>
           </button>
         ))}
       </div>
@@ -122,4 +119,3 @@ export const QuickActionsCard: React.FC = () => {
     </div>
   );
 };
-

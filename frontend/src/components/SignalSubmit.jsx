@@ -15,9 +15,10 @@ export default function SignalSubmit() {
 
     setIsSubmitting(true);
     try {
-      const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-        ? 'http://localhost:8000' 
-        : '';
+      const host =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:8000'
+          : '';
       const response = await fetch(`${host}/api/signals`, {
         method: 'POST',
         headers: {
@@ -27,8 +28,8 @@ export default function SignalSubmit() {
           source_type: 'app_tap',
           location_zone: 'Section 212',
           raw_text: inputText,
-          sentiment_score: 0.0
-        })
+          sentiment_score: 0.0,
+        }),
       });
 
       if (response.ok) {
@@ -39,10 +40,10 @@ export default function SignalSubmit() {
           setIsSubmitted(false);
         }, 3000);
       } else {
-        console.error("Failed to submit signal:", response.statusText);
+        console.error('Failed to submit signal:', response.statusText);
       }
     } catch (error) {
-      console.error("Error submitting signal:", error);
+      console.error('Error submitting signal:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -52,7 +53,13 @@ export default function SignalSubmit() {
     return (
       <div className="p-4 w-full max-w-md mx-auto bg-slate-900 border border-slate-800 rounded-lg text-slate-100">
         <div className="flex flex-col items-center justify-center py-6 text-center">
-          <svg className="w-10 h-10 text-green-500 mb-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="w-10 h-10 text-green-500 mb-2 animate-bounce"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <h3 className="text-base font-bold text-white mb-1">Signal Submitted</h3>

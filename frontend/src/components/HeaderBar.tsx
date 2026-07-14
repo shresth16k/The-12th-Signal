@@ -8,12 +8,15 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
   return (
     <header className="w-full bg-surface border-b border-slate-800 px-6 py-4 flex items-center justify-between text-slate-100 select-none">
       {/* Left section: Logo + Title */}
-      <div 
-        onClick={onLogoClick}
-        className="flex items-center gap-3 cursor-pointer group"
-      >
+      <div onClick={onLogoClick} className="flex items-center gap-3 cursor-pointer group">
         <div className="w-10 h-10 rounded-lg bg-brand-black flex items-center justify-center border border-accent-purple/30 group-hover:border-accent-purple/70 transition-all duration-300 shadow-[0_0_15px_rgba(170,59,255,0.15)]">
-          <svg className="w-6 h-6 text-accent-purple animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="w-6 h-6 text-accent-purple animate-pulse"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
@@ -21,9 +24,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
           <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:from-accent-purple group-hover:to-slate-100 transition-all duration-300">
             The 12th Signal
           </span>
-          <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">
-            Stadium nervous system
-          </span>
+          <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">Stadium nervous system</span>
         </div>
       </div>
 
@@ -42,30 +43,30 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-positive-teal opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-positive-teal"></span>
           </span>
-          <span className="font-mono text-sm font-semibold text-positive-teal tracking-wider">
-            74:15
-          </span>
+          <span className="font-mono text-sm font-semibold text-positive-teal tracking-wider">74:15</span>
         </div>
       </div>
 
       {/* Right-middle section: Statistics */}
       <div className="hidden md:flex items-center gap-6">
         <div className="flex flex-col items-end">
-          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
-            Signals / Min
-          </span>
+          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Signals / Min</span>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span className="font-mono font-bold text-slate-100 text-base">142</span>
-            <svg className="w-3.5 h-3.5 text-positive-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <svg
+              className="w-3.5 h-3.5 text-positive-teal"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={3}
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
           </div>
         </div>
         <div className="h-8 w-px bg-slate-800" />
         <div className="flex flex-col items-end">
-          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
-            Attendance
-          </span>
+          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Attendance</span>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span className="font-mono font-bold text-slate-100 text-base">84,320</span>
             <span className="text-[10px] px-1 bg-slate-800 text-slate-400 font-bold rounded">98%</span>
@@ -82,7 +83,11 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-danger-red"></span>
           </span>
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            />
           </svg>
         </button>
 

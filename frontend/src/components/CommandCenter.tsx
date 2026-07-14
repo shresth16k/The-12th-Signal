@@ -23,19 +23,15 @@ export const CommandCenter: React.FC = () => {
           { label: 'Active Fan Signals', value: '200 Ingested', color: 'border-slate-800' },
           { label: 'Semantic Clusters', value: '4 Detected', color: 'border-accent-purple/30' },
           { label: 'Rumor Shield Warnings', value: '0 Active', color: 'border-positive-teal/30' },
-          { label: 'Stadium Health Index', value: '98% Nominal', color: 'border-info-blue/30' }
+          { label: 'Stadium Health Index', value: '98% Nominal', color: 'border-info-blue/30' },
         ].map((m, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className={`bg-surface border ${m.color} rounded-xl p-5 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:border-slate-700 transition-all duration-300`}
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-accent-purple/5 rounded-full blur-2xl group-hover:bg-accent-purple/10 transition-all" />
-            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-              {m.label}
-            </span>
-            <span className="text-xl font-extrabold text-slate-100 mt-2 font-mono">
-              {m.value}
-            </span>
+            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">{m.label}</span>
+            <span className="text-xl font-extrabold text-slate-100 mt-2 font-mono">{m.value}</span>
           </div>
         ))}
       </div>
