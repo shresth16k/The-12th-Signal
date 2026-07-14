@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This agent manages concession stands, food/drink inventory levels, wait times, and vendor POS resources.
+"""
 import os
 import json
 import sys

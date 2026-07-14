@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This agent evaluates security threats, crowd routing hazards, and physical safety risks.
+"""
 import os
 import json
 import sys

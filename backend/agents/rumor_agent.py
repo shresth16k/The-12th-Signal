@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — GenAI-powered intelligence'.
+This safety agent detects false panic rumors and coordinates corrected messaging to shield fans.
+"""
 import os
 import json
 import sys

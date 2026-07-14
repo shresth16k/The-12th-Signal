@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This agent manages pedestrian corridor crowd flow, gate bottlenecks, egress logistics, and public transit schedules.
+"""
 import os
 import json
 import sys

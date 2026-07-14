@@ -1,3 +1,7 @@
+/**
+ * Aligns with 'Smart Stadiums & Tournament Operations — Smart Stadiums & Tournament Operations'.
+ * Main cockpit interface that integrates real-time signals, spatial stadium zone maps, and the AI War Room.
+ */
 import React, { useState } from 'react';
 import { StadiumPulse } from './StadiumPulse';
 import { StadiumZoneMap } from './StadiumZoneMap';

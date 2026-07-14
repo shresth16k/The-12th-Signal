@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This agent coordinates emergency medical responses, first-aid dispatch, and ambulance egress routes.
+"""
 import os
 import json
 import sys

@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This orchestrator coordinates the multi-agent consensus debate among five specialized domain agents.
+"""
 import os
 import json
 import sys

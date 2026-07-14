@@ -1,3 +1,7 @@
+"""
+Aligns with 'Smart Stadiums & Tournament Operations — Stadium operations optimization'.
+This agent manages media broadcast camera coverage, program backdrops, and on-screen info overlays.
+"""
 import os
 import json
 import sys
