@@ -1,9 +1,9 @@
 from datetime import datetime, timezone
 import uuid
-from typing import List, Literal, Optional
+from typing import List, Optional
 from fastapi import FastAPI, status, HTTPException
-from pydantic import BaseModel, Field
-from models import FanSignal, SignalCluster, Consensus, FanProfile
+from pydantic import BaseModel, Field, ConfigDict
+from models import FanSignal, SignalCluster, Consensus, FanProfile, SourceTypeEnum
 from clustering import cluster_signals
 from orchestrator import negotiate
 from assistant import get_day_plan
@@ -16,10 +16,12 @@ app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations
 signals_db: List[FanSignal] = []
 
 class FanSignalCreate(BaseModel):
-    source_type: Literal["voice", "app_tap", "AR", "social"] = Field(..., description="Source medium of the signal")
-    location_zone: str = Field(..., description="Stadium zone (e.g. Zone A)")
-    raw_text: Optional[str] = Field(None, description="Transcribed text or raw content")
-    sentiment_score: float = Field(..., description="Sentiment score from -1.0 to 1.0")
+    model_config = ConfigDict(extra="forbid")
+
+    source_type: SourceTypeEnum = Field(..., description="Source medium of the signal")
+    location_zone: str = Field(..., max_length=100, description="Stadium zone (e.g. Zone A)")
+    raw_text: Optional[str] = Field(None, max_length=1000, description="Transcribed text or raw content")
+    sentiment_score: float = Field(..., ge=-1.0, le=1.0, description="Sentiment score from -1.0 to 1.0")
 
 @app.get("/")
 def read_root():
@@ -52,7 +54,9 @@ def get_clusters():
     return clusters_db
 
 class NegotiateRequest(BaseModel):
-    cluster_id: str
+    model_config = ConfigDict(extra="forbid")
+
+    cluster_id: str = Field(..., max_length=100)
 
 @app.post("/api/negotiate", response_model=Consensus)
 def post_negotiate(request: NegotiateRequest):
