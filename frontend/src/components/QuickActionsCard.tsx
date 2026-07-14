@@ -46,6 +46,9 @@ export const QuickActionsCard: React.FC = () => {
         : '';
       const res = await fetch(`${host}${endpointMap[id]}`, {
         method: 'POST',
+        headers: {
+          'X-Ops-Token': 'ops-secure-token-2026'
+        }
       });
       if (res.ok) {
         const data = await res.json();
