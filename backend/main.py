@@ -1,16 +1,21 @@
 from datetime import datetime, timezone
 import uuid
 from typing import List, Optional
-from fastapi import FastAPI, status, HTTPException
+from fastapi import FastAPI, status, HTTPException, Request
 from pydantic import BaseModel, Field, ConfigDict
 from models import FanSignal, SignalCluster, Consensus, FanProfile, SourceTypeEnum
 from clustering import cluster_signals
 from orchestrator import negotiate
 from assistant import get_day_plan
 from agents.rumor_agent import detect_rumor, RumorAlert
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
-
+limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # In-memory database for ingested fan signals
 signals_db: List[FanSignal] = []
@@ -32,7 +37,8 @@ def read_root():
     }
 
 @app.post("/api/signals", response_model=FanSignal, status_code=status.HTTP_201_CREATED)
-def create_signal(signal_input: FanSignalCreate):
+@limiter.limit("20/minute")
+def create_signal(request: Request, signal_input: FanSignalCreate):
     new_signal = FanSignal(
         id=f"sig_{uuid.uuid4().hex[:8]}",
         timestamp=datetime.now(timezone.utc),
@@ -78,7 +84,8 @@ class DayPlanResponse(BaseModel):
     plan: str
 
 @app.post("/api/day-plan", response_model=DayPlanResponse)
-def post_day_plan(profile: FanProfile):
+@limiter.limit("20/minute")
+def post_day_plan(request: Request, profile: FanProfile):
     plan_text = get_day_plan(profile)
     return {"plan": plan_text}
 
