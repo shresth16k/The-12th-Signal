@@ -78,7 +78,14 @@ export const QuickActionsCard: React.FC = () => {
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-warning-amber/10 border border-warning-amber/20 flex items-center justify-center text-warning-amber shadow-sm group-hover:shadow-[0_0_10px_rgba(245,158,11,0.4)] transition-all">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
@@ -95,7 +102,7 @@ export const QuickActionsCard: React.FC = () => {
           <button
             key={act.id}
             onClick={() => handleActionClick(act.id, act.label)}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg border text-center transition-all duration-200 cursor-pointer ${act.colorClass}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg border text-center transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/80 ${act.colorClass}`}
           >
             <span className="text-sm mb-1">{act.icon}</span>
             <span className="text-[9px] font-bold uppercase tracking-wider leading-none">{act.label}</span>

@@ -1,0 +1,34 @@
+{
+  "Command Center Dashboard": {
+    "url": "http://localhost:5173/",
+    "violations": []
+  },
+  "War Room Panel": {
+    "url": "http://localhost:5173/war-room",
+    "violations": []
+  },
+  "Analytics Page": {
+    "url": "http://localhost:5173/analytics",
+    "violations": []
+  },
+  "Playbook Page": {
+    "url": "http://localhost:5173/playbook",
+    "violations": []
+  },
+  "Settings Page": {
+    "url": "http://localhost:5173/settings",
+    "violations": []
+  },
+  "Signal Submit Page": {
+    "url": "http://localhost:5173/signals",
+    "violations": []
+  },
+  "Fan Twins Chat Page": {
+    "url": "http://localhost:5173/fan-twins",
+    "violations": []
+  },
+  "Fan Accessibility Settings": {
+    "url": "http://localhost:5173/accessibility",
+    "violations": []
+  }
+}

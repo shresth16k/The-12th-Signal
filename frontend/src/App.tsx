@@ -201,7 +201,7 @@ function App() {
                 fontFamily: 'system-ui, -apple-system, sans-serif',
               }}
             >
-              <h3
+              <h2
                 style={{
                   margin: '0 0 8px 0',
                   fontSize: '12px',
@@ -211,10 +211,10 @@ function App() {
                 }}
               >
                 System Owner Verified
-              </h3>
-              <h2 style={{ margin: '0 0 24px 0', fontSize: '26px', fontWeight: 700, letterSpacing: '-0.5px' }}>
-                {themeOverrideStatus.developer}
               </h2>
+              <h3 style={{ margin: '0 0 24px 0', fontSize: '26px', fontWeight: 700, letterSpacing: '-0.5px' }}>
+                {themeOverrideStatus.developer}
+              </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
                 <a

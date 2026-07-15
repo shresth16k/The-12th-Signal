@@ -108,7 +108,7 @@ async function runE2ETest() {
     console.log('[✓] Consensus Action Reached card is visible in the War Room.');
     
     // Output the final action text
-    const consensusCardText = await page.locator('.bg-accent-purple\\/10').innerText();
+    const consensusCardText = await page.locator('.bg-accent-purple\\/10').first().innerText();
     console.log(`\nConsensus details from UI:\n${consensusCardText.trim()}`);
     
     console.log('\n[E2E RESULT] SUCCESS: Full pipeline (Ingestion -> Clustering -> Negotiation -> UI update) verified!');

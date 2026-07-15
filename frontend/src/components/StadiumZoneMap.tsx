@@ -129,7 +129,7 @@ export const StadiumZoneMap: React.FC = () => {
       <div className="flex items-center justify-between mb-2 border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-info-blue" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Zone Map</h3>
+          <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Zone Map</h2>
         </div>
         <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
           Spatial Crowd Status
@@ -138,7 +138,12 @@ export const StadiumZoneMap: React.FC = () => {
 
       {/* Map SVG */}
       <div className="flex-1 flex items-center justify-center p-2 relative">
-        <svg className="w-52 h-52 filter drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]" viewBox="0 0 200 200">
+        <svg
+          className="w-52 h-52 filter drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+          viewBox="0 0 200 200"
+          role="img"
+          aria-label="Stadium zone status map showing nominal, warning, and critical operational sectors"
+        >
           {/* Outer ring glow */}
           <circle cx="100" cy="100" r="82" fill="none" stroke="#1e293b" strokeWidth="1" />
 

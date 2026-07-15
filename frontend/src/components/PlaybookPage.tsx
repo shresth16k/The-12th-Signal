@@ -62,7 +62,7 @@ export const PlaybookPage: React.FC = () => {
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
           <h1 className="text-xl font-extrabold text-slate-100 uppercase tracking-widest">Stadium Playbook</h1>
-          <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">
+          <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-1">
             Standard Operating Procedures & Automated AI Resolutions
           </p>
         </div>
@@ -70,7 +70,14 @@ export const PlaybookPage: React.FC = () => {
           onClick={handleExportPDF}
           className="bg-accent-purple hover:bg-accent-purple/90 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-[0_0_12px_rgba(170,59,255,0.45)] transition-all cursor-pointer"
         >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -85,7 +92,14 @@ export const PlaybookPage: React.FC = () => {
       <div className="bg-surface border border-slate-800 rounded-xl p-4 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-accent-purple/10 border border-accent-purple/20 flex items-center justify-center text-accent-purple">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -94,20 +108,20 @@ export const PlaybookPage: React.FC = () => {
             </svg>
           </div>
           <div>
-            <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wide">Playbook SOP Index</h3>
-            <p className="text-[10px] text-slate-500">
+            <h2 className="text-xs font-bold text-slate-200 uppercase tracking-wide">Playbook SOP Index</h2>
+            <p className="text-[10px] text-slate-400">
               Operational runbooks dynamically coordinated by the AI orchestrator.
             </p>
           </div>
         </div>
         <div className="flex items-center gap-6 font-mono">
           <div className="flex flex-col items-end">
-            <span className="text-[8px] uppercase font-bold text-slate-500">Total Runbooks</span>
+            <span className="text-[8px] uppercase font-bold text-slate-400">Total Runbooks</span>
             <span className="text-base font-extrabold text-slate-200">5 Active</span>
           </div>
           <div className="h-6 w-px bg-slate-800" />
           <div className="flex flex-col items-end">
-            <span className="text-[8px] uppercase font-bold text-slate-500">Resolutions Logged</span>
+            <span className="text-[8px] uppercase font-bold text-slate-400">Resolutions Logged</span>
             <span className="text-base font-extrabold text-positive-teal">49 Cases</span>
           </div>
         </div>
@@ -134,7 +148,7 @@ export const PlaybookPage: React.FC = () => {
             {/* Right: Counter and Status Badges */}
             <div className="flex items-center md:flex-col md:items-end justify-between md:justify-start gap-4 font-mono">
               <div className="flex flex-col md:items-end">
-                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-wider">Resolved Cases</span>
+                <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Resolved Cases</span>
                 <span className="text-sm font-extrabold text-slate-200 mt-0.5">{sop.count} times</span>
               </div>
               <span className="text-[8.5px] font-bold px-2 py-0.5 rounded border border-positive-teal/30 bg-positive-teal/10 text-positive-teal uppercase tracking-wide">

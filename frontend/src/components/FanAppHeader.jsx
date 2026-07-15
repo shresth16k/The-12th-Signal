@@ -78,13 +78,28 @@ export default function FanAppHeader() {
       {/* 2. Seat Info Placeholder (Digital Ticket Chip) */}
       <div
         onClick={handleTicketClick}
-        className={`flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-b from-slate-900/60 to-slate-950/80 border border-slate-800/80 hover:border-accent-purple/40 hover:from-slate-900/80 hover:to-slate-950/90 transition-all duration-300 cursor-pointer shadow-inner shrink-0 ${
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleTicketClick();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={`View matchday digital ticket details: Section ${fanSeatData.section}, Row ${fanSeatData.row}, Seat ${fanSeatData.seat}`}
+        className={`flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-b from-slate-900/60 to-slate-950/80 border border-slate-800/80 hover:border-accent-purple/40 hover:from-slate-900/80 hover:to-slate-950/90 transition-all duration-300 cursor-pointer shadow-inner shrink-0 focus:outline-none focus:ring-2 focus:ring-accent-purple/80 ${
           ticketPulse ? 'animate-pulse ring-1 ring-accent-purple/50' : ''
         }`}
       >
         {/* Ticket Icon */}
         <div className="flex items-center justify-center w-4 h-4 rounded bg-accent-purple/10 text-accent-purple border border-accent-purple/20 shrink-0">
-          <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+          <svg
+            className="w-2.5 h-2.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={3}
+            aria-hidden="true"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -97,7 +112,7 @@ export default function FanAppHeader() {
         <div className="flex flex-col text-left">
           <div className="flex items-center gap-1">
             <span className="text-[7.5px] text-slate-400 font-bold uppercase tracking-wider">Seat</span>
-            <span className="w-1 h-1 rounded-full bg-positive-teal animate-ping"></span>
+            <span className="w-1 h-1 rounded-full bg-positive-teal animate-ping" aria-hidden="true"></span>
           </div>
           <div className="flex items-center gap-0.5 text-[9.5px] font-mono font-extrabold text-slate-200">
             <span className="text-accent-purple font-semibold">SEC</span>
@@ -116,7 +131,7 @@ export default function FanAppHeader() {
       <div className="flex items-center justify-center shrink-0">
         <button
           onClick={handleNotificationClick}
-          className="relative p-1.5 rounded-lg bg-slate-900/60 hover:bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 cursor-pointer group shadow-inner"
+          className="relative p-1.5 rounded-lg bg-slate-900/60 hover:bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 cursor-pointer group shadow-inner focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/85"
           aria-label="Stadium Notifications"
         >
           {notificationCount > 0 && (
@@ -134,6 +149,7 @@ export default function FanAppHeader() {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"

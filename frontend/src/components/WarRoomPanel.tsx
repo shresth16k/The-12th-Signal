@@ -106,7 +106,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
+            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
@@ -120,6 +120,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={1.5}
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -130,7 +131,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
             Awaiting Target Selection
           </span>
-          <span className="text-[10px] text-slate-500 mt-2 max-w-[220px]">
+          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">
             Select an active fan signal cluster to initiate multi-agent operations consensus.
           </span>
         </div>
@@ -144,8 +145,8 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
+            <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
+            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
@@ -157,7 +158,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
             Synthesizing Consensus...
           </span>
-          <span className="text-[10px] text-slate-500 mt-2 max-w-[220px]">
+          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">
             Calling Security, Concessions, Medical, Transit, and Broadcast agents to resolve action plan.
           </span>
         </div>
@@ -172,7 +173,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-danger-red animate-pulse" />
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
+            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
           </div>
           <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
             Orchestrator Panel
@@ -197,8 +198,8 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h3>
+          <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
+          <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
         </div>
         <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
           Orchestrator Panel
@@ -225,7 +226,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
                     </span>
                     <span className="text-[11px] font-bold text-slate-300">{o.agent_name}</span>
                   </div>
-                  <span className="text-[10px] text-slate-500 font-mono font-medium">
+                  <span className="text-[10px] text-slate-400 font-mono font-medium">
                     {formatTime(consensus.timestamp)}
                   </span>
                 </div>
@@ -235,7 +236,7 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
                     {o.reasoning}
                   </div>
                   {o.constraints && o.constraints.length > 0 && (
-                    <div className="text-[9px] text-slate-500 mt-1 flex flex-wrap gap-1">
+                    <div className="text-[9px] text-slate-400 mt-1 flex flex-wrap gap-1">
                       <span className="font-semibold text-slate-400">Constraints:</span>
                       {o.constraints.map((c: string, cIdx: number) => (
                         <span key={cIdx} className="bg-slate-800/80 px-1 py-0.2 rounded text-[8px] text-slate-400">

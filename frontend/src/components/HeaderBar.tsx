@@ -8,7 +8,18 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
   return (
     <header className="w-full bg-surface border-b border-slate-800 px-6 py-4 flex items-center justify-between text-slate-100 select-none">
       {/* Left section: Logo + Title */}
-      <div onClick={onLogoClick} className="flex items-center gap-3 cursor-pointer group">
+      <div
+        onClick={onLogoClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            onLogoClick?.();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="The 12th Signal Logo - Go to Dashboard"
+        className="flex items-center gap-3 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-accent-purple rounded"
+      >
         <div className="w-10 h-10 rounded-lg bg-brand-black flex items-center justify-center border border-accent-purple/30 group-hover:border-accent-purple/70 transition-all duration-300 shadow-[0_0_15px_rgba(170,59,255,0.15)]">
           <svg
             className="w-6 h-6 text-accent-purple animate-pulse"
@@ -16,14 +27,15 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
         <div className="flex flex-col text-left">
-          <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:from-accent-purple group-hover:to-slate-100 transition-all duration-300">
+          <h1 className="font-bold text-lg tracking-tight bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:from-accent-purple group-hover:to-slate-100 transition-all duration-300">
             The 12th Signal
-          </span>
+          </h1>
           <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">Stadium nervous system</span>
         </div>
       </div>
@@ -59,6 +71,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={3}
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
@@ -77,12 +90,22 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
       {/* Right section: Notifications + Commander profile */}
       <div className="flex items-center gap-4">
         {/* Notification bell */}
-        <button className="relative p-2 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-all border border-slate-800 hover:border-slate-700 cursor-pointer">
+        <button
+          aria-label="View notifications"
+          className="relative p-2 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-all border border-slate-800 hover:border-slate-700 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+        >
           <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger-red opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-danger-red"></span>
           </span>
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -94,7 +117,10 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ onLogoClick }) => {
         {/* Profile Card */}
         <div className="flex items-center gap-3 pl-2 border-l border-slate-800">
           <div className="relative">
-            <div className="w-9 h-9 rounded-full bg-accent-purple/20 border border-accent-purple/40 flex items-center justify-center text-accent-purple font-bold text-sm">
+            <div
+              aria-label="User avatar for Shresth K., role Ops Commander"
+              className="w-9 h-9 rounded-full bg-accent-purple/20 border border-accent-purple/40 flex items-center justify-center text-slate-100 font-bold text-sm"
+            >
               SK
             </div>
             <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-positive-teal rounded-full border-2 border-surface" />

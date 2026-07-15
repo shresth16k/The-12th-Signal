@@ -170,7 +170,7 @@ export default function FanTwinChat() {
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-positive-teal border-2 border-slate-900 rounded-full animate-pulse" />
           </div>
           <div className="flex flex-col text-left">
-            <h4 className="text-xs font-extrabold text-slate-100 tracking-tight">AI MATCHDAY TWIN</h4>
+            <h2 className="text-xs font-extrabold text-slate-100 tracking-tight">AI MATCHDAY TWIN</h2>
             <span className="text-[9px] text-slate-400 font-semibold tracking-wider uppercase">Personal Companion</span>
           </div>
         </div>
@@ -189,9 +189,9 @@ export default function FanTwinChat() {
             ✨
           </div>
           <div>
-            <h5 className="text-[10px] font-bold text-slate-200 uppercase tracking-wide">
+            <h3 className="text-[10px] font-bold text-slate-200 uppercase tracking-wide">
               Stadium Nervous System Active
-            </h5>
+            </h3>
             <p className="text-[9.5px] text-slate-400 mt-0.5 leading-relaxed">
               We sync with stadium crowd cameras and gate sensors to guide you.
             </p>
@@ -200,7 +200,11 @@ export default function FanTwinChat() {
       </div>
 
       {/* 3. Messages Window */}
-      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-3.5 custom-scrollbar min-h-0">
+      <div
+        className="flex-1 overflow-y-auto px-3 py-4 space-y-3.5 custom-scrollbar min-h-0 focus:outline-none focus:ring-1 focus:ring-accent-purple/20 rounded"
+        tabIndex={0}
+        aria-label="Message history"
+      >
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
@@ -220,7 +224,7 @@ export default function FanTwinChat() {
               </div>
 
               {/* Timestamp */}
-              <span className="text-[8px] text-slate-500 font-mono mt-1 px-1">{msg.time}</span>
+              <span className="text-[8px] text-slate-400 font-mono mt-1 px-1">{msg.time}</span>
             </div>
           );
         })}
@@ -251,11 +255,23 @@ export default function FanTwinChat() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask your Match Day Twin..."
-            className="w-full bg-slate-950/80 border border-slate-800/80 hover:border-slate-700/80 focus:border-accent-purple/50 focus:ring-1 focus:ring-accent-purple/30 rounded-xl pl-3 pr-8 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none transition-all duration-200"
+            aria-label="Message input for AI Matchday Twin"
+            className="w-full bg-slate-950/80 border border-slate-800/80 hover:border-slate-700/80 focus:border-accent-purple/50 focus:ring-2 focus:ring-accent-purple/40 rounded-xl pl-3 pr-8 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none transition-all duration-200"
           />
           {/* Action icon (mic) inside input */}
-          <button type="button" className="absolute right-2.5 text-slate-500 hover:text-slate-300 transition-colors">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <button
+            type="button"
+            aria-label="Use voice input"
+            className="absolute right-2.5 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/80 rounded-md"
+          >
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              aria-hidden="true"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -269,7 +285,7 @@ export default function FanTwinChat() {
         <button
           type="submit"
           disabled={!inputValue.trim()}
-          className={`p-2 rounded-xl flex items-center justify-center transition-all duration-300 border ${
+          className={`p-2 rounded-xl flex items-center justify-center transition-all duration-300 border focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/80 ${
             inputValue.trim()
               ? 'bg-accent-purple hover:bg-accent-purple/90 text-white border-accent-purple/50 shadow-md hover:shadow-accent-purple/20 cursor-pointer active:scale-95'
               : 'bg-slate-950/50 text-slate-600 border-slate-850 cursor-not-allowed'
@@ -282,6 +298,7 @@ export default function FanTwinChat() {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2.5}
+            aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
           </svg>

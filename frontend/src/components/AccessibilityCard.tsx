@@ -52,7 +52,14 @@ export const AccessibilityCard: React.FC = () => {
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-positive-teal/10 border border-positive-teal/20 flex items-center justify-center text-positive-teal shadow-sm group-hover:shadow-[0_0_10px_rgba(20,184,166,0.4)] transition-all">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path
                 strokeLinecap="round"
@@ -99,6 +106,7 @@ export const AccessibilityCard: React.FC = () => {
 
                 <button
                   onClick={() => handleToggle(s.id)}
+                  aria-label={`Toggle ${s.name}`}
                   className={`w-6 h-3.5 flex items-center rounded-full p-0.5 transition-all duration-200 cursor-pointer ${
                     isActive ? 'bg-positive-teal' : 'bg-slate-800'
                   }`}

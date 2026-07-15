@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from typing import List, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
@@ -18,8 +19,16 @@ from clustering import cluster_signals
 from models import Consensus, FanProfile, FanSignal, SignalCluster, SourceTypeEnum
 from orchestrator import negotiate
 
-limiter = Limiter(key_func=get_remote_address)
+is_testing = "pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST") is not None
+limiter = Limiter(key_func=get_remote_address, enabled=is_testing)
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.state.limiter = limiter
 
 
@@ -158,7 +167,9 @@ def get_clusters():
     """
     try:
         global clusters_db
-        clusters_db = cluster_signals(signals_db)
+        new_clusters = cluster_signals(signals_db)
+        clusters_db.clear()
+        clusters_db.extend(new_clusters)
         return clusters_db
     except HTTPException as e:
         return JSONResponse(
@@ -197,7 +208,9 @@ def post_negotiate(request: NegotiateRequest):
         cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
         if not cluster:
             # Fallback: try to run clustering on the fly to find it
-            clusters_db = cluster_signals(signals_db)
+            new_clusters = cluster_signals(signals_db)
+            clusters_db.clear()
+            clusters_db.extend(new_clusters)
             cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
 
         if not cluster:
@@ -271,7 +284,9 @@ def get_rumors():
         global clusters_db
         # Dynamically scan current active clusters for rumors
         if not clusters_db:
-            clusters_db = cluster_signals(signals_db)
+            new_clusters = cluster_signals(signals_db)
+            clusters_db.clear()
+            clusters_db.extend(new_clusters)
 
         for cluster in clusters_db:
             alert = detect_rumor(cluster, signals_db)

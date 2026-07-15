@@ -106,7 +106,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-accent-purple animate-pulse" />
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Stadium Pulse</h3>
+          <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Stadium Pulse</h2>
         </div>
         <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
           Fan Sentiment & Signals
@@ -139,7 +139,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
             Sentiment Trend (Last 90m)
           </span>
           <div className="h-10 w-full mt-1.5 bg-brand-black/30 border border-slate-850 rounded-lg p-1 relative">
-            <svg className="w-full h-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+            <svg className="w-full h-full" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true">
               <defs>
                 <linearGradient id="sparklineGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#aa3bff" stopOpacity="0.3" />
@@ -179,13 +179,15 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                     : 'bg-info-blue/10 text-info-blue border-info-blue/30';
               const isSelected = selectedClusterId === c.id;
               return (
-                <div
+                <button
+                  type="button"
                   key={c.id}
                   onClick={() => onSelectCluster && onSelectCluster(c.id)}
-                  className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer ${
+                  aria-label={`Cluster: ${c.topic} in ${c.zone}, Severity: ${c.severity}, Count: ${c.count} signals`}
+                  className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple ${
                     isSelected
                       ? 'bg-accent-purple/10 border border-accent-purple shadow-[0_0_12px_rgba(170,59,255,0.2)]'
-                      : 'bg-brand-black/45 border border-slate-850 hover:border-slate-800'
+                      : 'bg-brand-black/45 border border-slate-850 hover:border-slate-800 hover:focus-visible:border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -203,7 +205,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                     </span>
                     <span className="text-xs font-mono font-bold text-slate-400">{c.count} sigs</span>
                   </div>
-                </div>
+                </button>
               );
             })
           )}

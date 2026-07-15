@@ -7,7 +7,7 @@ export const AnalyticsPage: React.FC = () => {
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
           <h1 className="text-xl font-extrabold text-slate-100 uppercase tracking-widest">System Analytics</h1>
-          <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">
+          <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-1">
             Stadium Operations Intelligence & Telemetry Logs
           </p>
         </div>
@@ -29,7 +29,7 @@ export const AnalyticsPage: React.FC = () => {
             key={idx}
             className="bg-surface border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-md"
           >
-            <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">{kpi.label}</span>
+            <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">{kpi.label}</span>
             <span className={`text-2xl font-extrabold font-mono my-1 ${kpi.color}`}>{kpi.value}</span>
             <span className="text-[9px] text-slate-400 font-medium font-sans">{kpi.delta}</span>
           </div>
@@ -41,21 +41,26 @@ export const AnalyticsPage: React.FC = () => {
         {/* Chart 1: Signals Over Time (Smooth SVG Area Chart) */}
         <div className="bg-surface border border-slate-800 rounded-xl p-5 shadow-md flex flex-col justify-between">
           <div className="mb-4">
-            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-350">
+            <h2 className="text-xs font-extrabold uppercase tracking-wider text-slate-350">
               Signals Over Time (Match Progression)
-            </h3>
-            <p className="text-[10px] text-slate-500 font-medium">
+            </h2>
+            <p className="text-[10px] text-slate-400 font-medium">
               Volume peaks during kick-off, half-time, and goals.
             </p>
           </div>
 
           <div className="relative w-full h-48 bg-brand-black/35 rounded-lg border border-slate-850 p-2 flex items-center justify-center">
             {/* SVG Line Area Chart */}
-            <svg viewBox="0 0 500 150" className="w-full h-full overflow-visible">
+            <svg
+              viewBox="0 0 500 150"
+              className="w-full h-full overflow-visible"
+              role="img"
+              aria-label="Line chart showing signal volume over time during the match"
+            >
               <defs>
                 <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#aa3bff" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#aa3bff" stopOpacity="0.0" />
+                  <stop offset="0%" stopColor="#9b2bf6" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#9b2bf6" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
 
@@ -75,31 +80,31 @@ export const AnalyticsPage: React.FC = () => {
               <path
                 d="M30 130 C60 110, 90 120, 120 70 C150 30, 180 90, 210 100 C240 110, 270 40, 300 20 C330 10, 360 80, 390 110 C420 125, 450 60, 480 50"
                 fill="none"
-                stroke="#aa3bff"
+                stroke="#9b2bf6"
                 strokeWidth="2.5"
               />
 
               {/* Highlight Nodes */}
-              <circle cx="300" cy="20" r="4.5" fill="#ffffff" stroke="#aa3bff" strokeWidth="2" />
-              <circle cx="120" cy="70" r="3.5" fill="#aa3bff" />
+              <circle cx="300" cy="20" r="4.5" fill="#ffffff" stroke="#9b2bf6" strokeWidth="2" />
+              <circle cx="120" cy="70" r="3.5" fill="#9b2bf6" />
 
               {/* Labels */}
-              <text x="30" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="30" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 0m
               </text>
-              <text x="120" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="120" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Kickoff
               </text>
-              <text x="210" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="210" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 30m
               </text>
-              <text x="300" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="300" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Halftime
               </text>
-              <text x="390" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="390" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 75m
               </text>
-              <text x="480" y="145" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="480" y="145" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Fulltime
               </text>
             </svg>
@@ -109,15 +114,20 @@ export const AnalyticsPage: React.FC = () => {
         {/* Chart 2: Resolution Times by Zone (Custom SVG Bar Chart) */}
         <div className="bg-surface border border-slate-800 rounded-xl p-5 shadow-md flex flex-col justify-between">
           <div className="mb-4">
-            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-350">
+            <h2 className="text-xs font-extrabold uppercase tracking-wider text-slate-350">
               Avg Resolution Time by Zone (Seconds)
-            </h3>
-            <p className="text-[10px] text-slate-500 font-medium">Comparison across stadium concourse zones.</p>
+            </h2>
+            <p className="text-[10px] text-slate-400 font-medium">Comparison across stadium concourse zones.</p>
           </div>
 
           <div className="relative w-full h-48 bg-brand-black/35 rounded-lg border border-slate-850 p-2 flex items-center justify-center">
             {/* SVG Bar Chart */}
-            <svg viewBox="0 0 500 150" className="w-full h-full overflow-visible">
+            <svg
+              viewBox="0 0 500 150"
+              className="w-full h-full overflow-visible"
+              role="img"
+              aria-label="Bar chart showing average resolution time in seconds across stadium concourse zones"
+            >
               {/* Horizontal Grid */}
               <line x1="30" y1="20" x2="480" y2="20" stroke="#1e293b" strokeDasharray="3,3" />
               <line x1="30" y1="65" x2="480" y2="65" stroke="#1e293b" strokeDasharray="3,3" />
@@ -129,7 +139,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="65" y="80" fill="#14b8a6" fontSize="8" textAnchor="middle" fontWeight="bold">
                 45s
               </text>
-              <text x="65" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="65" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z101
               </text>
 
@@ -138,7 +148,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="135" y="15" fill="#f59e0b" fontSize="8" textAnchor="middle" fontWeight="bold">
                 110s
               </text>
-              <text x="135" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="135" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z102
               </text>
 
@@ -147,7 +157,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="205" y="65" fill="#3b82f6" fontSize="8" textAnchor="middle" fontWeight="bold">
                 60s
               </text>
-              <text x="205" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="205" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z103
               </text>
 
@@ -156,7 +166,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="275" y="0" fill="#ef4444" fontSize="8" textAnchor="middle" fontWeight="bold">
                 125s
               </text>
-              <text x="275" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="275" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z104
               </text>
 
@@ -165,7 +175,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="345" y="95" fill="#14b8a6" fontSize="8" textAnchor="middle" fontWeight="bold">
                 30s
               </text>
-              <text x="345" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="345" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z105
               </text>
 
@@ -174,7 +184,7 @@ export const AnalyticsPage: React.FC = () => {
               <text x="415" y="45" fill="#3b82f6" fontSize="8" textAnchor="middle" fontWeight="bold">
                 80s
               </text>
-              <text x="415" y="142" fill="#64748b" fontSize="8" textAnchor="middle">
+              <text x="415" y="142" fill="#94a3b8" fontSize="8" textAnchor="middle">
                 Z106
               </text>
             </svg>

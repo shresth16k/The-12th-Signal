@@ -10,7 +10,14 @@ export const BroadcastAICard: React.FC = () => {
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-info-blue/10 border border-info-blue/20 flex items-center justify-center text-info-blue shadow-sm group-hover:shadow-[0_0_10px_rgba(59,130,246,0.4)] transition-all">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -33,11 +40,15 @@ export const BroadcastAICard: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-tr from-emerald-950 via-slate-900 to-accent-purple/20 opacity-80" />
 
         {/* Play Icon */}
-        <div className="z-10 w-7 h-7 rounded-full bg-slate-900/80 border border-slate-700/50 flex items-center justify-center text-slate-200 group-hover/thumb:scale-110 group-hover/thumb:bg-slate-800 transition-all cursor-pointer">
-          <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+        <button
+          type="button"
+          aria-label="Play highlight reel 28"
+          className="z-10 w-7 h-7 rounded-full bg-slate-900/80 border border-slate-700/50 flex items-center justify-center text-slate-200 group-hover/thumb:scale-110 group-hover/thumb:bg-slate-800 transition-all cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent-purple"
+        >
+          <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 5v14l11-7z" />
           </svg>
-        </div>
+        </button>
 
         {/* Thumbnail Labels */}
         <div className="absolute top-1.5 left-1.5 bg-brand-black/60 px-1.5 py-0.5 rounded text-[8px] font-mono text-slate-400 border border-slate-800">
