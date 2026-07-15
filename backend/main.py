@@ -5,8 +5,10 @@ from datetime import datetime, timezone
 from typing import List, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
-from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi import Limiter
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 
@@ -19,7 +21,41 @@ from orchestrator import negotiate
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+        content={"error": "Rate limit exceeded", "code": status.HTTP_429_TOO_MANY_REQUESTS},
+    )
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"error": exc.detail, "code": exc.status_code})
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    error_msgs = []
+    for err in exc.errors():
+        loc = " -> ".join(str(loc_part) for loc_part in err.get("loc", []))
+        msg = err.get("msg", "Validation error")
+        error_msgs.append(f"{loc}: {msg}")
+    error_str = " | ".join(error_msgs)
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"error": error_str, "code": status.HTTP_422_UNPROCESSABLE_ENTITY},
+    )
+
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"error": str(exc), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+    )
 
 
 async def verify_ops_token(x_ops_token: Optional[str] = Header(None)):
@@ -61,11 +97,17 @@ def read_root():
     Returns:
         dict: A dictionary containing status, welcome message, and total ingested signal count.
     """
-    return {
-        "status": "OK",
-        "message": "The 12th Signal Backend API is running",
-        "ingested_signals_count": len(signals_db),
-    }
+    try:
+        return {
+            "status": "OK",
+            "message": "The 12th Signal Backend API is running",
+            "ingested_signals_count": len(signals_db),
+        }
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 @app.post("/api/signals", response_model=FanSignal, status_code=status.HTTP_201_CREATED)
@@ -80,16 +122,27 @@ def create_signal(request: Request, signal_input: FanSignalCreate):
     Returns:
         FanSignal: The newly created and saved fan signal object.
     """
-    new_signal = FanSignal(
-        id=f"sig_{uuid.uuid4().hex[:8]}",
-        timestamp=datetime.now(timezone.utc),
-        source_type=signal_input.source_type,
-        location_zone=signal_input.location_zone,
-        raw_text=signal_input.raw_text,
-        sentiment_score=signal_input.sentiment_score,
-    )
-    signals_db.append(new_signal)
-    return new_signal
+    try:
+        new_signal = FanSignal(
+            id=f"sig_{uuid.uuid4().hex[:8]}",
+            timestamp=datetime.now(timezone.utc),
+            source_type=signal_input.source_type,
+            location_zone=signal_input.location_zone,
+            raw_text=signal_input.raw_text,
+            sentiment_score=signal_input.sentiment_score,
+        )
+        signals_db.append(new_signal)
+        return new_signal
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 # In-memory storage for clusters
@@ -103,9 +156,20 @@ def get_clusters():
     Returns:
         List[SignalCluster]: The list of updated signal clusters.
     """
-    global clusters_db
-    clusters_db = cluster_signals(signals_db)
-    return clusters_db
+    try:
+        global clusters_db
+        clusters_db = cluster_signals(signals_db)
+        return clusters_db
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 class NegotiateRequest(BaseModel):
@@ -127,21 +191,32 @@ def post_negotiate(request: NegotiateRequest):
     Returns:
         Consensus: The reached consensus decision.
     """
-    global clusters_db
-    # Find the cluster in clusters_db
-    cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
-    if not cluster:
-        # Fallback: try to run clustering on the fly to find it
-        clusters_db = cluster_signals(signals_db)
+    try:
+        global clusters_db
+        # Find the cluster in clusters_db
         cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
+        if not cluster:
+            # Fallback: try to run clustering on the fly to find it
+            clusters_db = cluster_signals(signals_db)
+            cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
 
-    if not cluster:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=f"Cluster with ID {request.cluster_id} not found"
+        if not cluster:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=f"Cluster with ID {request.cluster_id} not found"
+            )
+
+        consensus = negotiate(cluster, signals_db)
+        return consensus
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
         )
-
-    consensus = negotiate(cluster, signals_db)
-    return consensus
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 class DayPlanResponse(BaseModel):
@@ -160,8 +235,19 @@ def post_day_plan(request: Request, profile: FanProfile):
     Returns:
         dict: A dictionary containing the generated plan text.
     """
-    plan_text = get_day_plan(profile)
-    return {"plan": plan_text}
+    try:
+        plan_text = get_day_plan(profile)
+        return {"plan": plan_text}
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 # In-memory history for rumors detected
@@ -181,19 +267,30 @@ def get_rumors():
     Returns:
         List[RumorAlert]: The list of detected rumor alerts.
     """
-    global clusters_db
-    # Dynamically scan current active clusters for rumors
-    if not clusters_db:
-        clusters_db = cluster_signals(signals_db)
+    try:
+        global clusters_db
+        # Dynamically scan current active clusters for rumors
+        if not clusters_db:
+            clusters_db = cluster_signals(signals_db)
 
-    for cluster in clusters_db:
-        alert = detect_rumor(cluster, signals_db)
-        if alert:
-            # Check if this cluster is already recorded to avoid duplicates
-            if not any(h.cluster_id == alert.cluster_id for h in rumors_history):
-                rumors_history.append(alert)
+        for cluster in clusters_db:
+            alert = detect_rumor(cluster, signals_db)
+            if alert:
+                # Check if this cluster is already recorded to avoid duplicates
+                if not any(h.cluster_id == alert.cluster_id for h in rumors_history):
+                    rumors_history.append(alert)
 
-    return rumors_history
+        return rumors_history
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 class ActionResponse(BaseModel):
@@ -208,7 +305,18 @@ def post_action_announcement():
     Returns:
         dict: A dictionary containing success status and confirmation message.
     """
-    return {"status": "success", "message": "Stadium-wide PA Announcement broadcasted successfully"}
+    try:
+        return {"status": "success", "message": "Stadium-wide PA Announcement broadcasted successfully"}
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 @app.post("/api/actions/deploy-staff", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
@@ -218,7 +326,18 @@ def post_action_deploy_staff():
     Returns:
         dict: A dictionary containing success status and confirmation message.
     """
-    return {"status": "success", "message": "Response marshals and stadium staff deployed"}
+    try:
+        return {"status": "success", "message": "Response marshals and stadium staff deployed"}
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 @app.post("/api/actions/emergency-protocol", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
@@ -228,7 +347,18 @@ def post_action_emergency_protocol():
     Returns:
         dict: A dictionary containing success status and confirmation message.
     """
-    return {"status": "success", "message": "Emergency response protocol initiated globally"}
+    try:
+        return {"status": "success", "message": "Emergency response protocol initiated globally"}
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
 
 
 @app.post("/api/actions/view-cameras", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
@@ -238,4 +368,15 @@ def post_action_view_cameras():
     Returns:
         dict: A dictionary containing success status and confirmation message.
     """
-    return {"status": "success", "message": "Accessing all camera feeds... Opening virtual stream"}
+    try:
+        return {"status": "success", "message": "Accessing all camera feeds... Opening virtual stream"}
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={"error": e.detail, "code": e.status_code},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )

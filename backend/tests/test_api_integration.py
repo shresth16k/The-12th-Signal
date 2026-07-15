@@ -161,7 +161,7 @@ def test_post_negotiate_not_found():
     payload = {"cluster_id": "clus_non_existent"}
     response = client.post("/api/negotiate", json=payload)
     assert response.status_code == 404
-    assert response.json()["detail"] == "Cluster with ID clus_non_existent not found"
+    assert response.json()["error"] == "Cluster with ID clus_non_existent not found"
 
 
 def test_post_negotiate_invalid_payload():
