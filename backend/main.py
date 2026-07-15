@@ -23,6 +23,14 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 async def verify_ops_token(x_ops_token: Optional[str] = Header(None)):
+    """Verify the operational token provided in the request headers.
+
+    Args:
+        x_ops_token (Optional[str]): The operations security token. Defaults to None.
+
+    Raises:
+        HTTPException: If the token is invalid or missing when bypass is disabled.
+    """
     # Skip token verification during test runs to prevent breaking unmodified tests
     if ("pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST")) and not os.environ.get(
         "DISABLE_TEST_AUTH_BYPASS"
@@ -48,6 +56,11 @@ class FanSignalCreate(BaseModel):
 
 @app.get("/")
 def read_root():
+    """Retrieve the root API status and ingestion statistics.
+
+    Returns:
+        dict: A dictionary containing status, welcome message, and total ingested signal count.
+    """
     return {
         "status": "OK",
         "message": "The 12th Signal Backend API is running",
@@ -58,6 +71,15 @@ def read_root():
 @app.post("/api/signals", response_model=FanSignal, status_code=status.HTTP_201_CREATED)
 @limiter.limit("20/minute")
 def create_signal(request: Request, signal_input: FanSignalCreate):
+    """Ingest a new fan signal into the in-memory database.
+
+    Args:
+        request (Request): The incoming HTTP request.
+        signal_input (FanSignalCreate): The properties of the fan signal being created.
+
+    Returns:
+        FanSignal: The newly created and saved fan signal object.
+    """
     new_signal = FanSignal(
         id=f"sig_{uuid.uuid4().hex[:8]}",
         timestamp=datetime.now(timezone.utc),
@@ -76,6 +98,11 @@ clusters_db: List[SignalCluster] = []
 
 @app.get("/api/clusters", response_model=List[SignalCluster])
 def get_clusters():
+    """Run semantic clustering on all ingested fan signals and update cluster records.
+
+    Returns:
+        List[SignalCluster]: The list of updated signal clusters.
+    """
     global clusters_db
     clusters_db = cluster_signals(signals_db)
     return clusters_db
@@ -89,6 +116,17 @@ class NegotiateRequest(BaseModel):
 
 @app.post("/api/negotiate", response_model=Consensus)
 def post_negotiate(request: NegotiateRequest):
+    """Run the multi-agent negotiation process on a selected signal cluster to reach a consensus.
+
+    Args:
+        request (NegotiateRequest): The request containing the target cluster ID.
+
+    Raises:
+        HTTPException: If the requested cluster ID is not found in the records.
+
+    Returns:
+        Consensus: The reached consensus decision.
+    """
     global clusters_db
     # Find the cluster in clusters_db
     cluster = next((c for c in clusters_db if c.id == request.cluster_id), None)
@@ -113,6 +151,15 @@ class DayPlanResponse(BaseModel):
 @app.post("/api/day-plan", response_model=DayPlanResponse)
 @limiter.limit("20/minute")
 def post_day_plan(request: Request, profile: FanProfile):
+    """Generate a personalized match-day plan for a fan based on their profile.
+
+    Args:
+        request (Request): The incoming HTTP request.
+        profile (FanProfile): The profile details of the fan.
+
+    Returns:
+        dict: A dictionary containing the generated plan text.
+    """
     plan_text = get_day_plan(profile)
     return {"plan": plan_text}
 
@@ -129,6 +176,11 @@ rumors_history: List[RumorAlert] = [
 
 @app.get("/api/rumors", response_model=List[RumorAlert])
 def get_rumors():
+    """Scan active clusters to detect any false panic rumors or exaggerated security threats.
+
+    Returns:
+        List[RumorAlert]: The list of detected rumor alerts.
+    """
     global clusters_db
     # Dynamically scan current active clusters for rumors
     if not clusters_db:
@@ -151,19 +203,39 @@ class ActionResponse(BaseModel):
 
 @app.post("/api/actions/announcement", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
 def post_action_announcement():
+    """Trigger a stadium-wide PA Announcement broadcast.
+
+    Returns:
+        dict: A dictionary containing success status and confirmation message.
+    """
     return {"status": "success", "message": "Stadium-wide PA Announcement broadcasted successfully"}
 
 
 @app.post("/api/actions/deploy-staff", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
 def post_action_deploy_staff():
+    """Deploy response marshals and stadium staff.
+
+    Returns:
+        dict: A dictionary containing success status and confirmation message.
+    """
     return {"status": "success", "message": "Response marshals and stadium staff deployed"}
 
 
 @app.post("/api/actions/emergency-protocol", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
 def post_action_emergency_protocol():
+    """Initiate the emergency response protocol globally.
+
+    Returns:
+        dict: A dictionary containing success status and confirmation message.
+    """
     return {"status": "success", "message": "Emergency response protocol initiated globally"}
 
 
 @app.post("/api/actions/view-cameras", response_model=ActionResponse, dependencies=[Depends(verify_ops_token)])
 def post_action_view_cameras():
+    """Access all camera feeds and open a virtual stream.
+
+    Returns:
+        dict: A dictionary containing success status and confirmation message.
+    """
     return {"status": "success", "message": "Accessing all camera feeds... Opening virtual stream"}

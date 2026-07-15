@@ -16,6 +16,15 @@ from models import AgentOpinion, FanSignal, SignalCluster
 
 
 def get_medical_opinion(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> AgentOpinion:
+    """Analyze a signal cluster from the perspective of medical and safety operations.
+
+    Args:
+        cluster (SignalCluster): The signal cluster to analyze.
+        signals (Optional[List[FanSignal]]): A list of all captured fan signals. Defaults to None.
+
+    Returns:
+        AgentOpinion: An opinion containing medical recommendations, reasoning, and constraints.
+    """
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print("Warning: ANTHROPIC_API_KEY not found. Returning a stub opinion.")

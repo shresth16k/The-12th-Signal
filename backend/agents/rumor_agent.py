@@ -25,6 +25,15 @@ class RumorAlert(BaseModel):
 
 
 def detect_rumor(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> Optional[RumorAlert]:
+    """Scan and analyze a signal cluster to detect false panic rumors or exaggerated safety threats.
+
+    Args:
+        cluster (SignalCluster): The signal cluster to analyze.
+        signals (Optional[List[FanSignal]]): A list of all captured fan signals. Defaults to None.
+
+    Returns:
+        Optional[RumorAlert]: A rumor alert containing correction details, or None if no rumor is detected.
+    """
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         # If API key is not present, we perform a simple local regex fallback

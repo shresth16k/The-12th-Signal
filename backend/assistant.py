@@ -9,6 +9,14 @@ from models import FanProfile
 
 
 def get_day_plan(profile: FanProfile) -> str:
+    """Generate a personalized match-day plan for a spectator based on their fan profile.
+
+    Args:
+        profile (FanProfile): The profile of the fan containing preferences, mobility needs, and seating info.
+
+    Returns:
+        str: The personalized plan text in the fan's preferred language or a fallback stub plan.
+    """
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print("Warning: ANTHROPIC_API_KEY not found. Returning a stub day plan.")

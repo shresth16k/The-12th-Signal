@@ -23,6 +23,15 @@ from models import Consensus, FanSignal, SignalCluster
 
 
 def negotiate(cluster: SignalCluster, signals: Optional[List[FanSignal]] = None) -> Consensus:
+    """Coordinate the multi-agent consensus debate among specialized domain agents to resolve issues.
+
+    Args:
+        cluster (SignalCluster): The signal cluster under review.
+        signals (Optional[List[FanSignal]]): Active fan signals in the stadium. Defaults to None.
+
+    Returns:
+        Consensus: A unified consensus action plan synthesizing agent recommendations.
+    """
     # 0. Check for rumors first and short-circuit if detected
     rumor_alert = detect_rumor(cluster, signals)
     if rumor_alert:

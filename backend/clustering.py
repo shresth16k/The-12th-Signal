@@ -10,6 +10,14 @@ from models import FanSignal, SignalCluster
 
 
 def cluster_signals(signals: List[FanSignal]) -> List[SignalCluster]:
+    """Group fan signals into semantic clusters based on topic similarity, location zone, and time.
+
+    Args:
+        signals (List[FanSignal]): A list of all captured fan signals to cluster.
+
+    Returns:
+        List[SignalCluster]: A list of generated signal clusters, or an empty list if clustering fails or no signals.
+    """
     if not signals:
         return []
 
