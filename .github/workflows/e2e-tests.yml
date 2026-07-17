@@ -1,0 +1,86 @@
+name: End-to-End Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  e2e:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Install Playwright Chromium
+        run: |
+          cd frontend
+          npx playwright install chromium
+
+      - name: Create Python Symlink for E2E script compatibility
+        run: |
+          mkdir -p backend/.venv/Scripts
+          ln -s $(which python) backend/.venv/Scripts/python.exe
+
+      - name: Start Servers and Run E2E Tests
+        run: |
+          # Start Backend in background
+          cd backend
+          OPS_TOKEN=ops-secure-token-2026 python -m uvicorn main:app --host 127.0.0.1 --port 8000 &
+          BACKEND_PID=$!
+          cd ..
+
+          # Start Frontend in background
+          cd frontend
+          npm run dev &
+          FRONTEND_PID=$!
+          cd ..
+
+          # Wait for backend to be ready
+          echo "Waiting for backend on port 8000..."
+          for i in {1..30}; do
+            curl -s http://127.0.0.1:8000 && break || sleep 1
+          done
+
+          # Wait for frontend to be ready
+          echo "Waiting for frontend on port 5173..."
+          for i in {1..30}; do
+            curl -s http://localhost:5173 && break || sleep 1
+          done
+
+          # Run E2E Tests
+          echo "Running E2E tests..."
+          cd frontend
+          npm run test:e2e
+          TEST_EXIT=$?
+          cd ..
+
+          # Tear down servers
+          echo "Tearing down servers..."
+          kill $BACKEND_PID || true
+          kill $FRONTEND_PID || true
+
+          exit $TEST_EXIT
