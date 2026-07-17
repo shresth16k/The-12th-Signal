@@ -2,6 +2,14 @@
 
 **The 12th Signal** is a state-of-the-art Generative AI stadium operations and crowd coordination system custom-built for the FIFA World Cup 2026. It leverages real-time fan telemetry, semantic clustering, multi-agent negotiation, and rumor-safety dampening to resolve stadium-scale incidents dynamically.
 
+## 📊 Test Coverage
+
+![Backend Coverage](https://img.shields.io/badge/Backend%20Coverage-80%25-brightgreen)
+![Frontend Coverage](https://img.shields.io/badge/Frontend%20Coverage-22%25-orange)
+
+* **Backend**: 80% statement coverage (measured via `pytest-cov`)
+* **Frontend**: 22% statement coverage (measured via `vitest`)
+
 ---
 
 ## 📌 Problem Statement & Executive Summary
