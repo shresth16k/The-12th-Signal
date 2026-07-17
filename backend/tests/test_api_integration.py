@@ -237,7 +237,7 @@ def test_get_rumors(mock_cluster_signals, mock_detect_rumor):
 # --- POST /api/actions/* Action Endpoints ---
 
 
-def test_action_endpoints():
+def test_action_endpoints(bypass_ops_auth):
     endpoints = [
         "/api/actions/announcement",
         "/api/actions/deploy-staff",

@@ -20,11 +20,16 @@ from models import Consensus, FanProfile, FanSignal, SignalCluster, SourceTypeEn
 from orchestrator import negotiate
 
 is_testing = "pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST") is not None
+if not is_testing and not os.environ.get("OPS_TOKEN"):
+    raise RuntimeError("OPS_TOKEN environment variable is required")
 limiter = Limiter(key_func=get_remote_address, enabled=is_testing)
 app = FastAPI(title="The 12th Signal API", description="GenAI stadium-operations system for FIFA World Cup 2026")
+allowed_origins_raw = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173")
+allowed_origins = [origin.strip() for origin in allowed_origins_raw.split(",") if origin.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -76,12 +81,7 @@ async def verify_ops_token(x_ops_token: Optional[str] = Header(None)):
     Raises:
         HTTPException: If the token is invalid or missing when bypass is disabled.
     """
-    # Skip token verification during test runs to prevent breaking unmodified tests
-    if ("pytest" in sys.modules or os.environ.get("PYTEST_CURRENT_TEST")) and not os.environ.get(
-        "DISABLE_TEST_AUTH_BYPASS"
-    ):
-        return
-    required_token = os.environ.get("OPS_TOKEN", "ops-secure-token-2026")
+    required_token = os.environ.get("OPS_TOKEN")
     if x_ops_token != required_token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or missing X-Ops-Token")
 
