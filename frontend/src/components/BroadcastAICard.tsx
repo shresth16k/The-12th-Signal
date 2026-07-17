@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const BroadcastAICard: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-surface border border-slate-800 rounded-xl p-4 flex flex-col justify-between shadow-md relative overflow-hidden group hover:border-slate-700 transition-all duration-300 min-h-[180px] text-left select-none">
       {/* Background Decorative Gradient */}
@@ -79,7 +81,10 @@ export const BroadcastAICard: React.FC = () => {
       </div>
 
       {/* Action Button */}
-      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-[10px] font-bold uppercase tracking-wider py-2 px-3 rounded-lg transition-all cursor-pointer">
+      <button
+        onClick={() => navigate('/broadcast-ai')}
+        className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-[10px] font-bold uppercase tracking-wider py-2 px-3 rounded-lg transition-all cursor-pointer"
+      >
         Create More Content
       </button>
     </div>

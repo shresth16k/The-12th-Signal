@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface AccessibilityService {
   id: string;
@@ -8,6 +9,7 @@ interface AccessibilityService {
 }
 
 export const AccessibilityCard: React.FC = () => {
+  const navigate = useNavigate();
   // Local state to manage toggle interaction
   const [activeServices, setActiveServices] = useState<Record<string, boolean>>({
     'sign-language': true,
@@ -124,7 +126,10 @@ export const AccessibilityCard: React.FC = () => {
       </div>
 
       {/* Action Button */}
-      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-[10px] font-bold uppercase tracking-wider py-2 px-3 rounded-lg transition-all cursor-pointer">
+      <button
+        onClick={() => navigate('/accessibility')}
+        className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-[10px] font-bold uppercase tracking-wider py-2 px-3 rounded-lg transition-all cursor-pointer"
+      >
         Accessibility Settings
       </button>
     </div>

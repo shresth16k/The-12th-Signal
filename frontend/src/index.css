@@ -1,25 +1,40 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-black: #0b0e14;
-  --color-surface: #12161f;
-  --color-accent-purple: #b859ff;
-  --color-positive-teal: #14b8a6;
-  --color-warning-amber: #f59e0b;
-  --color-danger-red: #ef4444;
-  --color-info-blue: #3b82f6;
-  --color-slate-500: #8895a7;
-  --color-slate-600: #738294;
+  --color-brand-black: var(--brand-black);
+  --color-surface: var(--surface);
+  --color-accent-purple: var(--accent-purple);
+  --color-positive-teal: var(--positive-teal);
+  --color-warning-amber: var(--warning-amber);
+  --color-danger-red: var(--danger-red);
+  --color-info-blue: var(--info-blue);
+
+  --color-slate-100: var(--slate-100);
+  --color-slate-200: var(--slate-200);
+  --color-slate-300: var(--slate-300);
+  --color-slate-400: var(--slate-400);
+  --color-slate-500: var(--slate-500);
+  --color-slate-600: var(--slate-600);
+  --color-slate-700: var(--slate-700);
+  --color-slate-750: var(--slate-750);
+  --color-slate-800: var(--slate-800);
+  --color-slate-850: var(--slate-850);
+  --color-slate-900: var(--slate-900);
+  --color-slate-950: var(--slate-950);
 
   --animate-wiggle: wiggle 0.3s ease-in-out;
+
   @keyframes wiggle {
+
     0%,
     100% {
       transform: rotate(0deg);
     }
+
     25% {
       transform: rotate(-8deg);
     }
+
     75% {
       transform: rotate(8deg);
     }
@@ -27,10 +42,31 @@
 }
 
 :root {
+  --brand-black: #0b0e14;
+  --surface: #12161f;
+  --accent-purple: #b859ff;
+  --positive-teal: #14b8a6;
+  --warning-amber: #f59e0b;
+  --danger-red: #ef4444;
+  --info-blue: #3b82f6;
+
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-750: #253046;
+  --slate-800: #1e293b;
+  --slate-850: #172033;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
   --text: #9ca3af;
   --text-h: #f3f4f6;
-  --bg: #16171d;
-  --border: #2e303a;
+  --bg: #0b0e14;
+  --border: #1e293b;
   --code-bg: #1f2028;
   --accent: #c084fc;
   --accent-bg: rgba(192, 132, 252, 0.15);
@@ -57,13 +93,50 @@
   }
 }
 
+html.light {
+  --brand-black: #f8fafc;
+  --surface: #ffffff;
+  --accent-purple: #9333ea;
+  --positive-teal: #0d9488;
+  --warning-amber: #d97706;
+  --danger-red: #dc2626;
+  --info-blue: #2563eb;
+
+  --slate-100: #0f172a;
+  --slate-200: #1e293b;
+  --slate-300: #334155;
+  --slate-400: #475569;
+  --slate-500: #64748b;
+  --slate-600: #cbd5e1;
+  --slate-700: #cbd5e1;
+  --slate-750: #e2e8f0;
+  --slate-800: #e2e8f0;
+  --slate-850: #f1f5f9;
+  --slate-900: #f8fafc;
+  --slate-950: #ffffff;
+
+  --text: #475569;
+  --text-h: #0f172a;
+  --bg: #f8fafc;
+  --border: #cbd5e1;
+  --code-bg: #f1f5f9;
+  --accent: #9333ea;
+  --accent-bg: rgba(147, 51, 234, 0.1);
+  --accent-border: rgba(147, 51, 234, 0.3);
+  --social-bg: rgba(226, 232, 240, 0.5);
+  --shadow: rgba(0, 0, 0, 0.05) 0 10px 15px -3px, rgba(0, 0, 0, 0.02) 0 4px 6px -2px;
+
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+}
+
 #root {
-  width: 1126px;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -84,20 +157,24 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
@@ -121,23 +198,29 @@ code {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Custom thin scrollbar for message log */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
 }

@@ -188,14 +188,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onItemChange }) => {
             <button
               key={item.name}
               onClick={() => handleItemClick(item.name)}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/80 focus-visible:bg-slate-850/50 ${
-                isActive
-                  ? 'bg-accent-purple text-slate-100 shadow-[0_0_15px_rgba(170,59,255,0.3)]'
+              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/80 focus-visible:bg-slate-850/50 ${isActive
+                  ? 'bg-accent-purple text-brand-black shadow-[0_0_15px_rgba(170,59,255,0.3)]'
                   : 'hover:bg-slate-850 hover:text-slate-100 text-slate-400'
-              }`}
+                }`}
             >
               <span
-                className={`transition-transform duration-200 ${isActive ? 'scale-110 text-slate-100' : 'group-hover:scale-115'}`}
+                className={`transition-transform duration-200 ${isActive ? 'scale-110 text-brand-black' : 'group-hover:scale-115'}`}
                 aria-hidden="true"
               >
                 {item.icon}

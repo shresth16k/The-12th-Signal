@@ -40,6 +40,7 @@
     "prettier": "^3.9.5",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "vitest-axe": "^0.1.0"
   }
 }

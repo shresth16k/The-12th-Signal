@@ -68,7 +68,7 @@ export const PlaybookPage: React.FC = () => {
         </div>
         <button
           onClick={handleExportPDF}
-          className="bg-accent-purple hover:bg-accent-purple/90 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-[0_0_12px_rgba(170,59,255,0.45)] transition-all cursor-pointer"
+          className="bg-accent-purple hover:bg-accent-purple/90 text-brand-black text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-lg flex items-center gap-2 shadow-[0_0_12px_rgba(170,59,255,0.45)] transition-all cursor-pointer"
         >
           <svg
             className="w-4 h-4"

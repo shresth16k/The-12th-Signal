@@ -83,6 +83,27 @@ function FanTwinsPreview() {
 function App() {
   const [themeOverrideStatus, setThemeOverrideStatus] = useState<any>(null);
   const [matrixClicks, setMatrixClicks] = useState(0);
+  const [theme, setTheme] = useState<'dark' | 'light'>(
+    () => (localStorage.getItem('stadium-theme') as 'dark' | 'light') || 'dark'
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+      root.classList.remove('dark');
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      root.setAttribute('data-theme', 'dark');
+    }
+    localStorage.setItem('stadium-theme', theme);
+  }, [theme]);
+
+  const handleThemeToggle = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     let keysPressed = '';
@@ -120,7 +141,7 @@ function App() {
         data-clicks={matrixClicks}
       >
         {/* Top Header */}
-        <HeaderBar onLogoClick={handleLogoClick} />
+        <HeaderBar onLogoClick={handleLogoClick} theme={theme} onThemeToggle={handleThemeToggle} />
 
         {/* Main Content Layout */}
         <div className="flex flex-1 overflow-hidden">

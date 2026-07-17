@@ -156,13 +156,13 @@ export const SettingsPage: React.FC = () => {
             ].map((src, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-2.5 rounded-lg border border-slate-850 bg-brand-black/35 text-[10px]"
+                className="grid grid-cols-[1fr_120px_90px] items-center p-2.5 rounded-lg border border-slate-850 bg-brand-black/35 text-[10px]"
               >
-                <span className="font-bold text-slate-300">{src.source}</span>
-                <div className="flex items-center gap-2 font-mono">
-                  <span className="text-[9.5px] text-slate-500 font-semibold">{src.speed}</span>
+                <span className="font-bold text-slate-300 truncate pr-2">{src.source}</span>
+                <span className="text-[9.5px] text-slate-500 font-semibold font-mono text-right pr-4">{src.speed}</span>
+                <div className="flex justify-end">
                   <span
-                    className={`px-2 py-0.5 rounded border uppercase tracking-wider text-[8px] font-bold ${src.color}`}
+                    className={`px-2 py-0.5 rounded border uppercase tracking-wider text-[8px] font-bold text-center w-full block ${src.color}`}
                   >
                     {src.status}
                   </span>

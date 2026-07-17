@@ -206,70 +206,73 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         </span>
       </div>
 
-      {/* Message list (Chat bubbles) */}
-      <div className="flex-1 space-y-3 overflow-y-auto max-h-[30rem] pr-1 mb-4">
-        {opinions.length === 0 ? (
-          <div className="text-xs text-slate-500 text-center py-10 border border-dashed border-slate-850 rounded-lg bg-brand-black/20">
-            No agent opinions recorded. Safety filter may have short-circuited negotiation.
-          </div>
-        ) : (
-          opinions.map((o: any, idx: number) => {
-            const details = getAgentDetails(o.agent_name);
-            return (
-              <div key={idx} className="flex flex-col gap-1">
-                <div className="flex items-center justify-between px-1">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`w-5 h-5 rounded flex items-center justify-center text-[10px] border ${details.color}`}
-                    >
-                      {details.icon}
-                    </span>
-                    <span className="text-[11px] font-bold text-slate-300">{o.agent_name}</span>
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-mono font-medium">
-                    {formatTime(consensus.timestamp)}
-                  </span>
-                </div>
-                <div className="bg-brand-black/40 border border-slate-850 rounded-lg p-2.5 text-xs text-slate-300 leading-relaxed shadow-sm">
-                  <div className="font-semibold text-slate-200 mb-1">{o.recommendation}</div>
-                  <div className="text-[10px] text-slate-400 italic bg-brand-black/25 border-l border-slate-700 pl-2 mt-1.5 py-0.5">
-                    {o.reasoning}
-                  </div>
-                  {o.constraints && o.constraints.length > 0 && (
-                    <div className="text-[9px] text-slate-400 mt-1 flex flex-wrap gap-1">
-                      <span className="font-semibold text-slate-400">Constraints:</span>
-                      {o.constraints.map((c: string, cIdx: number) => (
-                        <span key={cIdx} className="bg-slate-800/80 px-1 py-0.2 rounded text-[8px] text-slate-400">
-                          {c}
-                        </span>
-                      ))}
+      {/* Scrollable Container for both Opinions and Consensus Action */}
+      <div className="flex-1 flex flex-col space-y-4 overflow-y-auto pr-1 custom-scrollbar mb-4">
+        {/* Message list (Chat bubbles) */}
+        <div className="space-y-3">
+          {opinions.length === 0 ? (
+            <div className="text-xs text-slate-500 text-center py-10 border border-dashed border-slate-850 rounded-lg bg-brand-black/20">
+              No agent opinions recorded. Safety filter may have short-circuited negotiation.
+            </div>
+          ) : (
+            opinions.map((o: any, idx: number) => {
+              const details = getAgentDetails(o.agent_name);
+              return (
+                <div key={idx} className="flex flex-col gap-1">
+                  <div className="flex items-center justify-between px-1">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`w-5 h-5 rounded flex items-center justify-center text-[10px] border ${details.color}`}
+                      >
+                        {details.icon}
+                      </span>
+                      <span className="text-[11px] font-bold text-slate-300">{o.agent_name}</span>
                     </div>
-                  )}
+                    <span className="text-[10px] text-slate-400 font-mono font-medium">
+                      {formatTime(consensus.timestamp)}
+                    </span>
+                  </div>
+                  <div className="bg-brand-black/40 border border-slate-850 rounded-lg p-2.5 text-xs text-slate-300 leading-relaxed shadow-sm">
+                    <div className="font-semibold text-slate-200 mb-1">{o.recommendation}</div>
+                    <div className="text-[10px] text-slate-400 italic bg-brand-black/25 border-l border-slate-700 pl-2 mt-1.5 py-0.5">
+                      {o.reasoning}
+                    </div>
+                    {o.constraints && o.constraints.length > 0 && (
+                      <div className="text-[9px] text-slate-400 mt-1 flex flex-wrap gap-1">
+                        <span className="font-semibold text-slate-400">Constraints:</span>
+                        {o.constraints.map((c: string, cIdx: number) => (
+                          <span key={cIdx} className="bg-slate-800/80 px-1 py-0.2 rounded text-[8px] text-slate-400">
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-
-      {/* Consensus reached card */}
-      <div className="bg-accent-purple/10 border border-accent-purple/40 rounded-xl p-4 mb-4 shadow-[0_0_15px_rgba(170,59,255,0.1)] animate-fadeIn">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-purple opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-purple"></span>
-          </span>
-          <span className="text-[10px] uppercase tracking-wider text-accent-purple font-bold">
-            Consensus Action Reached
-          </span>
+              );
+            })
+          )}
         </div>
-        <p className="text-xs text-slate-200 font-medium leading-relaxed">
-          {consensus?.final_action || 'Determining consensus actions...'}
-        </p>
+
+        {/* Consensus reached card */}
+        <div className="bg-accent-purple/10 border border-accent-purple/40 rounded-xl p-4 shadow-[0_0_15px_rgba(170,59,255,0.1)] animate-fadeIn">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-purple opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-purple"></span>
+            </span>
+            <span className="text-[10px] uppercase tracking-wider text-accent-purple font-bold">
+              Consensus Action Reached
+            </span>
+          </div>
+          <p className="text-xs text-slate-200 font-medium leading-relaxed">
+            {consensus?.final_action || 'Determining consensus actions...'}
+          </p>
+        </div>
       </div>
 
       {/* View full transcript button */}
-      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-xs font-semibold py-2.5 px-4 rounded-lg transition-all cursor-pointer">
+      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-xs font-semibold py-2.5 px-4 rounded-lg transition-all cursor-pointer shrink-0">
         View Full Transcript Trail
       </button>
     </div>

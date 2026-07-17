@@ -86,13 +86,12 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       severity,
       icon: (
         <span
-          className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs border ${
-            severity === 'high'
+          className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs border ${severity === 'high'
               ? 'bg-danger-red/10 border-danger-red/30 text-danger-red'
               : severity === 'medium'
                 ? 'bg-warning-amber/10 border-warning-amber/30 text-warning-amber'
                 : 'bg-accent-purple/10 border-accent-purple/30 text-accent-purple'
-          }`}
+            }`}
         >
           {iconEmoji}
         </span>
@@ -166,7 +165,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
         </span>
         <div className="space-y-2 overflow-y-auto max-h-48 pr-1">
           {mappedClusters.length === 0 ? (
-            <div className="text-xs text-slate-500 text-center py-8 border border-dashed border-slate-800 rounded-lg bg-brand-black/20">
+            <div className="text-xs text-slate-400 text-center py-8 border border-dashed border-slate-800 rounded-lg bg-brand-black/20">
               No active signal clusters detected
             </div>
           ) : (
@@ -184,17 +183,16 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                   key={c.id}
                   onClick={() => onSelectCluster && onSelectCluster(c.id)}
                   aria-label={`Cluster: ${c.topic} in ${c.zone}, Severity: ${c.severity}, Count: ${c.count} signals`}
-                  className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple ${
-                    isSelected
+                  className={`flex items-center justify-between p-2.5 rounded-lg transition-all cursor-pointer w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple ${isSelected
                       ? 'bg-accent-purple/10 border border-accent-purple shadow-[0_0_12px_rgba(170,59,255,0.2)]'
                       : 'bg-brand-black/45 border border-slate-850 hover:border-slate-800 hover:focus-visible:border-transparent'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     {c.icon}
                     <div className="flex flex-col">
                       <span className="text-xs font-semibold text-slate-200">{c.topic}</span>
-                      <span className="text-[10px] text-slate-500 font-medium">{c.zone}</span>
+                      <span className="text-[10px] text-slate-400 font-medium">{c.zone}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -221,7 +219,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
           { label: 'Fan Sat Index', value: '94%', color: 'text-accent-purple' },
         ].map((s, idx) => (
           <div key={idx} className="flex flex-col bg-brand-black/20 p-2 rounded-lg border border-slate-850">
-            <span className="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">{s.label}</span>
+            <span className="text-[9px] uppercase tracking-wider text-slate-400 font-semibold">{s.label}</span>
             <span className={`text-sm font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</span>
           </div>
         ))}
