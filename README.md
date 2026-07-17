@@ -323,7 +323,6 @@ node run_accessibility_scan.cjs
 | **Innovative LLM Use** | Groups unstructured texts into structured clusters, handles rumor checks, and drives a multi-agent negotiation. | [agents/](backend/agents/), [clustering.py](backend/clustering.py) |
 | **Technical Polish** | Zero accessibility violations (WCAG AA compliant), dark/light theme switching, unit/E2E test suites. | [accessibility_report.md](frontend/accessibility_report.md) |
 | **Production Ready** | Separation of concerns, async endpoints, responsive layout, dynamic SVG assets, and robust mock fallback. | [main.py](backend/main.py), [App.tsx](frontend/src/App.tsx) |
-| **Authorship Verified** | Cryptographic signature verifying authorship, developer portfolio, and profile links. | [utils/themeConfig.ts](frontend/src/utils/themeConfig.ts) |
 
 ---
 
