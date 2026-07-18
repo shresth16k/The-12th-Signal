@@ -12,31 +12,12 @@ import { AnalyticsPage } from './components/AnalyticsPage';
 import { PlaybookPage } from './components/PlaybookPage';
 import { SettingsPage } from './components/SettingsPage';
 import { WarRoomPanel } from './components/WarRoomPanel';
+import { StadiumPulse } from './components/StadiumPulse';
+import { RumorShieldPage } from './components/RumorShieldPage';
+import { BroadcastAIPage } from './components/BroadcastAIPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function PlaceholderPage({ title }: { title: string }) {
-  return (
-    <div className="flex-1 flex flex-col items-center justify-center text-slate-500 bg-brand-black p-6 select-none text-left">
-      <svg
-        className="w-12 h-12 mb-4 text-slate-700 animate-pulse"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={1.5}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-        />
-      </svg>
-      <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400">{title} Viewport</h2>
-      <p className="text-xs text-slate-500 mt-2 max-w-xs text-center leading-relaxed">
-        The {title} module operates dynamically as part of the live Command Center cockpit dashboard.
-      </p>
-    </div>
-  );
-}
+
 
 function FanTwinsPreview() {
   return (
@@ -75,6 +56,24 @@ function FanTwinsPreview() {
             <div className="w-28 h-1 bg-slate-700 rounded-full" />
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function WarRoomPage() {
+  const [selectedClusterId, setSelectedClusterId] = useState<string | undefined>(undefined);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full h-full text-left min-h-0">
+      {/* Left Column: Stadium Pulse for choosing active clusters */}
+      <div className="bg-surface border border-slate-800 rounded-xl p-3.5 flex flex-col shadow-lg hover:border-slate-700 transition-all h-full min-h-0">
+        <StadiumPulse onSelectCluster={setSelectedClusterId} selectedClusterId={selectedClusterId} />
+      </div>
+
+      {/* Right Column: AI War Room Consensus Panel */}
+      <div className="lg:col-span-2 bg-surface border border-slate-800 rounded-xl p-3.5 flex flex-col shadow-lg hover:border-slate-700 transition-all h-full min-h-0">
+        <WarRoomPanel clusterId={selectedClusterId} />
       </div>
     </div>
   );
@@ -155,35 +154,56 @@ function App() {
               <Route
                 path="/war-room"
                 element={
-                  <div className="bg-surface m-6 p-6 border border-slate-800 rounded-xl flex-1 flex flex-col">
-                    <WarRoomPanel />
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
+                    <WarRoomPage />
                   </div>
                 }
               />
               <Route path="/analytics" element={<AnalyticsPage />} />
               <Route path="/playbook" element={<PlaybookPage />} />
-              <Route path="/settings" element={<SettingsPage />} />
+              <Route
+                path="/settings"
+                element={
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
+                    <SettingsPage />
+                  </div>
+                }
+              />
 
               {/* Fallback & placeholder viewports */}
               <Route
                 path="/signals"
                 element={
-                  <div className="flex-1 flex items-center justify-center bg-brand-black p-6">
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
                     <SignalSubmit />
                   </div>
                 }
               />
               <Route path="/fan-twins" element={<FanTwinsPreview />} />
-              <Route path="/rumor-shield" element={<PlaceholderPage title="Rumor Shield" />} />
+              <Route
+                path="/rumor-shield"
+                element={
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
+                    <RumorShieldPage />
+                  </div>
+                }
+              />
               <Route
                 path="/accessibility"
                 element={
-                  <div className="flex-1 flex items-center justify-center bg-brand-black p-6">
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
                     <FanAccessibilitySettings />
                   </div>
                 }
               />
-              <Route path="/broadcast-ai" element={<PlaceholderPage title="Broadcast AI" />} />
+              <Route
+                path="/broadcast-ai"
+                element={
+                  <div className="flex-1 bg-brand-black p-4 flex flex-col min-h-0 h-full overflow-hidden">
+                    <BroadcastAIPage />
+                  </div>
+                }
+              />
               <Route path="*" element={<CommandCenter />} />
             </Routes>
           </main>

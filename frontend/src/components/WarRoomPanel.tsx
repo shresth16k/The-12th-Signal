@@ -103,12 +103,12 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
     return (
       <div className="w-full h-full flex flex-col justify-between text-left select-none">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
-            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
+            <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_#aa3bff]" />
+            <h2 className="text-xs font-extrabold text-slate-200 uppercase tracking-widest">AI War Room</h2>
           </div>
-          <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
+          <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
@@ -128,10 +128,10 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
               d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             />
           </svg>
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Awaiting Target Selection
           </span>
-          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">
+          <span className="text-[9px] text-slate-400 mt-1.5 max-w-[220px]">
             Select an active fan signal cluster to initiate multi-agent operations consensus.
           </span>
         </div>
@@ -143,22 +143,22 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
     return (
       <div className="w-full h-full flex flex-col justify-between text-left select-none">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
-            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
+            <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
+            <h2 className="text-xs font-extrabold text-slate-200 uppercase tracking-widest">AI War Room</h2>
           </div>
-          <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
+          <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
 
         <div className="flex-1 flex flex-col items-center justify-center text-slate-500 bg-brand-black/20 border border-dashed border-slate-850 rounded-lg p-6 text-center">
           <div className="w-8 h-8 rounded-full border-2 border-accent-purple border-t-transparent animate-spin mb-3" />
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Synthesizing Consensus...
           </span>
-          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">
+          <span className="text-[9px] text-slate-400 mt-1.5 max-w-[220px]">
             Calling Security, Concessions, Medical, Transit, and Broadcast agents to resolve action plan.
           </span>
         </div>
@@ -170,22 +170,22 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
     return (
       <div className="w-full h-full flex flex-col justify-between text-left select-none">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-danger-red animate-pulse" />
-            <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
+            <div className="w-2 h-2 rounded-full bg-danger-red animate-pulse" />
+            <h2 className="text-xs font-extrabold text-slate-200 uppercase tracking-widest">AI War Room</h2>
           </div>
-          <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
+          <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded">
             Orchestrator Panel
           </span>
         </div>
 
         <div className="flex-1 flex flex-col items-center justify-center text-danger-red bg-danger-red/5 border border-dashed border-danger-red/20 rounded-lg p-6 text-center">
           <span className="text-2xl mb-2">⚠️</span>
-          <span className="text-xs font-semibold uppercase tracking-wider text-danger-red">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-danger-red">
             Consensus Negotiation Failed
           </span>
-          <span className="text-[10px] text-slate-400 mt-2 max-w-[220px]">{error}</span>
+          <span className="text-[9px] text-slate-400 mt-1.5 max-w-[220px]">{error}</span>
         </div>
       </div>
     );
@@ -196,12 +196,12 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
   return (
     <div className="w-full h-full flex flex-col justify-between text-left select-none">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+      <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
-          <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">AI War Room</h2>
+          <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_#9b2bf6]" />
+          <h2 className="text-xs font-extrabold text-slate-200 uppercase tracking-widest">AI War Room</h2>
         </div>
-        <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
+        <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded">
           Orchestrator Panel
         </span>
       </div>
@@ -222,24 +222,24 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
                   <div className="flex items-center justify-between px-1">
                     <div className="flex items-center gap-2">
                       <span
-                        className={`w-5 h-5 rounded flex items-center justify-center text-[10px] border ${details.color}`}
+                        className={`w-4 h-4 rounded flex items-center justify-center text-[9px] border ${details.color}`}
                       >
                         {details.icon}
                       </span>
-                      <span className="text-[11px] font-bold text-slate-300">{o.agent_name}</span>
+                      <span className="text-[10px] font-bold text-slate-350">{o.agent_name}</span>
                     </div>
-                    <span className="text-[10px] text-slate-400 font-mono font-medium">
+                    <span className="text-[9px] text-slate-500 font-mono font-medium">
                       {formatTime(consensus.timestamp)}
                     </span>
                   </div>
-                  <div className="bg-brand-black/40 border border-slate-850 rounded-lg p-2.5 text-xs text-slate-300 leading-relaxed shadow-sm">
-                    <div className="font-semibold text-slate-200 mb-1">{o.recommendation}</div>
-                    <div className="text-[10px] text-slate-400 italic bg-brand-black/25 border-l border-slate-700 pl-2 mt-1.5 py-0.5">
+                  <div className="bg-brand-black/40 border border-slate-850 rounded-lg p-2 text-[11px] text-slate-300 leading-relaxed shadow-sm">
+                    <div className="font-semibold text-slate-200 mb-0.5">{o.recommendation}</div>
+                    <div className="text-[9px] text-slate-400 italic bg-brand-black/25 border-l border-slate-700 pl-2 mt-1 py-0.5">
                       {o.reasoning}
                     </div>
                     {o.constraints && o.constraints.length > 0 && (
-                      <div className="text-[9px] text-slate-400 mt-1 flex flex-wrap gap-1">
-                        <span className="font-semibold text-slate-400">Constraints:</span>
+                      <div className="text-[8px] text-slate-500 mt-1 flex flex-wrap gap-1">
+                        <span className="font-semibold text-slate-500">Constraints:</span>
                         {o.constraints.map((c: string, cIdx: number) => (
                           <span key={cIdx} className="bg-slate-800/80 px-1 py-0.2 rounded text-[8px] text-slate-400">
                             {c}
@@ -255,24 +255,24 @@ export const WarRoomPanel: React.FC<WarRoomPanelProps> = ({ clusterId }) => {
         </div>
 
         {/* Consensus reached card */}
-        <div className="bg-accent-purple/10 border border-accent-purple/40 rounded-xl p-4 shadow-[0_0_15px_rgba(170,59,255,0.1)] animate-fadeIn">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="flex h-2 w-2 relative">
+        <div className="bg-accent-purple/10 border border-accent-purple/40 rounded-xl p-3 shadow-[0_0_15px_rgba(170,59,255,0.1)] animate-fadeIn">
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <span className="flex h-1.5 w-1.5 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-purple opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-purple"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-purple"></span>
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-accent-purple font-bold">
+            <span className="text-[9px] uppercase tracking-wider text-accent-purple font-bold">
               Consensus Action Reached
             </span>
           </div>
-          <p className="text-xs text-slate-200 font-medium leading-relaxed">
+          <p className="text-[11px] text-slate-200 font-medium leading-relaxed">
             {consensus?.final_action || 'Determining consensus actions...'}
           </p>
         </div>
       </div>
 
       {/* View full transcript button */}
-      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-xs font-semibold py-2.5 px-4 rounded-lg transition-all cursor-pointer shrink-0">
+      <button className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 text-[10px] uppercase tracking-wider font-extrabold py-2 px-3 rounded-lg transition-all cursor-pointer shrink-0">
         View Full Transcript Trail
       </button>
     </div>

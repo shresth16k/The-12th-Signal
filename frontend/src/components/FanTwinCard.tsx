@@ -10,9 +10,9 @@ export const FanTwinCard: React.FC = () => {
       <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent-purple/5 rounded-full blur-xl group-hover:bg-accent-purple/10 transition-all" />
 
       {/* Header */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-info-blue/10 border border-info-blue/20 flex items-center justify-center text-info-blue shadow-sm group-hover:shadow-[0_0_10px_rgba(59,130,246,0.4)] transition-all">
+      <div className="flex items-start justify-between gap-1.5">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-9 h-9 rounded-lg bg-info-blue/10 border border-info-blue/20 flex items-center justify-center text-info-blue shadow-sm group-hover:shadow-[0_0_10px_rgba(59,130,246,0.4)] transition-all flex-shrink-0">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -28,16 +28,22 @@ export const FanTwinCard: React.FC = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col">
-            <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">Fan Twin AI</span>
-            <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wide">Personal Assistant</span>
+          <div className="flex flex-col min-w-0">
+            <span className="text-xs font-bold text-slate-200 uppercase tracking-wider truncate">Fan Twin AI</span>
+            <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wide truncate">Personal Assistant</span>
           </div>
         </div>
 
         {/* Connection Status Indicator */}
-        <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded font-mono uppercase">
-          Online
-        </span>
+        <div className="flex items-center gap-1 bg-slate-800/80 border border-slate-700/30 px-1.5 py-0.5 rounded-full flex-shrink-0">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-positive-teal opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-positive-teal"></span>
+          </span>
+          <span className="text-[8px] text-slate-350 font-bold font-mono uppercase">
+            Online
+          </span>
+        </div>
       </div>
 
       {/* Greeting and Content List */}

@@ -102,12 +102,12 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
   return (
     <div className="w-full h-full flex flex-col justify-between text-left select-none">
       {/* 1. Header with Title */}
-      <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+      <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-2.5">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-accent-purple animate-pulse" />
-          <h2 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Stadium Pulse</h2>
+          <div className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
+          <h2 className="text-xs font-extrabold text-slate-200 uppercase tracking-widest">Stadium Pulse</h2>
         </div>
-        <span className="text-[10px] bg-slate-800 text-slate-400 font-bold px-2 py-0.5 rounded">
+        <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.5 rounded">
           Fan Sentiment & Signals
         </span>
       </div>
@@ -115,11 +115,11 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       {/* 2. Sentiment + Sparkline */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {/* Sentiment Distribution */}
-        <div className="space-y-2">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+        <div className="space-y-1.5">
+          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">
             Crowd Sentiment Breakdown
           </span>
-          <div className="flex items-center justify-between text-xs font-semibold text-slate-300">
+          <div className="flex items-center justify-between text-[10px] font-semibold text-slate-300">
             <span className="text-positive-teal">Positive ({positiveSentiment}%)</span>
             <span className="text-slate-400">Neutral ({neutralSentiment}%)</span>
             <span className="text-danger-red">Negative ({negativeSentiment}%)</span>
@@ -134,7 +134,7 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
 
         {/* Sparkline Trend */}
         <div className="flex flex-col justify-between">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">
             Sentiment Trend (Last 90m)
           </span>
           <div className="h-10 w-full mt-1.5 bg-brand-black/30 border border-slate-850 rounded-lg p-1 relative">
@@ -159,11 +159,11 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
       </div>
 
       {/* 3. Top Signal Clusters */}
-      <div className="flex-1 space-y-2 mb-4">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+      <div className="flex-1 flex flex-col min-h-0 mb-4">
+        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
           Top Signal Clusters — Last 5 Minutes
         </span>
-        <div className="space-y-2 overflow-y-auto max-h-48 pr-1">
+        <div className="space-y-2 overflow-y-auto flex-1 pr-1">
           {mappedClusters.length === 0 ? (
             <div className="text-xs text-slate-400 text-center py-8 border border-dashed border-slate-800 rounded-lg bg-brand-black/20">
               No active signal clusters detected
@@ -191,17 +191,17 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
                   <div className="flex items-center gap-3">
                     {c.icon}
                     <div className="flex flex-col">
-                      <span className="text-xs font-semibold text-slate-200">{c.topic}</span>
-                      <span className="text-[10px] text-slate-400 font-medium">{c.zone}</span>
+                      <span className="text-[11px] font-semibold text-slate-200">{c.topic}</span>
+                      <span className="text-[9px] text-slate-400 font-medium">{c.zone}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`text-[9px] px-1.5 py-0.5 rounded font-bold border uppercase tracking-wide ${severityColor}`}
+                      className={`text-[8px] px-1.5 py-0.2 rounded font-bold border uppercase tracking-wide ${severityColor}`}
                     >
                       {c.severity}
                     </span>
-                    <span className="text-xs font-mono font-bold text-slate-400">{c.count} sigs</span>
+                    <span className="text-[10px] font-mono font-bold text-slate-400">{c.count} sigs</span>
                   </div>
                 </button>
               );
@@ -218,9 +218,9 @@ export const StadiumPulse: React.FC<StadiumPulseProps> = ({ onSelectCluster, sel
           { label: 'Resolved today', value: '1,240', color: 'text-slate-100' },
           { label: 'Fan Sat Index', value: '94%', color: 'text-accent-purple' },
         ].map((s, idx) => (
-          <div key={idx} className="flex flex-col bg-brand-black/20 p-2 rounded-lg border border-slate-850">
-            <span className="text-[9px] uppercase tracking-wider text-slate-400 font-semibold">{s.label}</span>
-            <span className={`text-sm font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</span>
+          <div key={idx} className="flex flex-col bg-brand-black/20 p-1.5 rounded-lg border border-slate-850">
+            <span className="text-[8px] uppercase tracking-wider text-slate-400 font-semibold">{s.label}</span>
+            <span className={`text-xs font-bold font-mono mt-0.5 ${s.color}`}>{s.value}</span>
           </div>
         ))}
       </div>

@@ -154,6 +154,22 @@ def create_signal(request: Request, signal_input: FanSignalCreate):
         )
 
 
+@app.get("/api/signals", response_model=List[FanSignal])
+def get_signals():
+    """Retrieve all ingested fan signals, sorted by timestamp descending.
+
+    Returns:
+        List[FanSignal]: The list of ingested fan signals.
+    """
+    try:
+        return sorted(signals_db, key=lambda s: s.timestamp, reverse=True)
+    except Exception as e:
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": str(e), "code": status.HTTP_500_INTERNAL_SERVER_ERROR},
+        )
+
+
 # In-memory storage for clusters
 clusters_db: List[SignalCluster] = []
 
